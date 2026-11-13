@@ -69,7 +69,7 @@ ${list(item.avoidWhen)}
 |---|---|---|---|
 ${props.map((p) => `| \`${p.name}\`${p.required ? ' *' : ''} | ${type(p)} | ${p.default === undefined ? '—' : `\`${p.default}\``} | ${esc(item.propDocs[p.name] || '—')} |`).join('\n')}
 
-\\* obligatoria${item.extends ? `. Acepta además todo lo que acepta un \`<${item.extends}>\` nativo${item.extends === 'input' ? ', y su valor se enlaza con \`v-model\`' : ''}.` : ''}
+\\* obligatoria${item.extends ? `. Acepta además todo lo que acepta un \`<${item.extends}>\` nativo${item.extends === 'input' ? ', y su valor se enlaza con `v-model`' : ''}.` : ''}
 ${events.length ? `\n## Eventos\n\n| Evento | Se escucha con | Cuándo se emite |\n|---|---|---|\n${events.map((e) => `| \`${e.event}\` | \`@${kebab(e.event)}\` | ${esc(item.propDocs[e.name] || '—')} |`).join('\n')}\n` : ''}${slot ? `\n## Slots\n\n| Slot | Obligatorio | Qué va dentro |\n|---|---|---|\n| por defecto | ${slot.required ? 'sí' : 'no'} | ${esc(item.propDocs.children || '—')} |\n` : ''}
 ## Reglas
 
