@@ -1,0 +1,35 @@
+{
+  "name": "FormLayout",
+  "description": "Un formulario corto: título, campos en columna y las acciones al final.",
+  "useWhen": [
+    "Crear o editar algo con pocos campos: un ejercicio, un tipo de día.",
+    "Dentro de una Sheet o como pantalla propia."
+  ],
+  "avoidWhen": [
+    "Para registrar una sesión de entrenamiento: usa SessionLog.",
+    "Para más de seis campos: divide en pasos o en pantallas."
+  ],
+  "props": [
+    { "name": "title", "type": "string", "required": true },
+    { "name": "children", "type": "node", "required": true },
+    { "name": "submitLabel", "type": "string", "required": true },
+    { "name": "onSubmit", "type": "function", "required": true },
+    { "name": "cancelLabel", "type": "string" },
+    { "name": "onCancel", "type": "function" },
+    { "name": "submitting", "type": "boolean", "default": false }
+  ],
+  "components": ["Button"],
+  "rules": [
+    "Los campos son Input o Checkbox del sistema, uno por fila, en el orden en que se rellenan.",
+    "Como mucho seis campos.",
+    "Una sola acción principal, a todo el ancho, y debajo la de cancelar.",
+    "El botón principal dice qué pasa: «Guardar ejercicio», no «Enviar».",
+    "Los errores se muestran en cada campo, con su prop error; no en un aviso general.",
+    "Mientras se envía, el botón principal usa loading: no se deshabilitan los campos."
+  ],
+  "accessibility": [
+    "Es un <form>: se envía también con la tecla Intro.",
+    "El título es un encabezado.",
+    "El orden del foco es el orden visual: campos, acción principal, cancelar."
+  ]
+}

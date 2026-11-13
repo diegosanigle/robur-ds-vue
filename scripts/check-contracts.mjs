@@ -46,7 +46,7 @@ for (const name of readdirSync(dir).sort()) {
     else if (JSON.stringify(declared, Object.keys(declared).sort()) !== JSON.stringify(prop, Object.keys(prop).sort())) {
       fail(`la prop "${prop.name}" no coincide. Código: ${JSON.stringify(prop)} · Contrato: ${JSON.stringify(declared)}`)
     }
-    if (!description && !event) fail(`${prop.name === 'children' ? 'el slot por defecto' : `la prop "${prop.name}"`} no tiene comentario en el código`)
+    if (!description) fail(`${prop.name === 'children' ? 'el slot por defecto' : event ? `el evento de "${prop.name}"` : `la prop "${prop.name}"`} no tiene comentario en el código`)
   }
   for (const propName of Object.keys(inContract)) {
     if (!fromCode.some(({ prop }) => prop.name === propName)) fail(`la prop "${propName}" está en el contrato y no en el código`)

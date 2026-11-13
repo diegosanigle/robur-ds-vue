@@ -25,6 +25,9 @@ function typeOf(text) {
 export function propsFromCode(folder, name) {
   const file = join(root, 'src', folder, name, `${name}.vue`)
   const meta = checker.getComponentMeta(file)
+  const source = readFileSync(file, 'utf8')
+  // vue-component-meta no devuelve el comentario de los eventos: se lee del propio defineEmits.
+  const eventDocs = Object.fromEntries([...source.matchAll(/\/\*\*\s*(.+?)\s*\*\/\s*\n\s*(\w+):\s*\[/g)].map((m) => [m[2], m[1]]))
   const out = []
 
   for (const p of meta.props) {
@@ -37,13 +40,13 @@ export function propsFromCode(folder, name) {
   for (const e of meta.events) {
     if (e.name.startsWith('update:')) continue
     // Un evento no puede ser obligatorio en Vue: `required` no se compara (ver check-contracts).
-    out.push({ prop: { name: `on${capitalize(e.name)}`, type: 'function' }, description: e.description, event: true })
+    out.push({ prop: { name: `on${capitalize(e.name)}`, type: 'function' }, description: e.description || eventDocs[e.name] || '', event: true })
   }
   const slot = meta.slots.find((s) => s.name === 'default')
   if (slot) {
     const prop = { name: 'children', type: 'node' }
     // `default(): …` es obligatorio; `default?(): …` es opcional.
-    if (!/\bdefault\?\s*\(/.test(readFileSync(file, 'utf8'))) prop.required = true
+    if (!/\bdefault\?\s*\(/.test(source)) prop.required = true
     out.push({ prop, description: slot.description })
   }
   return out

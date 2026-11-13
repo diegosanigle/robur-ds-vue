@@ -1,0 +1,16 @@
+.story {
+  width: 100%;
+  height: 220px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+}
+
+.swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+  vertical-align: -2px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+}

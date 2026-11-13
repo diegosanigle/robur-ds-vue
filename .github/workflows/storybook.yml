@@ -1,4 +1,4 @@
-name: Publicar Storybook
+name: Publicar Storybook y documentación
 
 on:
   push:
@@ -41,6 +41,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build-storybook
+      # La documentación generada se publica dentro del mismo sitio, en /docs/.
+      - run: npm run docs
+        env:
+          DOCS_BASE: /robur-ds-vue/docs/
+      - run: cp -r site/.vitepress/dist storybook-static/docs
       - uses: actions/upload-pages-artifact@v5
         with:
           path: storybook-static

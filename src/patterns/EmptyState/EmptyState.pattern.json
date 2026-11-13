@@ -1,0 +1,30 @@
+{
+  "name": "EmptyState",
+  "description": "Lo que se ve cuando una lista o una sección todavía no tiene contenido.",
+  "useWhen": [
+    "Una lista, un historial o una sección no tienen nada que mostrar todavía.",
+    "El resultado de un filtro o una búsqueda está vacío."
+  ],
+  "avoidWhen": [
+    "Para un error de carga o de red: es un aviso, no un estado vacío.",
+    "Para una semana sin sesiones en el heatmap: usa HeatmapCell con sessions a 0."
+  ],
+  "props": [
+    { "name": "title", "type": "string", "required": true },
+    { "name": "description", "type": "string", "required": true },
+    { "name": "actionLabel", "type": "string" },
+    { "name": "onAction", "type": "function" }
+  ],
+  "components": ["Button"],
+  "rules": [
+    "El título dice qué habrá aquí: «Aún no hay sesiones esta semana».",
+    "Nunca lenguaje de fallo o de culpa: no «No has entrenado», no «Nada que mostrar».",
+    "La descripción dice cómo empezar, en una frase.",
+    "Como mucho una acción, y es la que llena este vacío.",
+    "Sin ilustraciones ni iconos de advertencia."
+  ],
+  "accessibility": [
+    "El título es un encabezado: se puede llegar a él navegando por encabezados.",
+    "La acción es un Button con texto visible."
+  ]
+}

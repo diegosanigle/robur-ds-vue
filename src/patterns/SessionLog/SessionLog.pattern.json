@@ -1,0 +1,33 @@
+{
+  "name": "SessionLog",
+  "description": "Registrar una sesión de entrenamiento: elegir el tipo de día, marcar los ejercicios y guardar.",
+  "useWhen": [
+    "La persona registra la sesión que acaba de hacer o que está haciendo."
+  ],
+  "avoidWhen": [
+    "Para ver una sesión ya guardada, solo de lectura.",
+    "Para crear o editar un ejercicio del plan: usa FormLayout."
+  ],
+  "props": [
+    { "name": "dayTypes", "type": "array", "required": true },
+    { "name": "dayType", "type": "string", "required": true },
+    { "name": "onDayTypeChange", "type": "function", "required": true },
+    { "name": "exercises", "type": "array", "required": true },
+    { "name": "onExerciseChange", "type": "function", "required": true },
+    { "name": "onSave", "type": "function", "required": true },
+    { "name": "saving", "type": "boolean", "default": false }
+  ],
+  "components": ["Button", "Chip", "ExerciseRow"],
+  "rules": [
+    "Registrar una sesión no pasa de tres toques: tipo de día, ejercicio hecho y guardar.",
+    "El tipo de día se elige con Chip: es la primera decisión y va arriba.",
+    "Guardar es la única acción principal y siempre está disponible: se puede guardar una sesión con cualquier número de ejercicios marcados.",
+    "No hay barra de progreso, porcentaje ni recuento de lo que falta: Robur no tiene objetivos.",
+    "Un ejercicio sin marcar no se señala de ninguna forma."
+  ],
+  "accessibility": [
+    "Los chips forman un grupo con nombre: «Tipo de día».",
+    "Los ejercicios son una lista: un lector de pantalla dice cuántos hay.",
+    "Todo el flujo se puede hacer con el teclado."
+  ]
+}
