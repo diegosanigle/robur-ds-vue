@@ -1,0 +1,43 @@
+{
+  "name": "Tabs",
+  "description": "Cambia entre vistas del mismo contenido dentro de una pantalla.",
+  "useWhen": ["Alternar entre dos, tres o cuatro vistas del mismo dato: semana, mes, año."],
+  "avoidWhen": [
+    "Para ir a otra sección de la app: usa BottomNav.",
+    "Para elegir un valor en un formulario: usa Chip.",
+    "Con más de cuatro opciones."
+  ],
+  "props": [
+    { "name": "label", "type": "string", "required": true },
+    { "name": "tabs", "type": "array", "required": true },
+    { "name": "value", "type": "string", "required": true },
+    { "name": "onChange", "type": "function", "required": true },
+    { "name": "children", "type": "node" }
+  ],
+  "states": ["default", "selected", "pressed", "focus"],
+  "tokens": [
+    "color.bg.surface",
+    "color.bg.selected",
+    "color.text.on-selected",
+    "color.text.tertiary",
+    "radius.pill",
+    "text.control"
+  ],
+  "composes": [],
+  "rules": ["Entre dos y cuatro pestañas, con etiquetas de una palabra.", "Siempre hay una pestaña activa."],
+  "accessibility": [
+    "Usa los roles tablist, tab y tabpanel.",
+    "Las flechas izquierda y derecha cambian de pestaña; Inicio y Fin van a la primera y a la última.",
+    "Solo la pestaña activa entra en el orden de tabulación.",
+    "Altura mínima de 44 px."
+  ],
+  "figma": {
+    "props": {
+      "label": { "omit": "Solo es el nombre accesible." },
+      "tabs": { "omit": "Son las instancias de .Tab que hay dentro." },
+      "value": { "omit": "Es la propiedad selected de cada .Tab." },
+      "onChange": { "omit": "Comportamiento: no existe en Figma." },
+      "children": { "omit": "El contenido se dibuja debajo, fuera del componente." }
+    }
+  }
+}

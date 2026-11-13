@@ -1,0 +1,33 @@
+{
+  "name": "ExerciseRow",
+  "description": "Fila de un ejercicio dentro de una sesión: se marca como hecho y se registran sus cifras.",
+  "useWhen": ["Listar los ejercicios de una sesión mientras se entrena."],
+  "avoidWhen": ["Para listas que no son ejercicios: usa Checkbox.", "Para mostrar una sesión ya terminada, solo de lectura."],
+  "props": [
+    { "name": "name", "type": "string", "required": true },
+    { "name": "target", "type": "string" },
+    { "name": "completed", "type": "boolean", "required": true },
+    { "name": "onCompletedChange", "type": "function", "required": true },
+    { "name": "children", "type": "node" }
+  ],
+  "states": ["default", "completed"],
+  "tokens": ["color.border.default", "color.bg.surface", "color.bg.action-soft", "radius.md"],
+  "composes": ["Checkbox"],
+  "rules": [
+    "Los campos son Input con numeric, tres como máximo.",
+    "Completado cambia el fondo y no tacha el texto.",
+    "Un ejercicio sin completar no se marca como fallo: no hay objetivos que cumplir."
+  ],
+  "accessibility": [
+    "El nombre del ejercicio es la etiqueta de la casilla.",
+    "El estado completado lo dice la casilla, no solo el color de fondo."
+  ],
+  "figma": {
+    "props": {
+      "name": { "via": "Checkbox.label" },
+      "target": { "via": "Checkbox.hint" },
+      "onCompletedChange": { "omit": "Comportamiento: no existe en Figma." },
+      "children": "SLOT"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Checkbox",
+  "description": "Casilla para marcar algo como hecho o activado.",
+  "useWhen": ["Marcar un elemento como hecho.", "Activar o desactivar una opción independiente de las demás."],
+  "avoidWhen": ["Para elegir una sola opción entre varias: usa Chip.", "Para una acción inmediata: usa Button."],
+  "props": [
+    { "name": "label", "type": "string", "required": true },
+    { "name": "hint", "type": "string" }
+  ],
+  "extends": "input",
+  "states": ["default", "checked", "focus", "disabled"],
+  "tokens": [
+    "color.border.control",
+    "color.bg.surface",
+    "color.bg.action",
+    "color.text.on-action",
+    "color.text.primary",
+    "color.text.secondary",
+    "radius.xs",
+    "text.title",
+    "text.sm"
+  ],
+  "composes": [],
+  "rules": [
+    "La etiqueta describe el elemento, no la acción: «Flexiones», no «Marcar flexiones».",
+    "Marcado no tacha el texto: tachar sugiere anulación, no logro."
+  ],
+  "accessibility": [
+    "label es obligatorio y pulsarlo marca la casilla.",
+    "El nombre de la casilla es solo label; hint se anuncia como descripción.",
+    "La zona pulsable mide al menos 44 px de alto.",
+    "Es un input nativo: funciona con la barra espaciadora.",
+    "El borde de la casilla cumple 3:1 contra su fondo."
+  ],
+  "figma": {
+    "extra": [
+      {
+        "name": "state",
+        "type": "VARIANT",
+        "values": ["default", "checked", "disabled"]
+      }
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "StatCard",
+  "description": "Una cifra grande con la etiqueta que dice qué mide.",
+  "useWhen": [
+    "Mostrar un dato que se lee de un vistazo: sesiones del mes, volumen de la semana.",
+    "inverse: el dato más importante de la pantalla."
+  ],
+  "avoidWhen": [
+    "Para varios datos relacionados o texto largo: usa Card.",
+    "Para comparar valores en el tiempo: usa un gráfico."
+  ],
+  "props": [
+    { "name": "label", "type": "string", "required": true },
+    { "name": "value", "type": "string", "required": true },
+    { "name": "unit", "type": "string" },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["surface", "inverse"],
+      "default": "surface"
+    },
+    {
+      "name": "series",
+      "type": "enum",
+      "values": ["primary", "secondary"],
+      "default": "primary"
+    }
+  ],
+  "states": ["default"],
+  "tokens": [
+    "color.text.tertiary",
+    "color.text.on-inverse-muted",
+    "color.data.1",
+    "color.data.2",
+    "text.label",
+    "text.h1",
+    "text.title"
+  ],
+  "composes": ["Card"],
+  "rules": [
+    "Máximo una StatCard inverse por pantalla.",
+    "series solo tiene efecto en la variante inverse.",
+    "Una cifra a cero es un dato, no un error: nunca en rojo ni con aviso.",
+    "value llega ya formateado, con separadores en español: «2.480», «62,5»."
+  ],
+  "accessibility": [
+    "La cifra y su etiqueta son texto: no dependen del color para entenderse.",
+    "color.data.1 solo cumple contraste como texto grande: no reducir la cifra por debajo de text-h1.",
+    "La unidad es texto pequeño: usa el color de texto secundario, nunca el de la cifra."
+  ],
+  "figma": {}
+}

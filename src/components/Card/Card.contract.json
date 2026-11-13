@@ -1,0 +1,39 @@
+{
+  "name": "Card",
+  "description": "Superficie que agrupa contenido relacionado.",
+  "useWhen": [
+    "Agrupar un bloque de contenido que se lee como una unidad.",
+    "inverse: destacar el bloque más importante de la pantalla."
+  ],
+  "avoidWhen": [
+    "Para mostrar una sola cifra con su etiqueta: usa StatCard.",
+    "Para contenido que aparece encima de la pantalla: usa Sheet."
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["surface", "inverse"],
+      "default": "surface"
+    },
+    {
+      "name": "padding",
+      "type": "enum",
+      "values": ["md", "lg"],
+      "default": "md"
+    },
+    { "name": "children", "type": "node", "required": true }
+  ],
+  "states": ["default"],
+  "tokens": ["color.bg.surface", "color.text.primary", "color.bg.inverse", "color.text.on-inverse", "radius.lg"],
+  "composes": [],
+  "rules": [
+    "Máximo una tarjeta inverse por pantalla.",
+    "Sin sombra ni borde: la jerarquía la dan el color y el tamaño.",
+    "Dentro de una tarjeta inverse, el texto secundario usa text-on-inverse-muted."
+  ],
+  "accessibility": ["Es un contenedor sin rol: el orden de lectura es el del contenido."],
+  "figma": {
+    "props": { "children": "SLOT" }
+  }
+}

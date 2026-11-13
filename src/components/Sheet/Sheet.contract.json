@@ -1,0 +1,49 @@
+{
+  "name": "Sheet",
+  "description": "Hoja modal anclada abajo para un detalle o una tarea corta.",
+  "useWhen": [
+    "Mostrar el detalle de un elemento sin salir de la pantalla.",
+    "Una tarea corta que interrumpe a propósito: editar una sesión."
+  ],
+  "avoidWhen": [
+    "Para un flujo de varios pasos: usa una pantalla.",
+    "Para un mensaje que no pide respuesta: no interrumpas con un modal."
+  ],
+  "props": [
+    { "name": "open", "type": "boolean", "required": true },
+    { "name": "onClose", "type": "function", "required": true },
+    { "name": "title", "type": "string", "required": true },
+    { "name": "children", "type": "node", "required": true }
+  ],
+  "states": ["closed", "open"],
+  "tokens": [
+    "color.bg.surface",
+    "color.text.primary",
+    "color.text.tertiary",
+    "color.bg.overlay",
+    "color.border.default",
+    "radius.xl",
+    "radius.pill",
+    "shadow.md",
+    "text.h3"
+  ],
+  "composes": [],
+  "rules": [
+    "Siempre anclada abajo, nunca centrada.",
+    "Una sola hoja abierta a la vez.",
+    "El título dice qué se está viendo: «Semana 14»."
+  ],
+  "accessibility": [
+    "Es un <dialog> modal: el foco queda dentro mientras está abierta.",
+    "Se cierra con Escape, con el botón Cerrar y tocando fuera.",
+    "Al cerrar, el foco vuelve al elemento que la abrió.",
+    "title es obligatorio y da nombre al diálogo."
+  ],
+  "figma": {
+    "props": {
+      "open": { "omit": "En Figma la hoja se dibuja siempre abierta." },
+      "onClose": { "omit": "Comportamiento: no existe en Figma." },
+      "children": "SLOT"
+    }
+  }
+}

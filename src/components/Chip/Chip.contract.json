@@ -1,0 +1,45 @@
+{
+  "name": "Chip",
+  "description": "Opción compacta que se puede seleccionar.",
+  "useWhen": [
+    "Elegir una opción entre pocas, a la vista: el tipo de día de una sesión.",
+    "accent: destacar una opción sin que esté seleccionada."
+  ],
+  "avoidWhen": ["Para lanzar una acción: usa Button.", "Para cambiar de vista dentro de una pantalla: usa Tabs."],
+  "props": [
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["default", "accent"],
+      "default": "default"
+    },
+    { "name": "selected", "type": "boolean", "default": false },
+    { "name": "children", "type": "node", "required": true }
+  ],
+  "extends": "button",
+  "states": ["default", "selected", "pressed", "focus", "disabled"],
+  "tokens": [
+    "color.bg.surface",
+    "color.text.tertiary",
+    "color.border.default",
+    "color.bg.action-soft",
+    "color.text.action",
+    "color.bg.selected",
+    "color.text.on-selected",
+    "radius.pill",
+    "text.control"
+  ],
+  "composes": [],
+  "rules": ["Texto de una o dos palabras.", "En un grupo de selección única, solo un chip está selected."],
+  "accessibility": ["Altura mínima de 44 px.", "El estado se anuncia con aria-pressed, no solo con el color."],
+  "figma": {
+    "props": { "children": "TEXT" },
+    "extra": [
+      {
+        "name": "state",
+        "type": "VARIANT",
+        "values": ["default", "disabled"]
+      }
+    ]
+  }
+}

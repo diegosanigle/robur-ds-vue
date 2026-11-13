@@ -1,0 +1,58 @@
+{
+  "name": "Button",
+  "description": "Lanza una acción: guardar, cancelar, borrar.",
+  "useWhen": [
+    "La persona ejecuta una acción en la pantalla actual.",
+    "primary: la acción principal de la pantalla.",
+    "secondary: la alternativa o la cancelación.",
+    "danger: una acción destructiva que no se puede deshacer."
+  ],
+  "avoidWhen": ["Para ir a otra pantalla: usa un enlace o BottomNav.", "Para elegir entre opciones: usa Chip o Tabs."],
+  "props": [
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["primary", "secondary", "danger"],
+      "default": "primary"
+    },
+    { "name": "fullWidth", "type": "boolean", "default": false },
+    { "name": "loading", "type": "boolean", "default": false },
+    { "name": "children", "type": "node", "required": true }
+  ],
+  "extends": "button",
+  "states": ["default", "pressed", "focus", "disabled", "loading"],
+  "tokens": [
+    "color.bg.action",
+    "color.text.on-action",
+    "color.text.primary",
+    "color.border.strong",
+    "color.text.danger",
+    "color.border.danger",
+    "radius.pill",
+    "text.title"
+  ],
+  "composes": [],
+  "rules": [
+    "Un solo primary por pantalla.",
+    "El texto es un verbo en infinitivo y dice qué pasa: «Guardar sesión», no «Aceptar».",
+    "danger siempre va acompañado de un secondary para cancelar."
+  ],
+  "accessibility": [
+    "Altura mínima de 44 px.",
+    "Con loading lleva aria-busy y no admite clics.",
+    "El contenido es texto visible: no hay botones de solo icono en la v1."
+  ],
+  "figma": {
+    "props": {
+      "fullWidth": { "omit": "En Figma es el ancho «Fill» de la instancia." },
+      "children": "TEXT"
+    },
+    "extra": [
+      {
+        "name": "state",
+        "type": "VARIANT",
+        "values": ["default", "disabled"]
+      }
+    ]
+  }
+}

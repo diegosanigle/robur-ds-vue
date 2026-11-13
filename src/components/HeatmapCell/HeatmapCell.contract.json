@@ -1,0 +1,44 @@
+{
+  "name": "HeatmapCell",
+  "description": "Una semana del heatmap anual. Su color dice cuántas sesiones hubo.",
+  "useWhen": ["Dentro de la rejilla del heatmap anual, una celda por semana ISO."],
+  "avoidWhen": ["Fuera del heatmap.", "Para mostrar un porcentaje o un objetivo: Robur no tiene objetivos."],
+  "props": [
+    { "name": "week", "type": "number", "required": true },
+    { "name": "sessions", "type": "number", "required": true },
+    { "name": "rest", "type": "boolean", "default": false },
+    { "name": "current", "type": "boolean", "default": false }
+  ],
+  "extends": "button",
+  "states": ["default", "pressed", "focus"],
+  "tokens": [
+    "color.heat.0",
+    "color.heat.1",
+    "color.heat.2",
+    "color.heat.3",
+    "color.heat.4",
+    "color.heat.current",
+    "color.border.control",
+    "color.bg.surface",
+    "radius.xs"
+  ],
+  "composes": [],
+  "rules": [
+    "Cinco niveles: 0, 1, 2, 3 y más de 3 sesiones.",
+    "Sin borde: la rejilla se ve por el espacio de 4 px entre celdas.",
+    "El descanso se distingue por el borde discontinuo, nunca por un color de la escala.",
+    "Una semana a cero es neutra: nunca roja ni con aviso."
+  ],
+  "accessibility": [
+    "El dato no depende del color: cada celda lo dice en su aria-label («Semana 14, 3 sesiones»).",
+    "Es un botón: al pulsarlo se abre el detalle de la semana en una Sheet."
+  ],
+  "figma": {
+    "props": {
+      "week": { "omit": "No cambia el aspecto: solo el nombre accesible." },
+      "sessions": {
+        "values": ["0", "1", "2", "3", "4"]
+      }
+    }
+  }
+}

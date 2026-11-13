@@ -1,0 +1,55 @@
+{
+  "name": "Input",
+  "description": "Campo de una línea para escribir texto o una cifra.",
+  "useWhen": [
+    "La persona escribe un dato corto: un nombre, una nota, una cifra.",
+    "numeric: cifras de una sesión (series, repeticiones, peso)."
+  ],
+  "avoidWhen": ["Para elegir entre pocas opciones conocidas: usa Chip.", "Para marcar algo como hecho: usa Checkbox."],
+  "props": [
+    { "name": "label", "type": "string", "required": true },
+    { "name": "hint", "type": "string" },
+    { "name": "error", "type": "string" },
+    { "name": "numeric", "type": "boolean", "default": false }
+  ],
+  "extends": "input",
+  "states": ["default", "focus", "error", "disabled"],
+  "tokens": [
+    "color.text.primary",
+    "color.text.tertiary",
+    "color.text.danger",
+    "color.bg.surface",
+    "color.border.control",
+    "color.border.action",
+    "color.border.danger",
+    "color.focus.ring",
+    "radius.md",
+    "shadow.sm",
+    "text.sm",
+    "text.control",
+    "text.body",
+    "text.h3"
+  ],
+  "composes": [],
+  "rules": [
+    "La etiqueta dice qué dato se pide, sin dos puntos al final.",
+    "El mensaje de error dice cómo arreglarlo: «Escribe un nombre», no «Campo inválido».",
+    "El placeholder es un ejemplo, nunca la etiqueta."
+  ],
+  "accessibility": [
+    "label es obligatorio y está asociado al campo.",
+    "La ayuda y el error se vinculan con aria-describedby.",
+    "Con error lleva aria-invalid.",
+    "El borde del campo cumple 3:1 contra su fondo."
+  ],
+  "figma": {
+    "extra": [
+      {
+        "name": "state",
+        "type": "VARIANT",
+        "values": ["default", "focus", "error", "disabled"]
+      },
+      { "name": "placeholder", "type": "TEXT" }
+    ]
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "$description": "Foto de la librería de Figma: componentes públicos y sus propiedades. La genera scripts/figma/snapshot.js dentro de Figma. No se edita a mano.",
+  "fileKey": "lTMwgNScwy7MEq8CaafRGC",
+  "fileUrl": "https://www.figma.com/design/lTMwgNScwy7MEq8CaafRGC",
+  "date": "2026-11-11",
+  "modes": ["Light"],
+  "components": {
+    "Button": {
+      "id": "2:27",
+      "properties": [
+        { "name": "children", "type": "TEXT" },
+        {
+          "name": "variant",
+          "type": "VARIANT",
+          "values": ["primary", "secondary", "danger"]
+        },
+        {
+          "name": "loading",
+          "type": "VARIANT",
+          "values": ["false", "true"]
+        },
+        {
+          "name": "state",
+          "type": "VARIANT",
+          "values": ["default", "disabled"]
+        }
+      ],
+      "exposed": [],
+      "variants": 12,
+      "unboundFills": 0
+    },
+    "Chip": {
+      "id": "2:44",
+      "properties": [
+        { "name": "children", "type": "TEXT" },
+        {
+          "name": "variant",
+          "type": "VARIANT",
+          "values": ["default", "accent"]
+        },
+        {
+          "name": "selected",
+          "type": "VARIANT",
+          "values": ["false", "true"]
+        },
+        {
+          "name": "state",
+          "type": "VARIANT",
+          "values": ["default", "disabled"]
+        }
+      ],
+      "exposed": [],
+      "variants": 8,
+      "unboundFills": 0
+    },
+    "Card": {
+      "id": "2:53",
+      "properties": [
+        { "name": "children", "type": "SLOT" },
+        {
+          "name": "variant",
+          "type": "VARIANT",
+          "values": ["surface", "inverse"]
+        },
+        {
+          "name": "padding",
+          "type": "VARIANT",
+          "values": ["md", "lg"]
+        }
+      ],
+      "exposed": [],
+      "variants": 4,
+      "unboundFills": 0
+    },
+    "StatCard": {
+      "id": "2:74",
+      "properties": [
+        { "name": "label", "type": "TEXT" },
+        { "name": "value", "type": "TEXT" },
+        { "name": "unit", "type": "TEXT" },
+        {
+          "name": "variant",
+          "type": "VARIANT",
+          "values": ["surface", "inverse"]
+        },
+        {
+          "name": "series",
+          "type": "VARIANT",
+          "values": ["primary", "secondary"]
+        }
+      ],
+      "exposed": [],
+      "variants": 4,
+      "unboundFills": 0
+    },
+    "Checkbox": {
+      "id": "2:92",
+      "properties": [
+        { "name": "label", "type": "TEXT" },
+        { "name": "hint", "type": "TEXT" },
+        {
+          "name": "state",
+          "type": "VARIANT",
+          "values": ["default", "checked", "disabled"]
+        }
+      ],
+      "exposed": [],
+      "variants": 3,
+      "unboundFills": 0
+    },
+    "HeatmapCell": {
+      "id": "2:133",
+      "properties": [
+        {
+          "name": "sessions",
+          "type": "VARIANT",
+          "values": ["0", "1", "2", "3", "4"]
+        },
+        {
+          "name": "rest",
+          "type": "VARIANT",
+          "values": ["false", "true"]
+        },
+        {
+          "name": "current",
+          "type": "VARIANT",
+          "values": ["false", "true"]
+        }
+      ],
+      "exposed": [],
+      "variants": 20,
+      "unboundFills": 0
+    },
+    "Input": {
+      "id": "3:38",
+      "properties": [
+        { "name": "label", "type": "TEXT" },
+        { "name": "placeholder", "type": "TEXT" },
+        { "name": "hint", "type": "TEXT" },
+        { "name": "error", "type": "TEXT" },
+        {
+          "name": "numeric",
+          "type": "VARIANT",
+          "values": ["false", "true"]
+        },
+        {
+          "name": "state",
+          "type": "VARIANT",
+          "values": ["default", "focus", "error", "disabled"]
+        }
+      ],
+      "exposed": [],
+      "variants": 8,
+      "unboundFills": 0
+    },
+    "Tabs": {
+      "id": "3:44",
+      "properties": [],
+      "exposed": [],
+      "variants": 1,
+      "unboundFills": 0
+    },
+    "BottomNav": {
+      "id": "3:61",
+      "properties": [],
+      "exposed": [],
+      "variants": 1,
+      "unboundFills": 0
+    },
+    "Sheet": {
+      "id": "3:85",
+      "properties": [
+        { "name": "title", "type": "TEXT" },
+        { "name": "children", "type": "SLOT" }
+      ],
+      "exposed": [],
+      "variants": 1,
+      "unboundFills": 0
+    },
+    "ExerciseRow": {
+      "id": "3:161",
+      "properties": [
+        { "name": "children", "type": "SLOT" },
+        {
+          "name": "completed",
+          "type": "VARIANT",
+          "values": ["false", "true"]
+        }
+      ],
+      "exposed": ["Checkbox"],
+      "variants": 2,
+      "unboundFills": 0
+    }
+  }
+}

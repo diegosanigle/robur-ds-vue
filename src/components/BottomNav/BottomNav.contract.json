@@ -1,0 +1,41 @@
+{
+  "name": "BottomNav",
+  "description": "Navegación principal entre las secciones de la app.",
+  "useWhen": ["Moverse entre las secciones de primer nivel de la app."],
+  "avoidWhen": ["Para cambiar de vista dentro de una sección: usa Tabs.", "Para acciones: usa Button."],
+  "props": [
+    { "name": "label", "type": "string", "default": "Principal" },
+    { "name": "items", "type": "array", "required": true },
+    { "name": "value", "type": "string", "required": true }
+  ],
+  "states": ["default", "current", "pressed", "focus"],
+  "tokens": [
+    "color.bg.surface",
+    "color.bg.page",
+    "color.text.primary",
+    "color.text.tertiary",
+    "radius.md",
+    "shadow.sm",
+    "text.label"
+  ],
+  "composes": [],
+  "rules": [
+    "Entre tres y cinco secciones.",
+    "Cada sección lleva icono y texto: nunca solo icono.",
+    "Se coloca fija en la parte inferior de la pantalla; la posición la pone quien la usa.",
+    "Los iconos son de trazo de 1,5 px y heredan el color del texto."
+  ],
+  "accessibility": [
+    "Es un <nav> con nombre.",
+    "La sección actual lleva aria-current=\"page\".",
+    "Cada enlace mide al menos 44 × 44 px.",
+    "Los iconos son decorativos: el nombre lo da el texto."
+  ],
+  "figma": {
+    "props": {
+      "label": { "omit": "Solo es el nombre accesible." },
+      "items": { "omit": "Son las instancias de .NavItem que hay dentro." },
+      "value": { "omit": "Es la propiedad current de cada .NavItem." }
+    }
+  }
+}
