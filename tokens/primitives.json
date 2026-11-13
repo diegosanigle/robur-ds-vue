@@ -1,0 +1,70 @@
+{
+  "$description": "Tokens primitivos de Robur: la paleta y las medidas en bruto, sin significado. Los componentes no los usan directamente.",
+  "color": {
+    "$type": "color",
+    "orange": {
+      "50": { "$value": "#FFEDE7" },
+      "200": { "$value": "#EEBFAF" },
+      "300": { "$value": "#F49275" },
+      "400": { "$value": "#F9673A" },
+      "500": { "$value": "#FF3B00", "$description": "Naranja de marca." },
+      "600": { "$value": "#CB3609" },
+      "700": { "$value": "#C43004" },
+      "800": { "$value": "#973112" },
+      "900": { "$value": "#622C1A" }
+    },
+    "neutral": {
+      "$description": "Neutros cálidos, para que el naranja no parezca pegado sobre una base fría.",
+      "0": { "$value": "#FFFFFF" },
+      "50": { "$value": "#FAF7F5" },
+      "200": { "$value": "#E8E1DC" },
+      "400": { "$value": "#A39A94" },
+      "500": { "$value": "#8C817A" },
+      "600": { "$value": "#6B5F59" },
+      "800": { "$value": "#3A322D" },
+      "850": { "$value": "#2E2723" },
+      "900": { "$value": "#1F1A17" },
+      "950": { "$value": "#15110E" }
+    },
+    "gray": {
+      "100": { "$value": "#F0F0EF" },
+      "200": { "$value": "#EAEAEA" }
+    },
+    "lime": {
+      "400": { "$value": "#C6F24E" }
+    },
+    "green": {
+      "50": { "$value": "#EDF7E8" },
+      "300": { "$value": "#A9D48E" },
+      "700": { "$value": "#3D6B21" },
+      "900": { "$value": "#1F3311" }
+    },
+    "red": {
+      "50": { "$value": "#FDECEC" },
+      "300": { "$value": "#F2A29C" },
+      "700": { "$value": "#B3261E" },
+      "900": { "$value": "#4A1512" }
+    },
+    "scrim": { "$value": "#15110E80", "$description": "Negro cálido al 50 %, para el fondo de las hojas modales." }
+  },
+  "space": {
+    "unit": { "$type": "dimension", "$value": "4px", "$description": "Regla del 4: todo espaciado es un múltiplo de esta unidad." }
+  },
+  "radius": {
+    "$type": "dimension",
+    "xs": { "$value": "4px" },
+    "sm": { "$value": "12px" },
+    "md": { "$value": "16px" },
+    "lg": { "$value": "24px" },
+    "xl": { "$value": "28px" },
+    "pill": { "$value": "999px" }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "sm": { "$value": "0 1px 2px rgb(21 17 14 / 0.06)" },
+    "md": { "$value": "0 4px 16px rgb(21 17 14 / 0.08)" }
+  },
+  "font": {
+    "sans": { "$type": "fontFamily", "$value": ["Inter", "system-ui", "-apple-system", "sans-serif"] }
+  }
+}

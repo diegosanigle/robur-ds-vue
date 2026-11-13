@@ -1,0 +1,162 @@
+{
+  "$description": "Tokens semánticos, tema claro. Cada token es un uso con nombre y apunta a un primitivo.",
+  "color": {
+    "$type": "color",
+    "text": {
+      "primary": {
+        "$value": "{color.neutral.950}",
+        "$description": "Texto principal."
+      },
+      "secondary": {
+        "$value": "{color.neutral.800}",
+        "$description": "Texto secundario con énfasis."
+      },
+      "tertiary": {
+        "$value": "{color.neutral.600}",
+        "$description": "Ayudas, metadatos y elementos inactivos."
+      },
+      "action": {
+        "$value": "{color.orange.700}",
+        "$description": "Texto de acento sobre fondo claro o sobre action-soft."
+      },
+      "on-action": {
+        "$value": "{color.neutral.0}",
+        "$description": "Texto sobre bg-action."
+      },
+      "on-selected": {
+        "$value": "{color.neutral.0}",
+        "$description": "Texto sobre bg-selected."
+      },
+      "on-inverse": {
+        "$value": "{color.neutral.0}",
+        "$description": "Texto sobre bg-inverse."
+      },
+      "on-inverse-muted": {
+        "$value": "{color.neutral.400}",
+        "$description": "Texto secundario sobre bg-inverse."
+      },
+      "danger": {
+        "$value": "{color.red.700}",
+        "$description": "Errores y acciones destructivas."
+      },
+      "success": {
+        "$value": "{color.green.700}",
+        "$description": "Confirmaciones."
+      },
+      "info": {
+        "$value": "{color.neutral.800}",
+        "$description": "Avisos neutros."
+      }
+    },
+    "bg": {
+      "page": {
+        "$value": "{color.neutral.50}",
+        "$description": "Fondo de la app."
+      },
+      "surface": {
+        "$value": "{color.neutral.0}",
+        "$description": "Tarjetas, hojas y campos."
+      },
+      "inverse": {
+        "$value": "{color.neutral.950}",
+        "$description": "Tarjeta destacada oscura. Máximo una por pantalla."
+      },
+      "action": {
+        "$value": "{color.orange.700}",
+        "$description": "Fondo de la acción principal y de los controles marcados."
+      },
+      "action-soft": {
+        "$value": "{color.orange.50}",
+        "$description": "Superficie teñida: fila completada, chip de acento."
+      },
+      "selected": {
+        "$value": "{color.neutral.950}",
+        "$description": "Opción seleccionada en chips y pestañas."
+      },
+      "danger-soft": {
+        "$value": "{color.red.50}",
+        "$description": "Fondo de un aviso de error."
+      },
+      "success-soft": {
+        "$value": "{color.green.50}",
+        "$description": "Fondo de un aviso de éxito."
+      },
+      "info-soft": {
+        "$value": "{color.gray.100}",
+        "$description": "Fondo de un aviso neutro."
+      },
+      "overlay": {
+        "$value": "{color.scrim}",
+        "$description": "Velo detrás de una hoja modal."
+      }
+    },
+    "border": {
+      "default": {
+        "$value": "{color.neutral.200}",
+        "$description": "Separadores y bordes decorativos."
+      },
+      "control": {
+        "$value": "{color.neutral.500}",
+        "$description": "Borde de campos y casillas: debe verse (3:1)."
+      },
+      "strong": {
+        "$value": "{color.neutral.950}",
+        "$description": "Borde del botón secundario."
+      },
+      "action": {
+        "$value": "{color.orange.500}",
+        "$description": "Borde de un campo con foco."
+      },
+      "danger": {
+        "$value": "{color.red.700}",
+        "$description": "Borde de un campo con error o de un botón destructivo."
+      },
+      "inverse": {
+        "$value": "{color.neutral.850}",
+        "$description": "Bordes y rellenos apagados sobre bg-inverse."
+      }
+    },
+    "focus": {
+      "ring": {
+        "$value": "{color.orange.500}",
+        "$description": "Anillo de foco del teclado."
+      }
+    },
+    "heat": {
+      "0": {
+        "$value": "{color.gray.200}",
+        "$description": "Semana sin sesiones."
+      },
+      "1": {
+        "$value": "{color.orange.200}",
+        "$description": "1 sesión."
+      },
+      "2": {
+        "$value": "{color.orange.300}",
+        "$description": "2 sesiones."
+      },
+      "3": {
+        "$value": "{color.orange.400}",
+        "$description": "3 sesiones."
+      },
+      "4": {
+        "$value": "{color.orange.500}",
+        "$description": "Más de 3 sesiones."
+      },
+      "current": {
+        "$value": "{color.neutral.950}",
+        "$description": "Marca la semana en curso."
+      }
+    },
+    "data": {
+      "1": {
+        "$value": "{color.orange.500}",
+        "$description": "Serie principal de un gráfico y cifra destacada sobre bg-inverse."
+      },
+      "2": {
+        "$value": "{color.lime.400}",
+        "$description": "Segunda serie. Solo sobre bg-inverse."
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$description": "Estilos de texto de Robur. Cada uno fija tamaño, peso, interlineado y tracking a la vez.",
+  "text": {
+    "$type": "typography",
+    "display": { "$value": { "fontSize": "56px", "fontWeight": 800, "lineHeight": 0.95, "letterSpacing": "-0.04em" }, "$description": "Cifra protagonista." },
+    "h1": { "$value": { "fontSize": "32px", "fontWeight": 800, "lineHeight": 1.05, "letterSpacing": "-0.03em" } },
+    "h2": { "$value": { "fontSize": "24px", "fontWeight": 700, "lineHeight": 1.15, "letterSpacing": "-0.02em" } },
+    "h3": { "$value": { "fontSize": "18px", "fontWeight": 600, "lineHeight": 1.25, "letterSpacing": "-0.01em" } },
+    "title": { "$value": { "fontSize": "16px", "fontWeight": 600, "lineHeight": 1.3, "letterSpacing": "-0.01em" }, "$description": "Título de tarjeta y texto de botón." },
+    "body": { "$value": { "fontSize": "16px", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": "0em" } },
+    "sm": { "$value": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.4, "letterSpacing": "0em" } },
+    "control": { "$value": { "fontSize": "14px", "fontWeight": 600, "lineHeight": 1.4, "letterSpacing": "0em" }, "$description": "Texto de controles compactos: chip, pestaña y etiqueta de campo." },
+    "label": { "$value": { "fontSize": "12px", "fontWeight": 600, "lineHeight": 1.3, "letterSpacing": "0.04em" }, "$description": "Etiqueta corta de metadato. Siempre en mayúsculas." }
+  }
+}

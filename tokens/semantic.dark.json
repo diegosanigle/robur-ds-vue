@@ -1,0 +1,126 @@
+{
+  "$description": "Tokens semánticos, tema oscuro. Los mismos nombres que en el tema claro, con otros valores.",
+  "color": {
+    "$type": "color",
+    "text": {
+      "primary": {
+        "$value": "{color.neutral.50}"
+      },
+      "secondary": {
+        "$value": "{color.neutral.200}"
+      },
+      "tertiary": {
+        "$value": "{color.neutral.400}"
+      },
+      "action": {
+        "$value": "{color.orange.300}"
+      },
+      "on-action": {
+        "$value": "{color.neutral.0}"
+      },
+      "on-selected": {
+        "$value": "{color.neutral.950}"
+      },
+      "on-inverse": {
+        "$value": "{color.neutral.0}"
+      },
+      "on-inverse-muted": {
+        "$value": "{color.neutral.400}"
+      },
+      "danger": {
+        "$value": "{color.red.300}"
+      },
+      "success": {
+        "$value": "{color.green.300}"
+      },
+      "info": {
+        "$value": "{color.neutral.200}"
+      }
+    },
+    "bg": {
+      "page": {
+        "$value": "{color.neutral.950}"
+      },
+      "surface": {
+        "$value": "{color.neutral.900}"
+      },
+      "inverse": {
+        "$value": "{color.neutral.850}"
+      },
+      "action": {
+        "$value": "{color.orange.700}"
+      },
+      "action-soft": {
+        "$value": "{color.orange.900}"
+      },
+      "selected": {
+        "$value": "{color.neutral.50}"
+      },
+      "danger-soft": {
+        "$value": "{color.red.900}"
+      },
+      "success-soft": {
+        "$value": "{color.green.900}"
+      },
+      "info-soft": {
+        "$value": "{color.neutral.850}"
+      },
+      "overlay": {
+        "$value": "{color.scrim}"
+      }
+    },
+    "border": {
+      "default": {
+        "$value": "{color.neutral.850}"
+      },
+      "control": {
+        "$value": "{color.neutral.500}"
+      },
+      "strong": {
+        "$value": "{color.neutral.50}"
+      },
+      "action": {
+        "$value": "{color.orange.500}"
+      },
+      "danger": {
+        "$value": "{color.red.300}"
+      },
+      "inverse": {
+        "$value": "{color.neutral.800}"
+      }
+    },
+    "focus": {
+      "ring": {
+        "$value": "{color.orange.500}"
+      }
+    },
+    "heat": {
+      "0": {
+        "$value": "{color.neutral.850}"
+      },
+      "1": {
+        "$value": "{color.orange.900}"
+      },
+      "2": {
+        "$value": "{color.orange.800}"
+      },
+      "3": {
+        "$value": "{color.orange.600}"
+      },
+      "4": {
+        "$value": "{color.orange.500}"
+      },
+      "current": {
+        "$value": "{color.neutral.50}"
+      }
+    },
+    "data": {
+      "1": {
+        "$value": "{color.orange.500}"
+      },
+      "2": {
+        "$value": "{color.lime.400}"
+      }
+    }
+  }
+}
