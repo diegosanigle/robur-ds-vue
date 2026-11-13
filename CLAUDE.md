@@ -1,8 +1,8 @@
 # Robur DS (Vue)
 
 Design System de Robur, una app personal de entrenamiento en casa, escrito en Vue 3.
-Es el mismo sistema que `robur-ds-react`: los tokens, los contratos y la librería de Figma
-se cambian allí y se copian aquí.
+Es el mismo sistema que `robur-ds-react`: los tokens, los contratos, los casos de eval y la
+librería de Figma se cambian allí y se copian aquí.
 
 Robur registra, no juzga: no hay objetivos, metas ni avisos de fallo. Una semana a
 cero es un dato, no un error.
@@ -16,10 +16,12 @@ cero es un dato, no un error.
 ## Comandos
 
 - `npm run storybook` — Storybook en local (puerto 6007)
-- `npm run check` — genera tokens y catálogo, y comprueba contraste, contratos, patrones y paridad con Figma
+- `npm run check` — genera tokens, catálogo y datos del MCP, y comprueba contraste, contratos, patrones, paridad con Figma, uso, MCP y corrector de evals
 - `npm test` — `check` + tests de las stories (interacción y accesibilidad)
 - `npm run build` — comprueba tipos y compila
 - `npm run docs` — genera la web de documentación
+- `npm run evals` — examina a un agente con y sin el MCP (necesita la CLI `claude` con sesión)
+- `npm run metrics` — mide el sistema y actualiza `metrics/`
 
 ## Reglas que valen siempre
 
@@ -27,7 +29,7 @@ cero es un dato, no un error.
 - **Si falta algo, para y propónlo.** Un token, una variante o un componente nuevo se propone con su motivo; no se improvisa.
 - **Ningún valor a mano.** Ni hex, ni primitivos, ni valores entre corchetes de Tailwind. Solo las clases del catálogo.
 - **El código manda.** Un cambio empieza en `tokens/` o en un contrato, y de ahí va a Figma. Nunca al revés.
-- **Lo generado no se edita:** `src/styles/tokens.css`, `docs/catalogo.md`, `figma/library.json` y `site/`.
+- **Lo generado no se edita:** `src/styles/tokens.css`, `docs/catalogo.md`, `mcp/data.json`, `figma/library.json`, `metrics/` y `site/`.
 - **Terminado es en verde.** Un cambio no está hecho hasta que pasan `npm test` y `npm run build`.
 - Texto de la interfaz en español. Código y nombres de props en inglés.
 
@@ -40,4 +42,6 @@ esos ficheros. Los procedimientos largos son skills: `/nuevo-componente`,
 - `docs/arquitectura.md` — capas, nomenclatura y correspondencia entre código y Figma.
 - `docs/accesibilidad.md` — qué se comprueba solo y qué hay que revisar a mano.
 - `docs/auditoria.md` — qué había antes de este sistema y qué se decidió.
+- `mcp/` — el MCP que lleva este sistema a otros proyectos. Sus herramientas usan el mismo validador que `npm run check`.
+- `evals/cases.json` — las tareas con las que se examina a un agente. Un fallo repetido de un agente se convierte en un caso nuevo.
 - Figma: https://www.figma.com/design/lTMwgNScwy7MEq8CaafRGC (solo tema claro: el plan gratuito admite un modo).

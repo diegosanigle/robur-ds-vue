@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-13",
+  "system": {
+    "components": 11,
+    "patterns": 3,
+    "semanticTokens": 36,
+    "primitiveColors": 31,
+    "textStyles": 9,
+    "themes": 2,
+    "stories": 58
+  },
+  "coverage": {
+    "contracts": 100,
+    "documentedProps": 100,
+    "figmaParity": 100,
+    "figmaSnapshotAgeDays": 2
+  },
+  "accessibility": {
+    "contrastPairs": 64,
+    "tightestPair": {
+      "pair": "bg.action sobre bg.surface",
+      "theme": "dark",
+      "margin": 1.03
+    }
+  },
+  "evals": {
+    "date": "2026-11-13",
+    "model": "sonnet",
+    "sin-sistema": {
+      "passed": 0,
+      "total": 6,
+      "rate": 0
+    },
+    "con-mcp": {
+      "passed": 6,
+      "total": 6,
+      "rate": 100
+    }
+  },
+  "app": null
+}

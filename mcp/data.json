@@ -1,0 +1,1943 @@
+{
+ "name": "robur-ds",
+ "generated": "scripts/build-mcp-data.mjs",
+ "components": {
+  "BottomNav": {
+   "name": "BottomNav",
+   "description": "Navegación principal entre las secciones de la app.",
+   "useWhen": [
+    "Moverse entre las secciones de primer nivel de la app."
+   ],
+   "avoidWhen": [
+    "Para cambiar de vista dentro de una sección: usa Tabs.",
+    "Para acciones: usa Button."
+   ],
+   "props": [
+    {
+     "name": "label",
+     "type": "string",
+     "default": "Principal",
+     "description": "Nombre de la navegación para lectores de pantalla."
+    },
+    {
+     "name": "items",
+     "type": "array",
+     "required": true,
+     "description": "Las secciones, en orden. Máximo cinco."
+    },
+    {
+     "name": "value",
+     "type": "string",
+     "required": true,
+     "description": "Valor de la sección en la que está la persona."
+    }
+   ],
+   "states": [
+    "default",
+    "current",
+    "pressed",
+    "focus"
+   ],
+   "tokens": [
+    "color.bg.surface",
+    "color.bg.page",
+    "color.text.primary",
+    "color.text.tertiary",
+    "radius.md",
+    "shadow.sm",
+    "text.label"
+   ],
+   "composes": [],
+   "rules": [
+    "Entre tres y cinco secciones.",
+    "Cada sección lleva icono y texto: nunca solo icono.",
+    "Se coloca fija en la parte inferior de la pantalla; la posición la pone quien la usa.",
+    "Los iconos son de trazo de 1,5 px y heredan el color del texto."
+   ],
+   "accessibility": [
+    "Es un <nav> con nombre.",
+    "La sección actual lleva aria-current=\"page\".",
+    "Cada enlace mide al menos 44 × 44 px.",
+    "Los iconos son decorativos: el nombre lo da el texto."
+   ],
+   "figma": {
+    "props": {
+     "label": {
+      "omit": "Solo es el nombre accesible."
+     },
+     "items": {
+      "omit": "Son las instancias de .NavItem que hay dentro."
+     },
+     "value": {
+      "omit": "Es la propiedad current de cada .NavItem."
+     }
+    }
+   },
+   "example": "import { BottomNav } from 'robur-ds'\n\n<BottomNav :items=\"…\" value=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/BottomNav",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-bottomnav--default"
+  },
+  "Button": {
+   "name": "Button",
+   "description": "Lanza una acción: guardar, cancelar, borrar.",
+   "useWhen": [
+    "La persona ejecuta una acción en la pantalla actual.",
+    "primary: la acción principal de la pantalla.",
+    "secondary: la alternativa o la cancelación.",
+    "danger: una acción destructiva que no se puede deshacer."
+   ],
+   "avoidWhen": [
+    "Para ir a otra pantalla: usa un enlace o BottomNav.",
+    "Para elegir entre opciones: usa Chip o Tabs."
+   ],
+   "props": [
+    {
+     "name": "variant",
+     "type": "enum",
+     "values": [
+      "primary",
+      "secondary",
+      "danger"
+     ],
+     "default": "primary",
+     "description": "Jerarquía visual. Solo un `primary` por pantalla."
+    },
+    {
+     "name": "fullWidth",
+     "type": "boolean",
+     "default": false,
+     "description": "Ocupa todo el ancho del contenedor."
+    },
+    {
+     "name": "loading",
+     "type": "boolean",
+     "default": false,
+     "description": "Muestra que la acción está en curso y bloquea nuevos clics."
+    },
+    {
+     "name": "children",
+     "type": "node",
+     "required": true,
+     "description": "El texto del botón."
+    }
+   ],
+   "extends": "button",
+   "states": [
+    "default",
+    "pressed",
+    "focus",
+    "disabled",
+    "loading"
+   ],
+   "tokens": [
+    "color.bg.action",
+    "color.text.on-action",
+    "color.text.primary",
+    "color.border.strong",
+    "color.text.danger",
+    "color.border.danger",
+    "radius.pill",
+    "text.title"
+   ],
+   "composes": [],
+   "rules": [
+    "Un solo primary por pantalla.",
+    "El texto es un verbo en infinitivo y dice qué pasa: «Guardar sesión», no «Aceptar».",
+    "danger siempre va acompañado de un secondary para cancelar."
+   ],
+   "accessibility": [
+    "Altura mínima de 44 px.",
+    "Con loading lleva aria-busy y no admite clics.",
+    "El contenido es texto visible: no hay botones de solo icono en la v1."
+   ],
+   "figma": {
+    "props": {
+     "fullWidth": {
+      "omit": "En Figma es el ancho «Fill» de la instancia."
+     },
+     "children": "TEXT"
+    },
+    "extra": [
+     {
+      "name": "state",
+      "type": "VARIANT",
+      "values": [
+       "default",
+       "disabled"
+      ]
+     }
+    ]
+   },
+   "example": "import { Button } from 'robur-ds'\n\n<Button>…</Button>",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/Button",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-button--primary"
+  },
+  "Card": {
+   "name": "Card",
+   "description": "Superficie que agrupa contenido relacionado.",
+   "useWhen": [
+    "Agrupar un bloque de contenido que se lee como una unidad.",
+    "inverse: destacar el bloque más importante de la pantalla."
+   ],
+   "avoidWhen": [
+    "Para mostrar una sola cifra con su etiqueta: usa StatCard.",
+    "Para contenido que aparece encima de la pantalla: usa Sheet."
+   ],
+   "props": [
+    {
+     "name": "variant",
+     "type": "enum",
+     "values": [
+      "surface",
+      "inverse"
+     ],
+     "default": "surface",
+     "description": "`surface` es la tarjeta normal; `inverse` es la destacada oscura, máximo una por pantalla."
+    },
+    {
+     "name": "padding",
+     "type": "enum",
+     "values": [
+      "md",
+      "lg"
+     ],
+     "default": "md",
+     "description": "Espacio interior: `md` son 20 px y `lg` son 24 px, para la tarjeta destacada."
+    },
+    {
+     "name": "children",
+     "type": "node",
+     "required": true,
+     "description": "El contenido de la tarjeta."
+    }
+   ],
+   "states": [
+    "default"
+   ],
+   "tokens": [
+    "color.bg.surface",
+    "color.text.primary",
+    "color.bg.inverse",
+    "color.text.on-inverse",
+    "radius.lg"
+   ],
+   "composes": [],
+   "rules": [
+    "Máximo una tarjeta inverse por pantalla.",
+    "Sin sombra ni borde: la jerarquía la dan el color y el tamaño.",
+    "Dentro de una tarjeta inverse, el texto secundario usa text-on-inverse-muted."
+   ],
+   "accessibility": [
+    "Es un contenedor sin rol: el orden de lectura es el del contenido."
+   ],
+   "figma": {
+    "props": {
+     "children": "SLOT"
+    }
+   },
+   "example": "import { Card } from 'robur-ds'\n\n<Card>…</Card>",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/Card",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-card--surface"
+  },
+  "Checkbox": {
+   "name": "Checkbox",
+   "description": "Casilla para marcar algo como hecho o activado.",
+   "useWhen": [
+    "Marcar un elemento como hecho.",
+    "Activar o desactivar una opción independiente de las demás."
+   ],
+   "avoidWhen": [
+    "Para elegir una sola opción entre varias: usa Chip.",
+    "Para una acción inmediata: usa Button."
+   ],
+   "props": [
+    {
+     "name": "label",
+     "type": "string",
+     "required": true,
+     "description": "Texto visible que nombra la casilla. Obligatorio: una casilla sin etiqueta no es accesible."
+    },
+    {
+     "name": "hint",
+     "type": "string",
+     "description": "Detalle breve bajo la etiqueta."
+    }
+   ],
+   "extends": "input",
+   "states": [
+    "default",
+    "checked",
+    "focus",
+    "disabled"
+   ],
+   "tokens": [
+    "color.border.control",
+    "color.bg.surface",
+    "color.bg.action",
+    "color.text.on-action",
+    "color.text.primary",
+    "color.text.secondary",
+    "radius.xs",
+    "text.title",
+    "text.sm"
+   ],
+   "composes": [],
+   "rules": [
+    "La etiqueta describe el elemento, no la acción: «Flexiones», no «Marcar flexiones».",
+    "Marcado no tacha el texto: tachar sugiere anulación, no logro."
+   ],
+   "accessibility": [
+    "label es obligatorio y pulsarlo marca la casilla.",
+    "El nombre de la casilla es solo label; hint se anuncia como descripción.",
+    "La zona pulsable mide al menos 44 px de alto.",
+    "Es un input nativo: funciona con la barra espaciadora.",
+    "El borde de la casilla cumple 3:1 contra su fondo."
+   ],
+   "figma": {
+    "extra": [
+     {
+      "name": "state",
+      "type": "VARIANT",
+      "values": [
+       "default",
+       "checked",
+       "disabled"
+      ]
+     }
+    ]
+   },
+   "example": "import { Checkbox } from 'robur-ds'\n\n<Checkbox label=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/Checkbox",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-checkbox--default"
+  },
+  "Chip": {
+   "name": "Chip",
+   "description": "Opción compacta que se puede seleccionar.",
+   "useWhen": [
+    "Elegir una opción entre pocas, a la vista: el tipo de día de una sesión.",
+    "accent: destacar una opción sin que esté seleccionada."
+   ],
+   "avoidWhen": [
+    "Para lanzar una acción: usa Button.",
+    "Para cambiar de vista dentro de una pantalla: usa Tabs."
+   ],
+   "props": [
+    {
+     "name": "variant",
+     "type": "enum",
+     "values": [
+      "default",
+      "accent"
+     ],
+     "default": "default",
+     "description": "`default` para elegir entre opciones; `accent` para destacar una sin seleccionarla."
+    },
+    {
+     "name": "selected",
+     "type": "boolean",
+     "default": false,
+     "description": "La opción está elegida."
+    },
+    {
+     "name": "children",
+     "type": "node",
+     "required": true,
+     "description": "El texto del chip."
+    }
+   ],
+   "extends": "button",
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus",
+    "disabled"
+   ],
+   "tokens": [
+    "color.bg.surface",
+    "color.text.tertiary",
+    "color.border.default",
+    "color.bg.action-soft",
+    "color.text.action",
+    "color.bg.selected",
+    "color.text.on-selected",
+    "radius.pill",
+    "text.control"
+   ],
+   "composes": [],
+   "rules": [
+    "Texto de una o dos palabras.",
+    "En un grupo de selección única, solo un chip está selected."
+   ],
+   "accessibility": [
+    "Altura mínima de 44 px.",
+    "El estado se anuncia con aria-pressed, no solo con el color."
+   ],
+   "figma": {
+    "props": {
+     "children": "TEXT"
+    },
+    "extra": [
+     {
+      "name": "state",
+      "type": "VARIANT",
+      "values": [
+       "default",
+       "disabled"
+      ]
+     }
+    ]
+   },
+   "example": "import { Chip } from 'robur-ds'\n\n<Chip>…</Chip>",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/Chip",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-chip--default"
+  },
+  "ExerciseRow": {
+   "name": "ExerciseRow",
+   "description": "Fila de un ejercicio dentro de una sesión: se marca como hecho y se registran sus cifras.",
+   "useWhen": [
+    "Listar los ejercicios de una sesión mientras se entrena."
+   ],
+   "avoidWhen": [
+    "Para listas que no son ejercicios: usa Checkbox.",
+    "Para mostrar una sesión ya terminada, solo de lectura."
+   ],
+   "props": [
+    {
+     "name": "name",
+     "type": "string",
+     "required": true,
+     "description": "Nombre del ejercicio."
+    },
+    {
+     "name": "target",
+     "type": "string",
+     "description": "Objetivo del ejercicio, ya formateado: «3 series × 12 reps»."
+    },
+    {
+     "name": "completed",
+     "type": "boolean",
+     "required": true,
+     "description": "El ejercicio está hecho."
+    },
+    {
+     "name": "onCompletedChange",
+     "type": "function",
+     "required": true,
+     "description": "Se emite con el nuevo estado al marcar o desmarcar."
+    },
+    {
+     "name": "children",
+     "type": "node",
+     "description": "Los campos de registro: series, repeticiones, peso. Máximo tres."
+    }
+   ],
+   "states": [
+    "default",
+    "completed"
+   ],
+   "tokens": [
+    "color.border.default",
+    "color.bg.surface",
+    "color.bg.action-soft",
+    "radius.md"
+   ],
+   "composes": [
+    "Checkbox"
+   ],
+   "rules": [
+    "Los campos son Input con numeric, tres como máximo.",
+    "Completado cambia el fondo y no tacha el texto.",
+    "Un ejercicio sin completar no se marca como fallo: no hay objetivos que cumplir."
+   ],
+   "accessibility": [
+    "El nombre del ejercicio es la etiqueta de la casilla.",
+    "El estado completado lo dice la casilla, no solo el color de fondo."
+   ],
+   "figma": {
+    "props": {
+     "name": {
+      "via": "Checkbox.label"
+     },
+     "target": {
+      "via": "Checkbox.hint"
+     },
+     "onCompletedChange": {
+      "omit": "Comportamiento: no existe en Figma."
+     },
+     "children": "SLOT"
+    }
+   },
+   "example": "import { ExerciseRow } from 'robur-ds'\n\n<ExerciseRow name=\"…\" :completed=\"…\" @completed-change=\"…\">…</ExerciseRow>",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/ExerciseRow",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-exerciserow--default"
+  },
+  "HeatmapCell": {
+   "name": "HeatmapCell",
+   "description": "Una semana del heatmap anual. Su color dice cuántas sesiones hubo.",
+   "useWhen": [
+    "Dentro de la rejilla del heatmap anual, una celda por semana ISO."
+   ],
+   "avoidWhen": [
+    "Fuera del heatmap.",
+    "Para mostrar un porcentaje o un objetivo: Robur no tiene objetivos."
+   ],
+   "props": [
+    {
+     "name": "week",
+     "type": "number",
+     "required": true,
+     "description": "Número de semana ISO, del 1 al 53."
+    },
+    {
+     "name": "sessions",
+     "type": "number",
+     "required": true,
+     "description": "Sesiones registradas esa semana. Decide el nivel de color."
+    },
+    {
+     "name": "rest",
+     "type": "boolean",
+     "default": false,
+     "description": "Semana marcada como descanso: se distingue por el borde discontinuo, no por un color."
+    },
+    {
+     "name": "current",
+     "type": "boolean",
+     "default": false,
+     "description": "Es la semana en curso."
+    }
+   ],
+   "extends": "button",
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "tokens": [
+    "color.heat.0",
+    "color.heat.1",
+    "color.heat.2",
+    "color.heat.3",
+    "color.heat.4",
+    "color.heat.current",
+    "color.border.control",
+    "color.bg.surface",
+    "radius.xs"
+   ],
+   "composes": [],
+   "rules": [
+    "Cinco niveles: 0, 1, 2, 3 y más de 3 sesiones.",
+    "Sin borde: la rejilla se ve por el espacio de 4 px entre celdas.",
+    "El descanso se distingue por el borde discontinuo, nunca por un color de la escala.",
+    "Una semana a cero es neutra: nunca roja ni con aviso."
+   ],
+   "accessibility": [
+    "El dato no depende del color: cada celda lo dice en su aria-label («Semana 14, 3 sesiones»).",
+    "Es un botón: al pulsarlo se abre el detalle de la semana en una Sheet."
+   ],
+   "figma": {
+    "props": {
+     "week": {
+      "omit": "No cambia el aspecto: solo el nombre accesible."
+     },
+     "sessions": {
+      "values": [
+       "0",
+       "1",
+       "2",
+       "3",
+       "4"
+      ]
+     }
+    }
+   },
+   "example": "import { HeatmapCell } from 'robur-ds'\n\n<HeatmapCell :week=\"…\" :sessions=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/HeatmapCell",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-heatmapcell--default"
+  },
+  "Input": {
+   "name": "Input",
+   "description": "Campo de una línea para escribir texto o una cifra.",
+   "useWhen": [
+    "La persona escribe un dato corto: un nombre, una nota, una cifra.",
+    "numeric: cifras de una sesión (series, repeticiones, peso)."
+   ],
+   "avoidWhen": [
+    "Para elegir entre pocas opciones conocidas: usa Chip.",
+    "Para marcar algo como hecho: usa Checkbox."
+   ],
+   "props": [
+    {
+     "name": "label",
+     "type": "string",
+     "required": true,
+     "description": "Texto visible que nombra el campo. Obligatorio: un campo sin etiqueta no es accesible."
+    },
+    {
+     "name": "hint",
+     "type": "string",
+     "description": "Ayuda breve bajo el campo."
+    },
+    {
+     "name": "error",
+     "type": "string",
+     "description": "Mensaje de error. Si existe, el campo se marca como inválido."
+    },
+    {
+     "name": "numeric",
+     "type": "boolean",
+     "default": false,
+     "description": "Campo de cifra de sesión: texto grande, alineado a la derecha y teclado numérico."
+    }
+   ],
+   "extends": "input",
+   "states": [
+    "default",
+    "focus",
+    "error",
+    "disabled"
+   ],
+   "tokens": [
+    "color.text.primary",
+    "color.text.tertiary",
+    "color.text.danger",
+    "color.bg.surface",
+    "color.border.control",
+    "color.border.action",
+    "color.border.danger",
+    "color.focus.ring",
+    "radius.md",
+    "shadow.sm",
+    "text.sm",
+    "text.control",
+    "text.body",
+    "text.h3"
+   ],
+   "composes": [],
+   "rules": [
+    "La etiqueta dice qué dato se pide, sin dos puntos al final.",
+    "El mensaje de error dice cómo arreglarlo: «Escribe un nombre», no «Campo inválido».",
+    "El placeholder es un ejemplo, nunca la etiqueta."
+   ],
+   "accessibility": [
+    "label es obligatorio y está asociado al campo.",
+    "La ayuda y el error se vinculan con aria-describedby.",
+    "Con error lleva aria-invalid.",
+    "El borde del campo cumple 3:1 contra su fondo."
+   ],
+   "figma": {
+    "extra": [
+     {
+      "name": "state",
+      "type": "VARIANT",
+      "values": [
+       "default",
+       "focus",
+       "error",
+       "disabled"
+      ]
+     },
+     {
+      "name": "placeholder",
+      "type": "TEXT"
+     }
+    ]
+   },
+   "example": "import { Input } from 'robur-ds'\n\n<Input label=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/Input",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-input--default"
+  },
+  "Sheet": {
+   "name": "Sheet",
+   "description": "Hoja modal anclada abajo para un detalle o una tarea corta.",
+   "useWhen": [
+    "Mostrar el detalle de un elemento sin salir de la pantalla.",
+    "Una tarea corta que interrumpe a propósito: editar una sesión."
+   ],
+   "avoidWhen": [
+    "Para un flujo de varios pasos: usa una pantalla.",
+    "Para un mensaje que no pide respuesta: no interrumpas con un modal."
+   ],
+   "props": [
+    {
+     "name": "open",
+     "type": "boolean",
+     "required": true,
+     "description": "La hoja está abierta."
+    },
+    {
+     "name": "onClose",
+     "type": "function",
+     "required": true,
+     "description": "Se emite cuando la persona cierra la hoja: botón, tecla Escape o toque fuera."
+    },
+    {
+     "name": "title",
+     "type": "string",
+     "required": true,
+     "description": "Título visible. Obligatorio: es el nombre de la hoja para lectores de pantalla."
+    },
+    {
+     "name": "children",
+     "type": "node",
+     "required": true,
+     "description": "El contenido de la hoja."
+    }
+   ],
+   "states": [
+    "closed",
+    "open"
+   ],
+   "tokens": [
+    "color.bg.surface",
+    "color.text.primary",
+    "color.text.tertiary",
+    "color.bg.overlay",
+    "color.border.default",
+    "radius.xl",
+    "radius.pill",
+    "shadow.md",
+    "text.h3"
+   ],
+   "composes": [],
+   "rules": [
+    "Siempre anclada abajo, nunca centrada.",
+    "Una sola hoja abierta a la vez.",
+    "El título dice qué se está viendo: «Semana 14»."
+   ],
+   "accessibility": [
+    "Es un <dialog> modal: el foco queda dentro mientras está abierta.",
+    "Se cierra con Escape, con el botón Cerrar y tocando fuera.",
+    "Al cerrar, el foco vuelve al elemento que la abrió.",
+    "title es obligatorio y da nombre al diálogo."
+   ],
+   "figma": {
+    "props": {
+     "open": {
+      "omit": "En Figma la hoja se dibuja siempre abierta."
+     },
+     "onClose": {
+      "omit": "Comportamiento: no existe en Figma."
+     },
+     "children": "SLOT"
+    }
+   },
+   "example": "import { Sheet } from 'robur-ds'\n\n<Sheet :open=\"…\" @close=\"…\" title=\"…\">…</Sheet>",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/Sheet",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-sheet--open"
+  },
+  "StatCard": {
+   "name": "StatCard",
+   "description": "Una cifra grande con la etiqueta que dice qué mide.",
+   "useWhen": [
+    "Mostrar un dato que se lee de un vistazo: sesiones del mes, volumen de la semana.",
+    "inverse: el dato más importante de la pantalla."
+   ],
+   "avoidWhen": [
+    "Para varios datos relacionados o texto largo: usa Card.",
+    "Para comparar valores en el tiempo: usa un gráfico."
+   ],
+   "props": [
+    {
+     "name": "label",
+     "type": "string",
+     "required": true,
+     "description": "Qué mide la cifra."
+    },
+    {
+     "name": "value",
+     "type": "string",
+     "required": true,
+     "description": "La cifra, ya formateada."
+    },
+    {
+     "name": "unit",
+     "type": "string",
+     "description": "Unidad, junto a la cifra y más pequeña."
+    },
+    {
+     "name": "variant",
+     "type": "enum",
+     "values": [
+      "surface",
+      "inverse"
+     ],
+     "default": "surface",
+     "description": "`surface` es la tarjeta normal; `inverse` es la destacada oscura, máximo una por pantalla."
+    },
+    {
+     "name": "series",
+     "type": "enum",
+     "values": [
+      "primary",
+      "secondary"
+     ],
+     "default": "primary",
+     "description": "Color de la cifra en la variante `inverse`: serie principal o segunda serie."
+    }
+   ],
+   "states": [
+    "default"
+   ],
+   "tokens": [
+    "color.text.tertiary",
+    "color.text.on-inverse-muted",
+    "color.data.1",
+    "color.data.2",
+    "text.label",
+    "text.h1",
+    "text.title"
+   ],
+   "composes": [
+    "Card"
+   ],
+   "rules": [
+    "Máximo una StatCard inverse por pantalla.",
+    "series solo tiene efecto en la variante inverse.",
+    "Una cifra a cero es un dato, no un error: nunca en rojo ni con aviso.",
+    "value llega ya formateado, con separadores en español: «2.480», «62,5»."
+   ],
+   "accessibility": [
+    "La cifra y su etiqueta son texto: no dependen del color para entenderse.",
+    "color.data.1 solo cumple contraste como texto grande: no reducir la cifra por debajo de text-h1.",
+    "La unidad es texto pequeño: usa el color de texto secundario, nunca el de la cifra."
+   ],
+   "figma": {},
+   "example": "import { StatCard } from 'robur-ds'\n\n<StatCard label=\"…\" value=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/StatCard",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-statcard--surface"
+  },
+  "Tabs": {
+   "name": "Tabs",
+   "description": "Cambia entre vistas del mismo contenido dentro de una pantalla.",
+   "useWhen": [
+    "Alternar entre dos, tres o cuatro vistas del mismo dato: semana, mes, año."
+   ],
+   "avoidWhen": [
+    "Para ir a otra sección de la app: usa BottomNav.",
+    "Para elegir un valor en un formulario: usa Chip.",
+    "Con más de cuatro opciones."
+   ],
+   "props": [
+    {
+     "name": "label",
+     "type": "string",
+     "required": true,
+     "description": "Nombre del grupo de pestañas para lectores de pantalla."
+    },
+    {
+     "name": "tabs",
+     "type": "array",
+     "required": true,
+     "description": "Las pestañas, en orden. Entre dos y cuatro."
+    },
+    {
+     "name": "value",
+     "type": "string",
+     "required": true,
+     "description": "Valor de la pestaña activa."
+    },
+    {
+     "name": "onChange",
+     "type": "function",
+     "required": true,
+     "description": "Se emite con el valor de la pestaña elegida."
+    },
+    {
+     "name": "children",
+     "type": "node",
+     "description": "Contenido de la pestaña activa."
+    }
+   ],
+   "states": [
+    "default",
+    "selected",
+    "pressed",
+    "focus"
+   ],
+   "tokens": [
+    "color.bg.surface",
+    "color.bg.selected",
+    "color.text.on-selected",
+    "color.text.tertiary",
+    "radius.pill",
+    "text.control"
+   ],
+   "composes": [],
+   "rules": [
+    "Entre dos y cuatro pestañas, con etiquetas de una palabra.",
+    "Siempre hay una pestaña activa."
+   ],
+   "accessibility": [
+    "Usa los roles tablist, tab y tabpanel.",
+    "Las flechas izquierda y derecha cambian de pestaña; Inicio y Fin van a la primera y a la última.",
+    "Solo la pestaña activa entra en el orden de tabulación.",
+    "Altura mínima de 44 px."
+   ],
+   "figma": {
+    "props": {
+     "label": {
+      "omit": "Solo es el nombre accesible."
+     },
+     "tabs": {
+      "omit": "Son las instancias de .Tab que hay dentro."
+     },
+     "value": {
+      "omit": "Es la propiedad selected de cada .Tab."
+     },
+     "onChange": {
+      "omit": "Comportamiento: no existe en Figma."
+     },
+     "children": {
+      "omit": "El contenido se dibuja debajo, fuera del componente."
+     }
+    }
+   },
+   "example": "import { Tabs } from 'robur-ds'\n\n<Tabs label=\"…\" :tabs=\"…\" value=\"…\" @change=\"…\">…</Tabs>",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/Tabs",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-tabs--default"
+  }
+ },
+ "patterns": {
+  "EmptyState": {
+   "name": "EmptyState",
+   "description": "Lo que se ve cuando una lista o una sección todavía no tiene contenido.",
+   "useWhen": [
+    "Una lista, un historial o una sección no tienen nada que mostrar todavía.",
+    "El resultado de un filtro o una búsqueda está vacío."
+   ],
+   "avoidWhen": [
+    "Para un error de carga o de red: es un aviso, no un estado vacío.",
+    "Para una semana sin sesiones en el heatmap: usa HeatmapCell con sessions a 0."
+   ],
+   "props": [
+    {
+     "name": "title",
+     "type": "string",
+     "required": true,
+     "description": "Qué habrá aquí. En neutro: nunca como un fallo de la persona."
+    },
+    {
+     "name": "description",
+     "type": "string",
+     "required": true,
+     "description": "Una frase que dice cómo empezar."
+    },
+    {
+     "name": "actionLabel",
+     "type": "string",
+     "description": "Texto del botón. Si no se pasa, no hay acción."
+    },
+    {
+     "name": "onAction",
+     "type": "function",
+     "description": "Se emite al pulsar el botón."
+    }
+   ],
+   "components": [
+    "Button"
+   ],
+   "rules": [
+    "El título dice qué habrá aquí: «Aún no hay sesiones esta semana».",
+    "Nunca lenguaje de fallo o de culpa: no «No has entrenado», no «Nada que mostrar».",
+    "La descripción dice cómo empezar, en una frase.",
+    "Como mucho una acción, y es la que llena este vacío.",
+    "Sin ilustraciones ni iconos de advertencia."
+   ],
+   "accessibility": [
+    "El título es un encabezado: se puede llegar a él navegando por encabezados.",
+    "La acción es un Button con texto visible."
+   ],
+   "example": "import { EmptyState } from 'robur-ds'\n\n<EmptyState title=\"…\" description=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/patrones/EmptyState",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/patrones-emptystate--default"
+  },
+  "FormLayout": {
+   "name": "FormLayout",
+   "description": "Un formulario corto: título, campos en columna y las acciones al final.",
+   "useWhen": [
+    "Crear o editar algo con pocos campos: un ejercicio, un tipo de día.",
+    "Dentro de una Sheet o como pantalla propia."
+   ],
+   "avoidWhen": [
+    "Para registrar una sesión de entrenamiento: usa SessionLog.",
+    "Para más de seis campos: divide en pasos o en pantallas."
+   ],
+   "props": [
+    {
+     "name": "title",
+     "type": "string",
+     "required": true,
+     "description": "Título del formulario. Dice qué se está creando o editando."
+    },
+    {
+     "name": "children",
+     "type": "node",
+     "required": true,
+     "description": "Los campos, en el orden en que se rellenan."
+    },
+    {
+     "name": "submitLabel",
+     "type": "string",
+     "required": true,
+     "description": "Texto del botón principal: un verbo que dice qué pasa."
+    },
+    {
+     "name": "onSubmit",
+     "type": "function",
+     "required": true,
+     "description": "Se emite al enviar el formulario, con el botón o con la tecla Intro."
+    },
+    {
+     "name": "cancelLabel",
+     "type": "string",
+     "description": "Texto del botón para salir sin guardar. Si no se pasa, no hay botón."
+    },
+    {
+     "name": "onCancel",
+     "type": "function",
+     "description": "Se emite al pulsar el botón de cancelar."
+    },
+    {
+     "name": "submitting",
+     "type": "boolean",
+     "default": false,
+     "description": "El envío está en curso: bloquea el botón principal."
+    }
+   ],
+   "components": [
+    "Button"
+   ],
+   "rules": [
+    "Los campos son Input o Checkbox del sistema, uno por fila, en el orden en que se rellenan.",
+    "Como mucho seis campos.",
+    "Una sola acción principal, a todo el ancho, y debajo la de cancelar.",
+    "El botón principal dice qué pasa: «Guardar ejercicio», no «Enviar».",
+    "Los errores se muestran en cada campo, con su prop error; no en un aviso general.",
+    "Mientras se envía, el botón principal usa loading: no se deshabilitan los campos."
+   ],
+   "accessibility": [
+    "Es un <form>: se envía también con la tecla Intro.",
+    "El título es un encabezado.",
+    "El orden del foco es el orden visual: campos, acción principal, cancelar."
+   ],
+   "example": "import { FormLayout } from 'robur-ds'\n\n<FormLayout title=\"…\" submit-label=\"…\" @submit=\"…\">…</FormLayout>",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/patrones/FormLayout",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/patrones-formlayout--default"
+  },
+  "SessionLog": {
+   "name": "SessionLog",
+   "description": "Registrar una sesión de entrenamiento: elegir el tipo de día, marcar los ejercicios y guardar.",
+   "useWhen": [
+    "La persona registra la sesión que acaba de hacer o que está haciendo."
+   ],
+   "avoidWhen": [
+    "Para ver una sesión ya guardada, solo de lectura.",
+    "Para crear o editar un ejercicio del plan: usa FormLayout."
+   ],
+   "props": [
+    {
+     "name": "dayTypes",
+     "type": "array",
+     "required": true,
+     "description": "Los tipos de día entre los que elegir, en orden."
+    },
+    {
+     "name": "dayType",
+     "type": "string",
+     "required": true,
+     "description": "El tipo de día elegido."
+    },
+    {
+     "name": "onDayTypeChange",
+     "type": "function",
+     "required": true,
+     "description": "Se emite con el tipo de día pulsado."
+    },
+    {
+     "name": "exercises",
+     "type": "array",
+     "required": true,
+     "description": "Los ejercicios del día elegido."
+    },
+    {
+     "name": "onExerciseChange",
+     "type": "function",
+     "required": true,
+     "description": "Se emite al marcar o desmarcar un ejercicio."
+    },
+    {
+     "name": "onSave",
+     "type": "function",
+     "required": true,
+     "description": "Se emite al guardar la sesión."
+    },
+    {
+     "name": "saving",
+     "type": "boolean",
+     "default": false,
+     "description": "El guardado está en curso."
+    }
+   ],
+   "components": [
+    "Button",
+    "Chip",
+    "ExerciseRow"
+   ],
+   "rules": [
+    "Registrar una sesión no pasa de tres toques: tipo de día, ejercicio hecho y guardar.",
+    "El tipo de día se elige con Chip: es la primera decisión y va arriba.",
+    "Guardar es la única acción principal y siempre está disponible: se puede guardar una sesión con cualquier número de ejercicios marcados.",
+    "No hay barra de progreso, porcentaje ni recuento de lo que falta: Robur no tiene objetivos.",
+    "Un ejercicio sin marcar no se señala de ninguna forma."
+   ],
+   "accessibility": [
+    "Los chips forman un grupo con nombre: «Tipo de día».",
+    "Los ejercicios son una lista: un lector de pantalla dice cuántos hay.",
+    "Todo el flujo se puede hacer con el teclado."
+   ],
+   "example": "import { SessionLog } from 'robur-ds'\n\n<SessionLog :day-types=\"…\" day-type=\"…\" @day-type-change=\"…\" :exercises=\"…\" @exercise-change=\"…\" @save=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/patrones/SessionLog",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/patrones-sessionlog--default"
+  }
+ },
+ "tokens": [
+  {
+   "token": "color.text.primary",
+   "group": "text",
+   "classes": [
+    "text-primary"
+   ],
+   "description": "Texto principal.",
+   "light": "neutral.950",
+   "dark": "neutral.50"
+  },
+  {
+   "token": "color.text.secondary",
+   "group": "text",
+   "classes": [
+    "text-secondary"
+   ],
+   "description": "Texto secundario con énfasis.",
+   "light": "neutral.800",
+   "dark": "neutral.200"
+  },
+  {
+   "token": "color.text.tertiary",
+   "group": "text",
+   "classes": [
+    "text-tertiary"
+   ],
+   "description": "Ayudas, metadatos y elementos inactivos.",
+   "light": "neutral.600",
+   "dark": "neutral.400"
+  },
+  {
+   "token": "color.text.action",
+   "group": "text",
+   "classes": [
+    "text-action"
+   ],
+   "description": "Texto de acento sobre fondo claro o sobre action-soft.",
+   "light": "orange.700",
+   "dark": "orange.300"
+  },
+  {
+   "token": "color.text.on-action",
+   "group": "text",
+   "classes": [
+    "text-on-action"
+   ],
+   "description": "Texto sobre bg-action.",
+   "light": "neutral.0",
+   "dark": "neutral.0"
+  },
+  {
+   "token": "color.text.on-selected",
+   "group": "text",
+   "classes": [
+    "text-on-selected"
+   ],
+   "description": "Texto sobre bg-selected.",
+   "light": "neutral.0",
+   "dark": "neutral.950"
+  },
+  {
+   "token": "color.text.on-inverse",
+   "group": "text",
+   "classes": [
+    "text-on-inverse"
+   ],
+   "description": "Texto sobre bg-inverse.",
+   "light": "neutral.0",
+   "dark": "neutral.0"
+  },
+  {
+   "token": "color.text.on-inverse-muted",
+   "group": "text",
+   "classes": [
+    "text-on-inverse-muted"
+   ],
+   "description": "Texto secundario sobre bg-inverse.",
+   "light": "neutral.400",
+   "dark": "neutral.400"
+  },
+  {
+   "token": "color.text.danger",
+   "group": "text",
+   "classes": [
+    "text-danger"
+   ],
+   "description": "Errores y acciones destructivas.",
+   "light": "red.700",
+   "dark": "red.300"
+  },
+  {
+   "token": "color.text.success",
+   "group": "text",
+   "classes": [
+    "text-success"
+   ],
+   "description": "Confirmaciones.",
+   "light": "green.700",
+   "dark": "green.300"
+  },
+  {
+   "token": "color.text.info",
+   "group": "text",
+   "classes": [
+    "text-info"
+   ],
+   "description": "Avisos neutros.",
+   "light": "neutral.800",
+   "dark": "neutral.200"
+  },
+  {
+   "token": "color.bg.page",
+   "group": "bg",
+   "classes": [
+    "bg-page"
+   ],
+   "description": "Fondo de la app.",
+   "light": "neutral.50",
+   "dark": "neutral.950"
+  },
+  {
+   "token": "color.bg.surface",
+   "group": "bg",
+   "classes": [
+    "bg-surface"
+   ],
+   "description": "Tarjetas, hojas y campos.",
+   "light": "neutral.0",
+   "dark": "neutral.900"
+  },
+  {
+   "token": "color.bg.inverse",
+   "group": "bg",
+   "classes": [
+    "bg-inverse"
+   ],
+   "description": "Tarjeta destacada oscura. Máximo una por pantalla.",
+   "light": "neutral.950",
+   "dark": "neutral.850"
+  },
+  {
+   "token": "color.bg.action",
+   "group": "bg",
+   "classes": [
+    "bg-action"
+   ],
+   "description": "Fondo de la acción principal y de los controles marcados.",
+   "light": "orange.700",
+   "dark": "orange.700"
+  },
+  {
+   "token": "color.bg.action-soft",
+   "group": "bg",
+   "classes": [
+    "bg-action-soft"
+   ],
+   "description": "Superficie teñida: fila completada, chip de acento.",
+   "light": "orange.50",
+   "dark": "orange.900"
+  },
+  {
+   "token": "color.bg.selected",
+   "group": "bg",
+   "classes": [
+    "bg-selected"
+   ],
+   "description": "Opción seleccionada en chips y pestañas.",
+   "light": "neutral.950",
+   "dark": "neutral.50"
+  },
+  {
+   "token": "color.bg.danger-soft",
+   "group": "bg",
+   "classes": [
+    "bg-danger-soft"
+   ],
+   "description": "Fondo de un aviso de error.",
+   "light": "red.50",
+   "dark": "red.900"
+  },
+  {
+   "token": "color.bg.success-soft",
+   "group": "bg",
+   "classes": [
+    "bg-success-soft"
+   ],
+   "description": "Fondo de un aviso de éxito.",
+   "light": "green.50",
+   "dark": "green.900"
+  },
+  {
+   "token": "color.bg.info-soft",
+   "group": "bg",
+   "classes": [
+    "bg-info-soft"
+   ],
+   "description": "Fondo de un aviso neutro.",
+   "light": "gray.100",
+   "dark": "neutral.850"
+  },
+  {
+   "token": "color.bg.overlay",
+   "group": "bg",
+   "classes": [
+    "bg-overlay"
+   ],
+   "description": "Velo detrás de una hoja modal.",
+   "light": "scrim",
+   "dark": "scrim"
+  },
+  {
+   "token": "color.border.default",
+   "group": "border",
+   "classes": [
+    "border-default"
+   ],
+   "description": "Separadores y bordes decorativos.",
+   "light": "neutral.200",
+   "dark": "neutral.850"
+  },
+  {
+   "token": "color.border.control",
+   "group": "border",
+   "classes": [
+    "border-control"
+   ],
+   "description": "Borde de campos y casillas: debe verse (3:1).",
+   "light": "neutral.500",
+   "dark": "neutral.500"
+  },
+  {
+   "token": "color.border.strong",
+   "group": "border",
+   "classes": [
+    "border-strong"
+   ],
+   "description": "Borde del botón secundario.",
+   "light": "neutral.950",
+   "dark": "neutral.50"
+  },
+  {
+   "token": "color.border.action",
+   "group": "border",
+   "classes": [
+    "border-action"
+   ],
+   "description": "Borde de un campo con foco.",
+   "light": "orange.500",
+   "dark": "orange.500"
+  },
+  {
+   "token": "color.border.danger",
+   "group": "border",
+   "classes": [
+    "border-danger"
+   ],
+   "description": "Borde de un campo con error o de un botón destructivo.",
+   "light": "red.700",
+   "dark": "red.300"
+  },
+  {
+   "token": "color.border.inverse",
+   "group": "border",
+   "classes": [
+    "border-inverse"
+   ],
+   "description": "Bordes y rellenos apagados sobre bg-inverse.",
+   "light": "neutral.850",
+   "dark": "neutral.800"
+  },
+  {
+   "token": "color.focus.ring",
+   "group": "focus",
+   "classes": [
+    "bg-focus-ring",
+    "text-focus-ring",
+    "border-focus-ring",
+    "outline-focus-ring",
+    "ring-focus-ring",
+    "fill-focus-ring",
+    "stroke-focus-ring"
+   ],
+   "description": "Anillo de foco del teclado.",
+   "light": "orange.500",
+   "dark": "orange.500"
+  },
+  {
+   "token": "color.heat.0",
+   "group": "heat",
+   "classes": [
+    "bg-heat-0",
+    "text-heat-0",
+    "border-heat-0",
+    "outline-heat-0",
+    "ring-heat-0",
+    "fill-heat-0",
+    "stroke-heat-0"
+   ],
+   "description": "Semana sin sesiones.",
+   "light": "gray.200",
+   "dark": "neutral.850"
+  },
+  {
+   "token": "color.heat.1",
+   "group": "heat",
+   "classes": [
+    "bg-heat-1",
+    "text-heat-1",
+    "border-heat-1",
+    "outline-heat-1",
+    "ring-heat-1",
+    "fill-heat-1",
+    "stroke-heat-1"
+   ],
+   "description": "1 sesión.",
+   "light": "orange.200",
+   "dark": "orange.900"
+  },
+  {
+   "token": "color.heat.2",
+   "group": "heat",
+   "classes": [
+    "bg-heat-2",
+    "text-heat-2",
+    "border-heat-2",
+    "outline-heat-2",
+    "ring-heat-2",
+    "fill-heat-2",
+    "stroke-heat-2"
+   ],
+   "description": "2 sesiones.",
+   "light": "orange.300",
+   "dark": "orange.800"
+  },
+  {
+   "token": "color.heat.3",
+   "group": "heat",
+   "classes": [
+    "bg-heat-3",
+    "text-heat-3",
+    "border-heat-3",
+    "outline-heat-3",
+    "ring-heat-3",
+    "fill-heat-3",
+    "stroke-heat-3"
+   ],
+   "description": "3 sesiones.",
+   "light": "orange.400",
+   "dark": "orange.600"
+  },
+  {
+   "token": "color.heat.4",
+   "group": "heat",
+   "classes": [
+    "bg-heat-4",
+    "text-heat-4",
+    "border-heat-4",
+    "outline-heat-4",
+    "ring-heat-4",
+    "fill-heat-4",
+    "stroke-heat-4"
+   ],
+   "description": "Más de 3 sesiones.",
+   "light": "orange.500",
+   "dark": "orange.500"
+  },
+  {
+   "token": "color.heat.current",
+   "group": "heat",
+   "classes": [
+    "bg-heat-current",
+    "text-heat-current",
+    "border-heat-current",
+    "outline-heat-current",
+    "ring-heat-current",
+    "fill-heat-current",
+    "stroke-heat-current"
+   ],
+   "description": "Marca la semana en curso.",
+   "light": "neutral.950",
+   "dark": "neutral.50"
+  },
+  {
+   "token": "color.data.1",
+   "group": "data",
+   "classes": [
+    "bg-data-1",
+    "text-data-1",
+    "border-data-1",
+    "outline-data-1",
+    "ring-data-1",
+    "fill-data-1",
+    "stroke-data-1"
+   ],
+   "description": "Serie principal de un gráfico y cifra destacada sobre bg-inverse.",
+   "light": "orange.500",
+   "dark": "orange.500"
+  },
+  {
+   "token": "color.data.2",
+   "group": "data",
+   "classes": [
+    "bg-data-2",
+    "text-data-2",
+    "border-data-2",
+    "outline-data-2",
+    "ring-data-2",
+    "fill-data-2",
+    "stroke-data-2"
+   ],
+   "description": "Segunda serie. Solo sobre bg-inverse.",
+   "light": "lime.400",
+   "dark": "lime.400"
+  }
+ ],
+ "textStyles": [
+  {
+   "class": "text-display",
+   "size": "56px",
+   "weight": 800,
+   "description": "Cifra protagonista."
+  },
+  {
+   "class": "text-h1",
+   "size": "32px",
+   "weight": 800,
+   "description": ""
+  },
+  {
+   "class": "text-h2",
+   "size": "24px",
+   "weight": 700,
+   "description": ""
+  },
+  {
+   "class": "text-h3",
+   "size": "18px",
+   "weight": 600,
+   "description": ""
+  },
+  {
+   "class": "text-title",
+   "size": "16px",
+   "weight": 600,
+   "description": "Título de tarjeta y texto de botón."
+  },
+  {
+   "class": "text-body",
+   "size": "16px",
+   "weight": 400,
+   "description": ""
+  },
+  {
+   "class": "text-sm",
+   "size": "14px",
+   "weight": 400,
+   "description": ""
+  },
+  {
+   "class": "text-control",
+   "size": "14px",
+   "weight": 600,
+   "description": "Texto de controles compactos: chip, pestaña y etiqueta de campo."
+  },
+  {
+   "class": "text-label",
+   "size": "12px",
+   "weight": 600,
+   "description": "Etiqueta corta de metadato. Siempre en mayúsculas."
+  }
+ ],
+ "radii": [
+  "rounded-xs",
+  "rounded-sm",
+  "rounded-md",
+  "rounded-lg",
+  "rounded-xl",
+  "rounded-pill"
+ ],
+ "shadows": [
+  "shadow-sm",
+  "shadow-md"
+ ],
+ "classes": [
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "text-action",
+  "text-on-action",
+  "text-on-selected",
+  "text-on-inverse",
+  "text-on-inverse-muted",
+  "text-danger",
+  "text-success",
+  "text-info",
+  "bg-page",
+  "bg-surface",
+  "bg-inverse",
+  "bg-action",
+  "bg-action-soft",
+  "bg-selected",
+  "bg-danger-soft",
+  "bg-success-soft",
+  "bg-info-soft",
+  "bg-overlay",
+  "border-default",
+  "border-control",
+  "border-strong",
+  "border-action",
+  "border-danger",
+  "border-inverse",
+  "bg-focus-ring",
+  "text-focus-ring",
+  "border-focus-ring",
+  "outline-focus-ring",
+  "ring-focus-ring",
+  "fill-focus-ring",
+  "stroke-focus-ring",
+  "bg-heat-0",
+  "text-heat-0",
+  "border-heat-0",
+  "outline-heat-0",
+  "ring-heat-0",
+  "fill-heat-0",
+  "stroke-heat-0",
+  "bg-heat-1",
+  "text-heat-1",
+  "border-heat-1",
+  "outline-heat-1",
+  "ring-heat-1",
+  "fill-heat-1",
+  "stroke-heat-1",
+  "bg-heat-2",
+  "text-heat-2",
+  "border-heat-2",
+  "outline-heat-2",
+  "ring-heat-2",
+  "fill-heat-2",
+  "stroke-heat-2",
+  "bg-heat-3",
+  "text-heat-3",
+  "border-heat-3",
+  "outline-heat-3",
+  "ring-heat-3",
+  "fill-heat-3",
+  "stroke-heat-3",
+  "bg-heat-4",
+  "text-heat-4",
+  "border-heat-4",
+  "outline-heat-4",
+  "ring-heat-4",
+  "fill-heat-4",
+  "stroke-heat-4",
+  "bg-heat-current",
+  "text-heat-current",
+  "border-heat-current",
+  "outline-heat-current",
+  "ring-heat-current",
+  "fill-heat-current",
+  "stroke-heat-current",
+  "bg-data-1",
+  "text-data-1",
+  "border-data-1",
+  "outline-data-1",
+  "ring-data-1",
+  "fill-data-1",
+  "stroke-data-1",
+  "bg-data-2",
+  "text-data-2",
+  "border-data-2",
+  "outline-data-2",
+  "ring-data-2",
+  "fill-data-2",
+  "stroke-data-2",
+  "text-display",
+  "text-h1",
+  "text-h2",
+  "text-h3",
+  "text-title",
+  "text-body",
+  "text-sm",
+  "text-control",
+  "text-label",
+  "rounded-xs",
+  "rounded-sm",
+  "rounded-md",
+  "rounded-lg",
+  "rounded-xl",
+  "rounded-pill",
+  "shadow-sm",
+  "shadow-md"
+ ],
+ "contrast": [
+  {
+   "fg": "color.text.primary",
+   "bg": "color.bg.page",
+   "min": 4.5,
+   "light": 17.6,
+   "dark": 17.6
+  },
+  {
+   "fg": "color.text.primary",
+   "bg": "color.bg.surface",
+   "min": 4.5,
+   "light": 18.77,
+   "dark": 16.15
+  },
+  {
+   "fg": "color.text.secondary",
+   "bg": "color.bg.page",
+   "min": 4.5,
+   "light": 11.76,
+   "dark": 14.51
+  },
+  {
+   "fg": "color.text.secondary",
+   "bg": "color.bg.surface",
+   "min": 4.5,
+   "light": 12.54,
+   "dark": 13.32
+  },
+  {
+   "fg": "color.text.tertiary",
+   "bg": "color.bg.page",
+   "min": 4.5,
+   "light": 5.77,
+   "dark": 6.8
+  },
+  {
+   "fg": "color.text.tertiary",
+   "bg": "color.bg.surface",
+   "min": 4.5,
+   "light": 6.16,
+   "dark": 6.24
+  },
+  {
+   "fg": "color.text.action",
+   "bg": "color.bg.page",
+   "min": 4.5,
+   "light": 5.21,
+   "dark": 8.23
+  },
+  {
+   "fg": "color.text.action",
+   "bg": "color.bg.surface",
+   "min": 4.5,
+   "light": 5.56,
+   "dark": 7.56
+  },
+  {
+   "fg": "color.text.action",
+   "bg": "color.bg.action-soft",
+   "min": 4.5,
+   "light": 4.91,
+   "dark": 4.86
+  },
+  {
+   "fg": "color.text.primary",
+   "bg": "color.bg.action-soft",
+   "min": 4.5,
+   "light": 16.55,
+   "dark": 10.39
+  },
+  {
+   "fg": "color.text.secondary",
+   "bg": "color.bg.action-soft",
+   "min": 4.5,
+   "light": 11.06,
+   "dark": 8.56
+  },
+  {
+   "fg": "color.text.on-action",
+   "bg": "color.bg.action",
+   "min": 4.5,
+   "light": 5.56,
+   "dark": 5.56
+  },
+  {
+   "fg": "color.text.on-selected",
+   "bg": "color.bg.selected",
+   "min": 4.5,
+   "light": 18.77,
+   "dark": 17.6
+  },
+  {
+   "fg": "color.text.on-inverse",
+   "bg": "color.bg.inverse",
+   "min": 4.5,
+   "light": 18.77,
+   "dark": 14.67
+  },
+  {
+   "fg": "color.text.on-inverse-muted",
+   "bg": "color.bg.inverse",
+   "min": 4.5,
+   "light": 6.8,
+   "dark": 5.31
+  },
+  {
+   "fg": "color.data.1",
+   "bg": "color.bg.inverse",
+   "min": 3,
+   "note": "Solo como cifra grande (text-display).",
+   "light": 5.25,
+   "dark": 4.1
+  },
+  {
+   "fg": "color.data.2",
+   "bg": "color.bg.inverse",
+   "min": 4.5,
+   "light": 14.49,
+   "dark": 11.33
+  },
+  {
+   "fg": "color.text.danger",
+   "bg": "color.bg.page",
+   "min": 4.5,
+   "light": 6.12,
+   "dark": 9.32
+  },
+  {
+   "fg": "color.text.danger",
+   "bg": "color.bg.surface",
+   "min": 4.5,
+   "light": 6.53,
+   "dark": 8.55
+  },
+  {
+   "fg": "color.text.danger",
+   "bg": "color.bg.danger-soft",
+   "min": 4.5,
+   "light": 5.72,
+   "dark": 7.4
+  },
+  {
+   "fg": "color.text.success",
+   "bg": "color.bg.success-soft",
+   "min": 4.5,
+   "light": 5.73,
+   "dark": 8.11
+  },
+  {
+   "fg": "color.text.info",
+   "bg": "color.bg.info-soft",
+   "min": 4.5,
+   "light": 11,
+   "dark": 11.34
+  },
+  {
+   "fg": "color.border.control",
+   "bg": "color.bg.surface",
+   "min": 3,
+   "light": 3.79,
+   "dark": 4.54
+  },
+  {
+   "fg": "color.border.control",
+   "bg": "color.bg.page",
+   "min": 3,
+   "light": 3.55,
+   "dark": 4.95
+  },
+  {
+   "fg": "color.border.strong",
+   "bg": "color.bg.page",
+   "min": 3,
+   "light": 17.6,
+   "dark": 17.6
+  },
+  {
+   "fg": "color.border.danger",
+   "bg": "color.bg.surface",
+   "min": 3,
+   "light": 6.53,
+   "dark": 8.55
+  },
+  {
+   "fg": "color.focus.ring",
+   "bg": "color.bg.page",
+   "min": 3,
+   "light": 3.34,
+   "dark": 5.25
+  },
+  {
+   "fg": "color.focus.ring",
+   "bg": "color.bg.surface",
+   "min": 3,
+   "light": 3.57,
+   "dark": 4.82
+  },
+  {
+   "fg": "color.bg.action",
+   "bg": "color.bg.page",
+   "min": 3,
+   "light": 5.21,
+   "dark": 3.37
+  },
+  {
+   "fg": "color.bg.action",
+   "bg": "color.bg.surface",
+   "min": 3,
+   "light": 5.56,
+   "dark": 3.09
+  },
+  {
+   "fg": "color.bg.selected",
+   "bg": "color.bg.page",
+   "min": 3,
+   "light": 17.6,
+   "dark": 17.6
+  },
+  {
+   "fg": "color.bg.selected",
+   "bg": "color.bg.surface",
+   "min": 3,
+   "light": 18.77,
+   "dark": 16.15
+  }
+ ],
+ "rules": [
+  "**Usa lo que hay.** Antes de escribir interfaz, busca en el catálogo un patrón; si no lo hay, componentes. Nunca un `<button>`, un `<input>` o un estilo propio para algo que ya existe.",
+  "**Si falta algo, para y propónlo.** Un token, una variante o un componente nuevo se propone con su motivo; no se improvisa.",
+  "**Ningún valor a mano.** Ni hex, ni primitivos, ni valores entre corchetes de Tailwind. Solo las clases del catálogo.",
+  "**El código manda.** Un cambio empieza en `tokens/` o en un contrato, y de ahí va a Figma. Nunca al revés.",
+  "**Lo generado no se edita:** `src/styles/tokens.css`, `docs/catalogo.md`, `figma/library.json` y `site/`.",
+  "**Terminado es en verde.** Un cambio no está hecho hasta que pasan `npm test` y `npm run build`.",
+  "Texto de la interfaz en español. Código y nombres de props en inglés."
+ ],
+ "writing": [
+  "En español, de tú, frases cortas. Sin signos de exclamación.",
+  "Robur registra, no juzga. Nunca lenguaje de fallo, de meta o de culpa sobre el entrenamiento: «Aún no hay sesiones esta semana», no «No has cumplido tu objetivo».",
+  "Los botones son un verbo en infinitivo que dice qué pasa: «Guardar sesión», no «Aceptar».",
+  "Las etiquetas de campo dicen qué dato se pide, sin dos puntos.",
+  "Un error dice cómo arreglarlo: «Escribe un nombre para el ejercicio», no «Campo inválido».",
+  "Cifras con formato español: «2.480», «62,5». La unidad va aparte y en minúscula: «kg».",
+  "Los estados vacíos dicen qué habrá aquí y cómo empezar. No piden disculpas."
+ ]
+}

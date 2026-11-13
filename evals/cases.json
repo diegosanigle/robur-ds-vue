@@ -1,0 +1,45 @@
+{
+  "$description": "Casos de eval: tareas reales de interfaz y lo que una buena respuesta debe cumplir. Se puntúan con el validador del sistema, sin opinión humana.",
+  "cases": [
+    {
+      "id": "estado-vacio",
+      "task": "El estado que se ve en el historial cuando no hay sesiones esta semana, con una acción para registrar una.",
+      "uses": ["EmptyState"],
+      "why": "Hay un patrón para esto, y el texto no puede sonar a reproche."
+    },
+    {
+      "id": "formulario-ejercicio",
+      "task": "Un formulario para crear un ejercicio nuevo, con nombre, series y repeticiones, y la posibilidad de cancelar.",
+      "uses": ["FormLayout", "Input"],
+      "avoids": ["Sheet"],
+      "why": "Debe usar el patrón de formulario y campos del sistema, no montar el formulario a mano."
+    },
+    {
+      "id": "borrar-sesion",
+      "task": "Una hoja que pide confirmación antes de borrar una sesión.",
+      "uses": ["Sheet", "Button"],
+      "contains": ["variant=\"danger\"", "variant=\"secondary\""],
+      "why": "Regla del contrato de Button: danger siempre va con un secondary para cancelar."
+    },
+    {
+      "id": "resumen-semana",
+      "task": "Un resumen de la semana con tres cifras: sesiones, volumen total en kg y peso máximo en kg. Las sesiones son el dato más importante.",
+      "uses": ["StatCard"],
+      "why": "Como mucho una tarjeta inverse, y las cifras con formato español."
+    },
+    {
+      "id": "tipo-de-dia",
+      "task": "Un selector para elegir el tipo de día de la sesión entre Empuje, Tirón y Pierna.",
+      "uses": ["Chip"],
+      "avoids": ["Tabs"],
+      "why": "Elegir un valor es de Chip. Tabs cambia de vista: su contrato lo dice en avoidWhen."
+    },
+    {
+      "id": "registrar-sesion",
+      "task": "La pantalla para registrar la sesión de hoy: elegir el tipo de día, marcar los ejercicios hechos y guardar.",
+      "uses": ["SessionLog"],
+      "avoids": ["FormLayout"],
+      "why": "Existe un patrón completo. No debe añadir progreso ni recuentos."
+    }
+  ]
+}
