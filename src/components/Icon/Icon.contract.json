@@ -1,0 +1,44 @@
+{
+  "name": "Icon",
+  "description": "Un icono del juego cerrado de Robur, de trazo y del color del texto.",
+  "useWhen": [
+    "Acompañar un texto que ya dice lo mismo: una sección de BottomNav, un botón de añadir.",
+    "Marcar algo de un vistazo, como un día hecho en WeekStrip o la flecha de una fila que abre un detalle o la de un desplegable."
+  ],
+  "avoidWhen": [
+    "Para un botón sin texto: en la v1 no hay botones de solo icono; usa Button con texto.",
+    "Para avisar de un error o de un fallo: Robur no pinta advertencias; usa el texto del componente."
+  ],
+  "props": [
+    {
+      "name": "name",
+      "type": "enum",
+      "values": ["home", "dumbbell", "list-checks", "line-chart", "settings", "check", "chevron-right", "chevron-down", "plus"],
+      "required": true
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["sm", "md", "lg"],
+      "default": "md"
+    },
+    { "name": "label", "type": "string" }
+  ],
+  "states": ["default"],
+  "tokens": [],
+  "composes": [],
+  "rules": [
+    "Trazo de 1,5 px, extremos redondeados y sin relleno.",
+    "Hereda el color del texto que lo rodea: nunca lleva un color propio.",
+    "El juego es cerrado: un icono nuevo se propone, no se copia de una librería."
+  ],
+  "accessibility": [
+    "Sin label es decorativo: lleva aria-hidden y el nombre lo da el texto de al lado.",
+    "Con label es una imagen con nombre (role=\"img\")."
+  ],
+  "figma": {
+    "props": {
+      "label": { "omit": "Solo es el nombre accesible." }
+    }
+  }
+}

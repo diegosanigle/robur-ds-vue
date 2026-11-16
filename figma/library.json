@@ -2,7 +2,7 @@
   "$description": "Foto de la librería de Figma: componentes públicos y sus propiedades. La genera scripts/figma/snapshot.js dentro de Figma. No se edita a mano.",
   "fileKey": "lTMwgNScwy7MEq8CaafRGC",
   "fileUrl": "https://www.figma.com/design/lTMwgNScwy7MEq8CaafRGC",
-  "date": "2026-11-11",
+  "date": "2026-11-16",
   "modes": ["Light"],
   "components": {
     "Button": {
@@ -12,7 +12,7 @@
         {
           "name": "variant",
           "type": "VARIANT",
-          "values": ["primary", "secondary", "danger"]
+          "values": ["primary", "secondary", "danger", "text"]
         },
         {
           "name": "loading",
@@ -26,7 +26,7 @@
         }
       ],
       "exposed": [],
-      "variants": 12,
+      "variants": 16,
       "unboundFills": 0
     },
     "Chip": {
@@ -189,6 +189,111 @@
       ],
       "exposed": ["Checkbox"],
       "variants": 2,
+      "unboundFills": 0
+    },
+    "Icon": {
+      "id": "46:231",
+      "properties": [
+        {
+          "name": "name",
+          "type": "VARIANT",
+          "values": ["home", "dumbbell", "list-checks", "line-chart", "settings", "check", "chevron-right", "chevron-down", "plus"]
+        },
+        {
+          "name": "size",
+          "type": "VARIANT",
+          "values": ["sm", "md", "lg"]
+        }
+      ],
+      "exposed": [],
+      "variants": 27,
+      "unboundFills": 0
+    },
+    "Select": {
+      "id": "46:252",
+      "properties": [
+        { "name": "label", "type": "TEXT" },
+        { "name": "placeholder", "type": "TEXT" },
+        { "name": "hint", "type": "TEXT" },
+        { "name": "error", "type": "TEXT" },
+        { "name": "value", "type": "TEXT" },
+        {
+          "name": "state",
+          "type": "VARIANT",
+          "values": ["default", "focus", "error", "disabled"]
+        }
+      ],
+      "exposed": [],
+      "variants": 4,
+      "unboundFills": 0
+    },
+    "ListRow": {
+      "id": "46:279",
+      "properties": [
+        { "name": "title", "type": "TEXT" },
+        { "name": "detail", "type": "TEXT" },
+        { "name": "value", "type": "TEXT" },
+        { "name": "children", "type": "SLOT" },
+        {
+          "name": "onSelect",
+          "type": "VARIANT",
+          "values": ["false", "true"]
+        }
+      ],
+      "exposed": [],
+      "variants": 2,
+      "unboundFills": 0
+    },
+    "BarChart": {
+      "id": "47:284",
+      "properties": [
+        { "name": "title", "type": "TEXT" },
+        {
+          "name": "variant",
+          "type": "VARIANT",
+          "values": ["surface", "inverse"]
+        },
+        {
+          "name": "series",
+          "type": "VARIANT",
+          "values": ["primary", "secondary"]
+        }
+      ],
+      "exposed": [],
+      "variants": 4,
+      "unboundFills": 0
+    },
+    "LineChart": {
+      "id": "47:361",
+      "properties": [
+        { "name": "title", "type": "TEXT" },
+        {
+          "name": "variant",
+          "type": "VARIANT",
+          "values": ["surface", "inverse"]
+        },
+        {
+          "name": "series",
+          "type": "VARIANT",
+          "values": ["primary", "secondary"]
+        }
+      ],
+      "exposed": [],
+      "variants": 4,
+      "unboundFills": 0
+    },
+    "HeatmapYear": {
+      "id": "49:148",
+      "properties": [],
+      "exposed": [],
+      "variants": 1,
+      "unboundFills": 0
+    },
+    "WeekStrip": {
+      "id": "49:287",
+      "properties": [],
+      "exposed": [],
+      "variants": 1,
       "unboundFills": 0
     }
   }

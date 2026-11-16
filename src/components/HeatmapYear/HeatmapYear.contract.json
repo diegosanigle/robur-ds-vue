@@ -1,0 +1,44 @@
+{
+  "name": "HeatmapYear",
+  "description": "El heatmap anual: una celda por semana ISO, en rejilla de trece columnas, con su leyenda.",
+  "useWhen": ["La vista del año en la pantalla de inicio: cuánto se entrenó cada semana."],
+  "avoidWhen": [
+    "Para una sola semana: usa HeatmapCell, o WeekStrip si se quieren ver los días.",
+    "Para comparar cifras entre semanas: usa BarChart, que enseña el número."
+  ],
+  "props": [
+    { "name": "year", "type": "number", "required": true },
+    { "name": "weeks", "type": "array", "required": true },
+    { "name": "onWeekSelect", "type": "function" }
+  ],
+  "states": ["default"],
+  "tokens": [
+    "color.heat.0",
+    "color.heat.1",
+    "color.heat.2",
+    "color.heat.3",
+    "color.heat.4",
+    "color.text.tertiary",
+    "radius.xs",
+    "text.label"
+  ],
+  "composes": ["HeatmapCell"],
+  "rules": [
+    "Va dentro de una Card de superficie clara: la escala de color necesita fondo claro para leerse.",
+    "Trece columnas y cuatro de separación: 52 semanas son cuatro filas, y la 53 abre una quinta.",
+    "La leyenda va siempre: «menos», los cinco niveles y «más». Nunca «peor» ni «mejor».",
+    "Los niveles los decide la app con umbrales fijos: una semana no cambia de color porque lleguen semanas mejores."
+  ],
+  "accessibility": [
+    "La rejilla es un grupo con nombre («Semanas de 2026»).",
+    "Cada celda dice su semana y sus sesiones: el dato no depende del color.",
+    "La leyenda es decorativa para lectores de pantalla, porque cada celda ya da su dato."
+  ],
+  "figma": {
+    "props": {
+      "year": { "omit": "Solo es el nombre accesible." },
+      "weeks": { "omit": "Son las instancias de HeatmapCell que hay dentro." },
+      "onWeekSelect": { "omit": "Comportamiento: no existe en Figma." }
+    }
+  }
+}

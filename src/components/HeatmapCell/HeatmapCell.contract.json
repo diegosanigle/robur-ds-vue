@@ -6,6 +6,7 @@
   "props": [
     { "name": "week", "type": "number", "required": true },
     { "name": "sessions", "type": "number", "required": true },
+    { "name": "level", "type": "number" },
     { "name": "rest", "type": "boolean", "default": false },
     { "name": "current", "type": "boolean", "default": false }
   ],
@@ -25,6 +26,7 @@
   "composes": [],
   "rules": [
     "Cinco niveles: 0, 1, 2, 3 y más de 3 sesiones.",
+    "Si la app pondera las sesiones, calcula el nivel y lo pasa en level; sessions sigue siendo el número de sesiones que se anuncia.",
     "Sin borde: la rejilla se ve por el espacio de 4 px entre celdas.",
     "El descanso se distingue por el borde discontinuo, nunca por un color de la escala.",
     "Una semana a cero es neutra: nunca roja ni con aviso."
@@ -36,6 +38,7 @@
   "figma": {
     "props": {
       "week": { "omit": "No cambia el aspecto: solo el nombre accesible." },
+      "level": { "omit": "En Figma el nivel es la variante sessions." },
       "sessions": {
         "values": ["0", "1", "2", "3", "4"]
       }

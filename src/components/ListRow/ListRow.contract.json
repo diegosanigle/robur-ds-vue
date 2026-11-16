@@ -1,0 +1,41 @@
+{
+  "name": "ListRow",
+  "description": "Una fila de una lista: título, detalle, una cifra opcional y sus acciones.",
+  "useWhen": [
+    "Listas de elementos del mismo tipo: ejercicios de la biblioteca, sesiones recientes, ejercicios de un día tipo.",
+    "onSelect: la fila entera abre el detalle o la edición del elemento.",
+    "value: un recuento por elemento, como las sesiones de cada día tipo."
+  ],
+  "avoidWhen": [
+    "Para una sola cifra destacada: usa StatCard.",
+    "Para un ejercicio dentro de una sesión que se está registrando: usa ExerciseRow.",
+    "Para navegar entre secciones de la app: usa BottomNav."
+  ],
+  "props": [
+    { "name": "title", "type": "string", "required": true },
+    { "name": "detail", "type": "string" },
+    { "name": "value", "type": "string" },
+    { "name": "onSelect", "type": "function" },
+    { "name": "children", "type": "node" }
+  ],
+  "states": ["default", "pressed", "focus"],
+  "tokens": ["color.text.primary", "color.text.tertiary", "color.border.default", "text.title", "text.sm"],
+  "composes": ["Icon"],
+  "rules": [
+    "Va siempre dentro de una lista (<ul>): las filas se separan con una línea, y la última no la lleva.",
+    "Las acciones son Button con variant text, como mucho dos por fila.",
+    "Borrar desde una fila pide confirmación con ConfirmSheet.",
+    "detail y value llegan ya formateados, con cifras en español."
+  ],
+  "accessibility": [
+    "Es un <li>: quien la usa pone el <ul> alrededor.",
+    "Con onSelect, la zona del título es un botón de al menos 44 px de alto cuyo nombre es el título y el detalle.",
+    "Las acciones son botones aparte, cada uno con su texto."
+  ],
+  "figma": {
+    "props": {
+      "onSelect": { "values": ["false", "true"] },
+      "children": "SLOT"
+    }
+  }
+}

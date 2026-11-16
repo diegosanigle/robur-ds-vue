@@ -1,0 +1,49 @@
+{
+  "name": "BarChart",
+  "description": "Gráfica de barras en una tarjeta: una cifra por periodo, con su valor encima.",
+  "useWhen": [
+    "Comparar una cifra entre periodos seguidos: el volumen de las últimas doce semanas.",
+    "inverse: la gráfica más importante de la pantalla."
+  ],
+  "avoidWhen": [
+    "Para una cifra que cambia de forma continua, como el peso de un ejercicio: usa LineChart.",
+    "Para una sola cifra: usa StatCard.",
+    "Para el año entero por semanas: usa HeatmapYear."
+  ],
+  "props": [
+    { "name": "title", "type": "string", "required": true },
+    { "name": "data", "type": "array", "required": true },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["surface", "inverse"],
+      "default": "surface"
+    },
+    {
+      "name": "series",
+      "type": "enum",
+      "values": ["primary", "secondary"],
+      "default": "primary"
+    }
+  ],
+  "states": ["default"],
+  "tokens": ["color.data.1", "color.data.2", "color.text.tertiary", "color.text.on-inverse-muted", "radius.xs", "text.title", "text.label"],
+  "composes": ["Card"],
+  "rules": [
+    "Máximo una gráfica o tarjeta inverse por pantalla.",
+    "series secondary solo en la variante inverse: sobre fondo claro no se distingue.",
+    "Las barras empiezan en cero. Una barra a cero es un dato, no un hueco que avisar.",
+    "Entre cuatro y doce barras: con más, las etiquetas no caben.",
+    "El título dice qué se mide y en qué periodo: «Volumen semanal, últimas 12 semanas»."
+  ],
+  "accessibility": [
+    "Es una figura con nombre: el título visible, repetido en aria-label.",
+    "Los datos están además en una tabla oculta: el lector de pantalla los lee sin depender del dibujo.",
+    "Cada barra lleva su cifra escrita: no hace falta un tooltip."
+  ],
+  "figma": {
+    "props": {
+      "data": { "omit": "Son las barras que hay dentro." }
+    }
+  }
+}

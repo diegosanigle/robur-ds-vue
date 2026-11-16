@@ -5,14 +5,15 @@
     "La persona ejecuta una acción en la pantalla actual.",
     "primary: la acción principal de la pantalla.",
     "secondary: la alternativa o la cancelación.",
-    "danger: una acción destructiva que no se puede deshacer."
+    "danger: una acción destructiva que no se puede deshacer.",
+    "text: una acción secundaria que no debe pesar visualmente: «Editar», «Quitar», «Cerrar sesión», «Añadir ejercicio» dentro de una lista o una tarjeta."
   ],
   "avoidWhen": ["Para ir a otra pantalla: usa un enlace o BottomNav.", "Para elegir entre opciones: usa Chip o Tabs."],
   "props": [
     {
       "name": "variant",
       "type": "enum",
-      "values": ["primary", "secondary", "danger"],
+      "values": ["primary", "secondary", "danger", "text"],
       "default": "primary"
     },
     { "name": "fullWidth", "type": "boolean", "default": false },
@@ -27,6 +28,7 @@
     "color.text.primary",
     "color.border.strong",
     "color.text.danger",
+    "color.text.action",
     "color.border.danger",
     "radius.pill",
     "text.title"
@@ -35,7 +37,8 @@
   "rules": [
     "Un solo primary por pantalla.",
     "El texto es un verbo en infinitivo y dice qué pasa: «Guardar sesión», no «Aceptar».",
-    "danger siempre va acompañado de un secondary para cancelar."
+    "danger siempre va acompañado de un secondary para cancelar.",
+    "text nunca es la acción principal de una pantalla, y no se usa para borrar sin confirmación."
   ],
   "accessibility": [
     "Altura mínima de 44 px.",

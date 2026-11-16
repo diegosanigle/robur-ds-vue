@@ -23,6 +23,9 @@ export const Rest: Story = { args: { rest: true, sessions: 0 } }
 
 export const Current: Story = { args: { current: true } }
 
+/** La app pondera las sesiones: dos sesiones largas pintan el nivel 4. */
+export const ConNivel: Story = { args: { sessions: 2, level: 4 } }
+
 /** Los cinco niveles, el descanso y la semana en curso. Comprueba que cada celda dice su dato en texto. */
 export const Niveles: Story = {
   render: () => ({

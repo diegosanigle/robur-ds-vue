@@ -42,6 +42,8 @@ for (const name of readdirSync(dir).sort()) {
     let declared = inContract[prop.name]
     // En Vue un evento no puede ser obligatorio: de una prop función solo se comparan el nombre y el tipo.
     if (declared && event) declared = { name: declared.name, type: declared.type }
+    // TypeScript no conserva el orden de una unión de literales: si los valores son los mismos, vale el orden del contrato.
+    if (declared?.type === 'enum' && prop.type === 'enum' && same(declared.values, prop.values)) prop.values = declared.values
     if (!declared) fail(`la prop "${prop.name}" está en el código y no en el contrato`)
     else if (JSON.stringify(declared, Object.keys(declared).sort()) !== JSON.stringify(prop, Object.keys(prop).sort())) {
       fail(`la prop "${prop.name}" no coincide. Código: ${JSON.stringify(prop)} · Contrato: ${JSON.stringify(declared)}`)

@@ -3,8 +3,8 @@ import { computed, useAttrs } from 'vue'
 import type { ButtonHTMLAttributes } from 'vue'
 
 interface Props {
-  /** Jerarquía visual. Solo un `primary` por pantalla. */
-  variant?: 'primary' | 'secondary' | 'danger'
+  /** Jerarquía visual. Solo un `primary` por pantalla; `text` es una acción secundaria sin caja. */
+  variant?: 'primary' | 'secondary' | 'danger' | 'text'
   /** Ocupa todo el ancho del contenedor. */
   fullWidth?: boolean
   /** Muestra que la acción está en curso y bloquea nuevos clics. */
@@ -12,9 +12,10 @@ interface Props {
 }
 
 const VARIANTS = {
-  primary: 'bg-action text-on-action',
-  secondary: 'bg-transparent text-primary border border-strong',
-  danger: 'bg-transparent text-danger border border-danger',
+  primary: 'px-6 py-3.5 bg-action text-on-action',
+  secondary: 'px-6 py-3.5 bg-transparent text-primary border border-strong',
+  danger: 'px-6 py-3.5 bg-transparent text-danger border border-danger',
+  text: 'px-2 py-2 bg-transparent text-action',
 }
 
 // Todo lo que acepta un <button> nativo (disabled, type, @click…) llega por los atributos, no como props.
@@ -38,7 +39,7 @@ const disabled = computed(() => loading || (attrs.disabled !== undefined && attr
     :disabled="disabled"
     :aria-busy="loading || undefined"
     :class="[
-      'inline-flex min-h-11 items-center justify-center gap-2 rounded-pill px-6 py-3.5',
+      'inline-flex min-h-11 items-center justify-center gap-2 rounded-pill',
       'text-title transition active:scale-98',
       'disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100',
       fullWidth ? 'w-full' : '',

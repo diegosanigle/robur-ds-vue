@@ -1,0 +1,34 @@
+{
+  "name": "ConfirmSheet",
+  "description": "Pedir confirmación antes de una acción que no se puede deshacer, como borrar.",
+  "useWhen": [
+    "Borrar algo que no se puede recuperar: una sesión, un ejercicio, un día tipo.",
+    "Cualquier acción danger que se lanza desde una fila o una tarjeta."
+  ],
+  "avoidWhen": [
+    "Para acciones que se pueden deshacer: hazlas sin preguntar.",
+    "Para avisar sin pedir respuesta: no interrumpas con una hoja.",
+    "Nunca uses window.confirm: no sigue el sistema ni se puede probar."
+  ],
+  "props": [
+    { "name": "open", "type": "boolean", "required": true },
+    { "name": "title", "type": "string", "required": true },
+    { "name": "description", "type": "string", "required": true },
+    { "name": "confirmLabel", "type": "string", "required": true },
+    { "name": "onConfirm", "type": "function", "required": true },
+    { "name": "onCancel", "type": "function", "required": true },
+    { "name": "loading", "type": "boolean", "default": false }
+  ],
+  "components": ["Sheet", "Button"],
+  "rules": [
+    "El título es la pregunta con el objeto: «¿Borrar esta sesión?».",
+    "La descripción dice qué se pierde, en una frase y sin dramatizar.",
+    "El botón danger repite el verbo: «Borrar sesión», nunca «Sí» o «Aceptar».",
+    "Cancelar siempre está, debajo del danger y con el mismo ancho.",
+    "Si la hoja sale de otra hoja, la primera se cierra antes: una sola hoja abierta a la vez."
+  ],
+  "accessibility": [
+    "Es una Sheet: diálogo modal con nombre, que se cierra con Escape y devuelve el foco.",
+    "Cerrar la hoja de cualquier forma equivale a cancelar."
+  ]
+}

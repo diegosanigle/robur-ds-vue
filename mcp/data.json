@@ -2,6 +2,90 @@
  "name": "robur-ds",
  "generated": "scripts/build-mcp-data.mjs",
  "components": {
+  "BarChart": {
+   "name": "BarChart",
+   "description": "Gráfica de barras en una tarjeta: una cifra por periodo, con su valor encima.",
+   "useWhen": [
+    "Comparar una cifra entre periodos seguidos: el volumen de las últimas doce semanas.",
+    "inverse: la gráfica más importante de la pantalla."
+   ],
+   "avoidWhen": [
+    "Para una cifra que cambia de forma continua, como el peso de un ejercicio: usa LineChart.",
+    "Para una sola cifra: usa StatCard.",
+    "Para el año entero por semanas: usa HeatmapYear."
+   ],
+   "props": [
+    {
+     "name": "title",
+     "type": "string",
+     "required": true,
+     "description": "Qué mide la gráfica. Es su título visible y su nombre."
+    },
+    {
+     "name": "data",
+     "type": "array",
+     "required": true,
+     "description": "Una barra por elemento, en orden: la etiqueta va debajo y la cifra encima."
+    },
+    {
+     "name": "variant",
+     "type": "enum",
+     "values": [
+      "surface",
+      "inverse"
+     ],
+     "default": "surface",
+     "description": "`surface` es la tarjeta normal; `inverse` es la destacada oscura, máximo una por pantalla."
+    },
+    {
+     "name": "series",
+     "type": "enum",
+     "values": [
+      "primary",
+      "secondary"
+     ],
+     "default": "primary",
+     "description": "Color de las barras: serie principal o segunda serie (solo en `inverse`)."
+    }
+   ],
+   "states": [
+    "default"
+   ],
+   "tokens": [
+    "color.data.1",
+    "color.data.2",
+    "color.text.tertiary",
+    "color.text.on-inverse-muted",
+    "radius.xs",
+    "text.title",
+    "text.label"
+   ],
+   "composes": [
+    "Card"
+   ],
+   "rules": [
+    "Máximo una gráfica o tarjeta inverse por pantalla.",
+    "series secondary solo en la variante inverse: sobre fondo claro no se distingue.",
+    "Las barras empiezan en cero. Una barra a cero es un dato, no un hueco que avisar.",
+    "Entre cuatro y doce barras: con más, las etiquetas no caben.",
+    "El título dice qué se mide y en qué periodo: «Volumen semanal, últimas 12 semanas»."
+   ],
+   "accessibility": [
+    "Es una figura con nombre: el título visible, repetido en aria-label.",
+    "Los datos están además en una tabla oculta: el lector de pantalla los lee sin depender del dibujo.",
+    "Cada barra lleva su cifra escrita: no hace falta un tooltip."
+   ],
+   "figma": {
+    "props": {
+     "data": {
+      "omit": "Son las barras que hay dentro."
+     }
+    }
+   },
+   "example": "import { BarChart } from 'robur-ds'\n\n<BarChart title=\"…\" :data=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/BarChart",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-barchart--default"
+  },
   "BottomNav": {
    "name": "BottomNav",
    "description": "Navegación principal entre las secciones de la app.",
@@ -84,7 +168,8 @@
     "La persona ejecuta una acción en la pantalla actual.",
     "primary: la acción principal de la pantalla.",
     "secondary: la alternativa o la cancelación.",
-    "danger: una acción destructiva que no se puede deshacer."
+    "danger: una acción destructiva que no se puede deshacer.",
+    "text: una acción secundaria que no debe pesar visualmente: «Editar», «Quitar», «Cerrar sesión», «Añadir ejercicio» dentro de una lista o una tarjeta."
    ],
    "avoidWhen": [
     "Para ir a otra pantalla: usa un enlace o BottomNav.",
@@ -97,10 +182,11 @@
      "values": [
       "primary",
       "secondary",
-      "danger"
+      "danger",
+      "text"
      ],
      "default": "primary",
-     "description": "Jerarquía visual. Solo un `primary` por pantalla."
+     "description": "Jerarquía visual. Solo un `primary` por pantalla; `text` es una acción secundaria sin caja."
     },
     {
      "name": "fullWidth",
@@ -135,6 +221,7 @@
     "color.text.primary",
     "color.border.strong",
     "color.text.danger",
+    "color.text.action",
     "color.border.danger",
     "radius.pill",
     "text.title"
@@ -143,7 +230,8 @@
    "rules": [
     "Un solo primary por pantalla.",
     "El texto es un verbo en infinitivo y dice qué pasa: «Guardar sesión», no «Aceptar».",
-    "danger siempre va acompañado de un secondary para cancelar."
+    "danger siempre va acompañado de un secondary para cancelar.",
+    "text nunca es la acción principal de una pantalla, y no se usa para borrar sin confirmación."
    ],
    "accessibility": [
     "Altura mínima de 44 px.",
@@ -493,7 +581,12 @@
      "name": "sessions",
      "type": "number",
      "required": true,
-     "description": "Sesiones registradas esa semana. Decide el nivel de color."
+     "description": "Sesiones registradas esa semana. Las anuncia la celda y, si no se pasa level, deciden el color."
+    },
+    {
+     "name": "level",
+     "type": "number",
+     "description": "Nivel de color, del 0 al 4, cuando lo calcula la app (por ejemplo, con sesiones ponderadas)."
     },
     {
      "name": "rest",
@@ -528,6 +621,7 @@
    "composes": [],
    "rules": [
     "Cinco niveles: 0, 1, 2, 3 y más de 3 sesiones.",
+    "Si la app pondera las sesiones, calcula el nivel y lo pasa en level; sessions sigue siendo el número de sesiones que se anuncia.",
     "Sin borde: la rejilla se ve por el espacio de 4 px entre celdas.",
     "El descanso se distingue por el borde discontinuo, nunca por un color de la escala.",
     "Una semana a cero es neutra: nunca roja ni con aviso."
@@ -540,6 +634,9 @@
     "props": {
      "week": {
       "omit": "No cambia el aspecto: solo el nombre accesible."
+     },
+     "level": {
+      "omit": "En Figma el nivel es la variante sessions."
      },
      "sessions": {
       "values": [
@@ -555,6 +652,150 @@
    "example": "import { HeatmapCell } from 'robur-ds'\n\n<HeatmapCell :week=\"…\" :sessions=\"…\" />",
    "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/HeatmapCell",
    "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-heatmapcell--default"
+  },
+  "HeatmapYear": {
+   "name": "HeatmapYear",
+   "description": "El heatmap anual: una celda por semana ISO, en rejilla de trece columnas, con su leyenda.",
+   "useWhen": [
+    "La vista del año en la pantalla de inicio: cuánto se entrenó cada semana."
+   ],
+   "avoidWhen": [
+    "Para una sola semana: usa HeatmapCell, o WeekStrip si se quieren ver los días.",
+    "Para comparar cifras entre semanas: usa BarChart, que enseña el número."
+   ],
+   "props": [
+    {
+     "name": "year",
+     "type": "number",
+     "required": true,
+     "description": "Año ISO de las semanas. Da nombre a la rejilla."
+    },
+    {
+     "name": "weeks",
+     "type": "array",
+     "required": true,
+     "description": "Una entrada por semana ISO del año, en orden: 52 o 53."
+    },
+    {
+     "name": "onWeekSelect",
+     "type": "function",
+     "description": "Se emite con el número de semana al pulsar una celda."
+    }
+   ],
+   "states": [
+    "default"
+   ],
+   "tokens": [
+    "color.heat.0",
+    "color.heat.1",
+    "color.heat.2",
+    "color.heat.3",
+    "color.heat.4",
+    "color.text.tertiary",
+    "radius.xs",
+    "text.label"
+   ],
+   "composes": [
+    "HeatmapCell"
+   ],
+   "rules": [
+    "Va dentro de una Card de superficie clara: la escala de color necesita fondo claro para leerse.",
+    "Trece columnas y cuatro de separación: 52 semanas son cuatro filas, y la 53 abre una quinta.",
+    "La leyenda va siempre: «menos», los cinco niveles y «más». Nunca «peor» ni «mejor».",
+    "Los niveles los decide la app con umbrales fijos: una semana no cambia de color porque lleguen semanas mejores."
+   ],
+   "accessibility": [
+    "La rejilla es un grupo con nombre («Semanas de 2026»).",
+    "Cada celda dice su semana y sus sesiones: el dato no depende del color.",
+    "La leyenda es decorativa para lectores de pantalla, porque cada celda ya da su dato."
+   ],
+   "figma": {
+    "props": {
+     "year": {
+      "omit": "Solo es el nombre accesible."
+     },
+     "weeks": {
+      "omit": "Son las instancias de HeatmapCell que hay dentro."
+     },
+     "onWeekSelect": {
+      "omit": "Comportamiento: no existe en Figma."
+     }
+    }
+   },
+   "example": "import { HeatmapYear } from 'robur-ds'\n\n<HeatmapYear :year=\"…\" :weeks=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/HeatmapYear",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-heatmapyear--default"
+  },
+  "Icon": {
+   "name": "Icon",
+   "description": "Un icono del juego cerrado de Robur, de trazo y del color del texto.",
+   "useWhen": [
+    "Acompañar un texto que ya dice lo mismo: una sección de BottomNav, un botón de añadir.",
+    "Marcar algo de un vistazo, como un día hecho en WeekStrip o la flecha de una fila que abre un detalle o la de un desplegable."
+   ],
+   "avoidWhen": [
+    "Para un botón sin texto: en la v1 no hay botones de solo icono; usa Button con texto.",
+    "Para avisar de un error o de un fallo: Robur no pinta advertencias; usa el texto del componente."
+   ],
+   "props": [
+    {
+     "name": "name",
+     "type": "enum",
+     "values": [
+      "home",
+      "dumbbell",
+      "list-checks",
+      "line-chart",
+      "settings",
+      "check",
+      "chevron-right",
+      "chevron-down",
+      "plus"
+     ],
+     "required": true,
+     "description": "Qué icono se dibuja. El juego es cerrado: si falta uno, se propone."
+    },
+    {
+     "name": "size",
+     "type": "enum",
+     "values": [
+      "sm",
+      "md",
+      "lg"
+     ],
+     "default": "md",
+     "description": "Tamaño: `sm` 16 px, `md` 20 px y `lg` 24 px."
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "description": "Nombre accesible. Sin él, el icono es decorativo y se oculta a los lectores de pantalla."
+    }
+   ],
+   "states": [
+    "default"
+   ],
+   "tokens": [],
+   "composes": [],
+   "rules": [
+    "Trazo de 1,5 px, extremos redondeados y sin relleno.",
+    "Hereda el color del texto que lo rodea: nunca lleva un color propio.",
+    "El juego es cerrado: un icono nuevo se propone, no se copia de una librería."
+   ],
+   "accessibility": [
+    "Sin label es decorativo: lleva aria-hidden y el nombre lo da el texto de al lado.",
+    "Con label es una imagen con nombre (role=\"img\")."
+   ],
+   "figma": {
+    "props": {
+     "label": {
+      "omit": "Solo es el nombre accesible."
+     }
+    }
+   },
+   "example": "import { Icon } from 'robur-ds'\n\n<Icon :name=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/Icon",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-icon--default"
   },
   "Input": {
    "name": "Input",
@@ -647,6 +888,276 @@
    "example": "import { Input } from 'robur-ds'\n\n<Input label=\"…\" />",
    "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/Input",
    "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-input--default"
+  },
+  "LineChart": {
+   "name": "LineChart",
+   "description": "Gráfica de línea en una tarjeta: cómo cambia una cifra registro a registro.",
+   "useWhen": [
+    "Seguir una cifra en el tiempo, registro a registro: el peso levantado en un ejercicio.",
+    "inverse: la gráfica más importante de la pantalla."
+   ],
+   "avoidWhen": [
+    "Para comparar totales entre periodos: usa BarChart.",
+    "Para una sola cifra: usa StatCard."
+   ],
+   "props": [
+    {
+     "name": "title",
+     "type": "string",
+     "required": true,
+     "description": "Qué mide la gráfica, con su unidad. Es su título visible y su nombre."
+    },
+    {
+     "name": "data",
+     "type": "array",
+     "required": true,
+     "description": "Un punto por registro, en orden: la etiqueta es la fecha y value la cifra."
+    },
+    {
+     "name": "variant",
+     "type": "enum",
+     "values": [
+      "surface",
+      "inverse"
+     ],
+     "default": "surface",
+     "description": "`surface` es la tarjeta normal; `inverse` es la destacada oscura, máximo una por pantalla."
+    },
+    {
+     "name": "series",
+     "type": "enum",
+     "values": [
+      "primary",
+      "secondary"
+     ],
+     "default": "primary",
+     "description": "Color de la línea: serie principal o segunda serie (solo en `inverse`)."
+    }
+   ],
+   "states": [
+    "default"
+   ],
+   "tokens": [
+    "color.data.1",
+    "color.data.2",
+    "color.text.tertiary",
+    "color.text.on-inverse-muted",
+    "radius.pill",
+    "text.title",
+    "text.label"
+   ],
+   "composes": [
+    "Card"
+   ],
+   "rules": [
+    "Máximo una gráfica o tarjeta inverse por pantalla.",
+    "series secondary solo en la variante inverse: sobre fondo claro no se distingue.",
+    "El eje se ajusta a los datos: se escriben el máximo y el mínimo, y la primera y la última fecha.",
+    "El título lleva la unidad: «Press de hombro, peso (kg)».",
+    "Solo cifras registradas, nunca objetivos ni líneas de meta."
+   ],
+   "accessibility": [
+    "Es una figura con nombre: el título visible, repetido en aria-label.",
+    "Los datos están además en una tabla oculta: el lector de pantalla los lee sin depender del dibujo."
+   ],
+   "figma": {
+    "props": {
+     "data": {
+      "omit": "Son la línea y los puntos que hay dentro."
+     }
+    }
+   },
+   "example": "import { LineChart } from 'robur-ds'\n\n<LineChart title=\"…\" :data=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/LineChart",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-linechart--default"
+  },
+  "ListRow": {
+   "name": "ListRow",
+   "description": "Una fila de una lista: título, detalle, una cifra opcional y sus acciones.",
+   "useWhen": [
+    "Listas de elementos del mismo tipo: ejercicios de la biblioteca, sesiones recientes, ejercicios de un día tipo.",
+    "onSelect: la fila entera abre el detalle o la edición del elemento.",
+    "value: un recuento por elemento, como las sesiones de cada día tipo."
+   ],
+   "avoidWhen": [
+    "Para una sola cifra destacada: usa StatCard.",
+    "Para un ejercicio dentro de una sesión que se está registrando: usa ExerciseRow.",
+    "Para navegar entre secciones de la app: usa BottomNav."
+   ],
+   "props": [
+    {
+     "name": "title",
+     "type": "string",
+     "required": true,
+     "description": "Lo que nombra la fila: un ejercicio, una sesión, un día tipo."
+    },
+    {
+     "name": "detail",
+     "type": "string",
+     "description": "Una línea de detalle bajo el título: fecha, series, grupo muscular."
+    },
+    {
+     "name": "value",
+     "type": "string",
+     "description": "Una cifra a la derecha, ya formateada."
+    },
+    {
+     "name": "onSelect",
+     "type": "function",
+     "description": "Se emite al pulsar la fila. Si se escucha, la fila se puede pulsar; sin acciones, lleva una flecha."
+    },
+    {
+     "name": "children",
+     "type": "node",
+     "description": "Acciones de la fila, al final: botones `text` («Editar», «Quitar»)."
+    }
+   ],
+   "states": [
+    "default",
+    "pressed",
+    "focus"
+   ],
+   "tokens": [
+    "color.text.primary",
+    "color.text.tertiary",
+    "color.border.default",
+    "text.title",
+    "text.sm"
+   ],
+   "composes": [
+    "Icon"
+   ],
+   "rules": [
+    "Va siempre dentro de una lista (<ul>): las filas se separan con una línea, y la última no la lleva.",
+    "Las acciones son Button con variant text, como mucho dos por fila.",
+    "Borrar desde una fila pide confirmación con ConfirmSheet.",
+    "detail y value llegan ya formateados, con cifras en español."
+   ],
+   "accessibility": [
+    "Es un <li>: quien la usa pone el <ul> alrededor.",
+    "Con onSelect, la zona del título es un botón de al menos 44 px de alto cuyo nombre es el título y el detalle.",
+    "Las acciones son botones aparte, cada uno con su texto."
+   ],
+   "figma": {
+    "props": {
+     "onSelect": {
+      "values": [
+       "false",
+       "true"
+      ]
+     },
+     "children": "SLOT"
+    }
+   },
+   "example": "import { ListRow } from 'robur-ds'\n\n<ListRow title=\"…\">…</ListRow>",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/ListRow",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-listrow--default"
+  },
+  "Select": {
+   "name": "Select",
+   "description": "Desplegable para elegir una opción de una lista larga o que cambia.",
+   "useWhen": [
+    "Elegir una opción entre muchas, o entre una lista que crece: un ejercicio de la biblioteca.",
+    "El espacio no da para enseñar todas las opciones a la vez."
+   ],
+   "avoidWhen": [
+    "Para elegir entre pocas opciones conocidas (hasta seis): usa Chip, que las enseña todas.",
+    "Para cambiar de vista dentro de una pantalla: usa Tabs.",
+    "Para escribir un dato libre: usa Input."
+   ],
+   "props": [
+    {
+     "name": "label",
+     "type": "string",
+     "required": true,
+     "description": "Texto visible que nombra el campo. Obligatorio: un campo sin etiqueta no es accesible."
+    },
+    {
+     "name": "options",
+     "type": "array",
+     "required": true,
+     "description": "Las opciones, en el orden en que se muestran."
+    },
+    {
+     "name": "placeholder",
+     "type": "string",
+     "description": "Texto de la opción vacía inicial. Si no se pasa, no hay opción vacía."
+    },
+    {
+     "name": "hint",
+     "type": "string",
+     "description": "Ayuda breve bajo el campo."
+    },
+    {
+     "name": "error",
+     "type": "string",
+     "description": "Mensaje de error. Si existe, el campo se marca como inválido."
+    }
+   ],
+   "extends": "select",
+   "states": [
+    "default",
+    "focus",
+    "error",
+    "disabled"
+   ],
+   "tokens": [
+    "color.text.primary",
+    "color.text.tertiary",
+    "color.text.danger",
+    "color.bg.surface",
+    "color.border.control",
+    "color.border.action",
+    "color.border.danger",
+    "color.focus.ring",
+    "radius.md",
+    "shadow.sm",
+    "text.sm",
+    "text.control",
+    "text.body"
+   ],
+   "composes": [
+    "Icon"
+   ],
+   "rules": [
+    "Es un <select> nativo: la lista la abre el sistema operativo, también en el móvil.",
+    "La etiqueta dice qué se elige, sin dos puntos al final.",
+    "El placeholder es una invitación en neutro: «Elige un ejercicio», no «Selecciona…».",
+    "El mensaje de error dice cómo arreglarlo: «Elige un ejercicio», no «Campo obligatorio»."
+   ],
+   "accessibility": [
+    "label es obligatorio y está asociado al campo.",
+    "La ayuda y el error se vinculan con aria-describedby.",
+    "Con error lleva aria-invalid.",
+    "La flecha es decorativa: el control ya se anuncia como desplegable."
+   ],
+   "figma": {
+    "props": {
+     "options": {
+      "omit": "La lista la dibuja el sistema operativo: no existe en Figma."
+     },
+     "placeholder": "TEXT"
+    },
+    "extra": [
+     {
+      "name": "state",
+      "type": "VARIANT",
+      "values": [
+       "default",
+       "focus",
+       "error",
+       "disabled"
+      ]
+     },
+     {
+      "name": "value",
+      "type": "TEXT"
+     }
+    ]
+   },
+   "example": "import { Select } from 'robur-ds'\n\n<Select label=\"…\" :options=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/Select",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-select--default"
   },
   "Sheet": {
    "name": "Sheet",
@@ -897,9 +1408,138 @@
    "example": "import { Tabs } from 'robur-ds'\n\n<Tabs label=\"…\" :tabs=\"…\" value=\"…\" @change=\"…\">…</Tabs>",
    "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/Tabs",
    "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-tabs--default"
+  },
+  "WeekStrip": {
+   "name": "WeekStrip",
+   "description": "Los siete días de la semana en curso, con una marca en los que tuvieron sesión.",
+   "useWhen": [
+    "El resumen de la semana en curso, dentro de la tarjeta destacada de inicio."
+   ],
+   "avoidWhen": [
+    "Para semanas pasadas o el año entero: usa HeatmapYear.",
+    "Para contar sesiones: el número va en texto al lado, nunca como «X de 7»."
+   ],
+   "props": [
+    {
+     "name": "days",
+     "type": "array",
+     "required": true,
+     "description": "Los siete días de la semana, de lunes a domingo."
+    }
+   ],
+   "states": [
+    "default"
+   ],
+   "tokens": [
+    "color.data.1",
+    "color.text.on-action",
+    "color.border.inverse",
+    "color.text.on-inverse",
+    "color.text.on-inverse-muted",
+    "radius.pill",
+    "text.label"
+   ],
+   "composes": [
+    "Icon"
+   ],
+   "rules": [
+    "Va dentro de una Card inverse.",
+    "Un día sin sesión es neutro: un círculo vacío, nunca rojo, tachado ni con aviso.",
+    "Solo marcan el día las sesiones válidas: el mismo criterio que el contador.",
+    "Semana ISO: de lunes a domingo, con las iniciales L, M, X, J, V, S y D."
+   ],
+   "accessibility": [
+    "Es una lista de siete elementos; cada uno dice el día entero y si tuvo sesión («martes, con sesión, hoy»).",
+    "El círculo y la inicial son decorativos: el dato está en el texto oculto, no en el color."
+   ],
+   "figma": {
+    "props": {
+     "days": {
+      "omit": "Son las siete instancias de .WeekDay que hay dentro."
+     }
+    }
+   },
+   "example": "import { WeekStrip } from 'robur-ds'\n\n<WeekStrip :days=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/componentes/WeekStrip",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/componentes-weekstrip--default"
   }
  },
  "patterns": {
+  "ConfirmSheet": {
+   "name": "ConfirmSheet",
+   "description": "Pedir confirmación antes de una acción que no se puede deshacer, como borrar.",
+   "useWhen": [
+    "Borrar algo que no se puede recuperar: una sesión, un ejercicio, un día tipo.",
+    "Cualquier acción danger que se lanza desde una fila o una tarjeta."
+   ],
+   "avoidWhen": [
+    "Para acciones que se pueden deshacer: hazlas sin preguntar.",
+    "Para avisar sin pedir respuesta: no interrumpas con una hoja.",
+    "Nunca uses window.confirm: no sigue el sistema ni se puede probar."
+   ],
+   "props": [
+    {
+     "name": "open",
+     "type": "boolean",
+     "required": true,
+     "description": "La hoja está abierta."
+    },
+    {
+     "name": "title",
+     "type": "string",
+     "required": true,
+     "description": "Qué se va a hacer, como pregunta: «¿Borrar esta sesión?»."
+    },
+    {
+     "name": "description",
+     "type": "string",
+     "required": true,
+     "description": "Una frase con lo que se pierde."
+    },
+    {
+     "name": "confirmLabel",
+     "type": "string",
+     "required": true,
+     "description": "Texto del botón que confirma: el verbo de la acción («Borrar sesión»)."
+    },
+    {
+     "name": "onConfirm",
+     "type": "function",
+     "required": true,
+     "description": "Se emite al confirmar."
+    },
+    {
+     "name": "onCancel",
+     "type": "function",
+     "required": true,
+     "description": "Se emite al cancelar o al cerrar la hoja."
+    },
+    {
+     "name": "loading",
+     "type": "boolean",
+     "default": false,
+     "description": "La confirmación está en curso: bloquea los botones."
+    }
+   ],
+   "components": [
+    "Sheet",
+    "Button"
+   ],
+   "rules": [
+    "El título es la pregunta con el objeto: «¿Borrar esta sesión?».",
+    "La descripción dice qué se pierde, en una frase y sin dramatizar.",
+    "El botón danger repite el verbo: «Borrar sesión», nunca «Sí» o «Aceptar».",
+    "Cancelar siempre está, debajo del danger y con el mismo ancho.",
+    "Si la hoja sale de otra hoja, la primera se cierra antes: una sola hoja abierta a la vez."
+   ],
+   "accessibility": [
+    "Es una Sheet: diálogo modal con nombre, que se cierra con Escape y devuelve el foco.",
+    "Cerrar la hoja de cualquier forma equivale a cancelar."
+   ],
+   "example": "import { ConfirmSheet } from 'robur-ds'\n\n<ConfirmSheet :open=\"…\" title=\"…\" description=\"…\" confirm-label=\"…\" @confirm=\"…\" @cancel=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/patrones/ConfirmSheet",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/patrones-confirmsheet--default"
+  },
   "EmptyState": {
    "name": "EmptyState",
    "description": "Lo que se ve cuando una lista o una sección todavía no tiene contenido.",
@@ -1025,6 +1665,57 @@
    "example": "import { FormLayout } from 'robur-ds'\n\n<FormLayout title=\"…\" submit-label=\"…\" @submit=\"…\">…</FormLayout>",
    "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/patrones/FormLayout",
    "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/patrones-formlayout--default"
+  },
+  "ScreenState": {
+   "name": "ScreenState",
+   "description": "Lo que se ve mientras una pantalla carga sus datos o cuando no han podido llegar.",
+   "useWhen": [
+    "loading: la pantalla espera los datos y todavía no tiene nada que enseñar.",
+    "error: los datos no han llegado (red, servidor) y la pantalla no puede mostrarse."
+   ],
+   "avoidWhen": [
+    "Para una lista que ha cargado pero está vacía: usa EmptyState.",
+    "Para un error de un campo de formulario: usa el error de Input o de Select.",
+    "Para una acción en curso dentro de la pantalla: usa loading en Button."
+   ],
+   "props": [
+    {
+     "name": "state",
+     "type": "enum",
+     "values": [
+      "loading",
+      "error"
+     ],
+     "required": true,
+     "description": "`loading` mientras llegan los datos; `error` si no han podido llegar."
+    },
+    {
+     "name": "message",
+     "type": "string",
+     "description": "Qué ha pasado y qué hacer, en una frase. Solo en `error`."
+    },
+    {
+     "name": "onRetry",
+     "type": "function",
+     "description": "Se emite al pulsar Reintentar. Si nadie lo escucha, el error no ofrece reintento."
+    }
+   ],
+   "components": [
+    "Button"
+   ],
+   "rules": [
+    "Ocupa el sitio del contenido: la cabecera y la navegación siguen visibles.",
+    "La carga es un texto sobrio, «Cargando…», sin animaciones de esqueleto.",
+    "El error no culpa a la persona: dice qué no ha llegado y qué puede hacer.",
+    "Reintentar es secondary: no es la acción principal de la pantalla."
+   ],
+   "accessibility": [
+    "La carga es un role=\"status\": se anuncia sin mover el foco.",
+    "El error es un role=\"alert\": se anuncia en cuanto aparece."
+   ],
+   "example": "import { ScreenState } from 'robur-ds'\n\n<ScreenState :state=\"…\" />",
+   "docs": "https://diegosanigle.github.io/robur-ds-vue/docs/patrones/ScreenState",
+   "storybook": "https://diegosanigle.github.io/robur-ds-vue/?path=/story/patrones-screenstate--loading"
   },
   "SessionLog": {
    "name": "SessionLog",

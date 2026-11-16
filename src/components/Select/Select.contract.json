@@ -1,0 +1,64 @@
+{
+  "name": "Select",
+  "description": "Desplegable para elegir una opción de una lista larga o que cambia.",
+  "useWhen": [
+    "Elegir una opción entre muchas, o entre una lista que crece: un ejercicio de la biblioteca.",
+    "El espacio no da para enseñar todas las opciones a la vez."
+  ],
+  "avoidWhen": [
+    "Para elegir entre pocas opciones conocidas (hasta seis): usa Chip, que las enseña todas.",
+    "Para cambiar de vista dentro de una pantalla: usa Tabs.",
+    "Para escribir un dato libre: usa Input."
+  ],
+  "props": [
+    { "name": "label", "type": "string", "required": true },
+    { "name": "options", "type": "array", "required": true },
+    { "name": "placeholder", "type": "string" },
+    { "name": "hint", "type": "string" },
+    { "name": "error", "type": "string" }
+  ],
+  "extends": "select",
+  "states": ["default", "focus", "error", "disabled"],
+  "tokens": [
+    "color.text.primary",
+    "color.text.tertiary",
+    "color.text.danger",
+    "color.bg.surface",
+    "color.border.control",
+    "color.border.action",
+    "color.border.danger",
+    "color.focus.ring",
+    "radius.md",
+    "shadow.sm",
+    "text.sm",
+    "text.control",
+    "text.body"
+  ],
+  "composes": ["Icon"],
+  "rules": [
+    "Es un <select> nativo: la lista la abre el sistema operativo, también en el móvil.",
+    "La etiqueta dice qué se elige, sin dos puntos al final.",
+    "El placeholder es una invitación en neutro: «Elige un ejercicio», no «Selecciona…».",
+    "El mensaje de error dice cómo arreglarlo: «Elige un ejercicio», no «Campo obligatorio»."
+  ],
+  "accessibility": [
+    "label es obligatorio y está asociado al campo.",
+    "La ayuda y el error se vinculan con aria-describedby.",
+    "Con error lleva aria-invalid.",
+    "La flecha es decorativa: el control ya se anuncia como desplegable."
+  ],
+  "figma": {
+    "props": {
+      "options": { "omit": "La lista la dibuja el sistema operativo: no existe en Figma." },
+      "placeholder": "TEXT"
+    },
+    "extra": [
+      {
+        "name": "state",
+        "type": "VARIANT",
+        "values": ["default", "focus", "error", "disabled"]
+      },
+      { "name": "value", "type": "TEXT" }
+    ]
+  }
+}

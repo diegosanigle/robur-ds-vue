@@ -1,0 +1,36 @@
+{
+  "name": "WeekStrip",
+  "description": "Los siete días de la semana en curso, con una marca en los que tuvieron sesión.",
+  "useWhen": ["El resumen de la semana en curso, dentro de la tarjeta destacada de inicio."],
+  "avoidWhen": [
+    "Para semanas pasadas o el año entero: usa HeatmapYear.",
+    "Para contar sesiones: el número va en texto al lado, nunca como «X de 7»."
+  ],
+  "props": [{ "name": "days", "type": "array", "required": true }],
+  "states": ["default"],
+  "tokens": [
+    "color.data.1",
+    "color.text.on-action",
+    "color.border.inverse",
+    "color.text.on-inverse",
+    "color.text.on-inverse-muted",
+    "radius.pill",
+    "text.label"
+  ],
+  "composes": ["Icon"],
+  "rules": [
+    "Va dentro de una Card inverse.",
+    "Un día sin sesión es neutro: un círculo vacío, nunca rojo, tachado ni con aviso.",
+    "Solo marcan el día las sesiones válidas: el mismo criterio que el contador.",
+    "Semana ISO: de lunes a domingo, con las iniciales L, M, X, J, V, S y D."
+  ],
+  "accessibility": [
+    "Es una lista de siete elementos; cada uno dice el día entero y si tuvo sesión («martes, con sesión, hoy»).",
+    "El círculo y la inicial son decorativos: el dato está en el texto oculto, no en el color."
+  ],
+  "figma": {
+    "props": {
+      "days": { "omit": "Son las siete instancias de .WeekDay que hay dentro." }
+    }
+  }
+}

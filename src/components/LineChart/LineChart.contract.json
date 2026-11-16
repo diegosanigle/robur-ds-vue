@@ -1,0 +1,55 @@
+{
+  "name": "LineChart",
+  "description": "Gráfica de línea en una tarjeta: cómo cambia una cifra registro a registro.",
+  "useWhen": [
+    "Seguir una cifra en el tiempo, registro a registro: el peso levantado en un ejercicio.",
+    "inverse: la gráfica más importante de la pantalla."
+  ],
+  "avoidWhen": [
+    "Para comparar totales entre periodos: usa BarChart.",
+    "Para una sola cifra: usa StatCard."
+  ],
+  "props": [
+    { "name": "title", "type": "string", "required": true },
+    { "name": "data", "type": "array", "required": true },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["surface", "inverse"],
+      "default": "surface"
+    },
+    {
+      "name": "series",
+      "type": "enum",
+      "values": ["primary", "secondary"],
+      "default": "primary"
+    }
+  ],
+  "states": ["default"],
+  "tokens": [
+    "color.data.1",
+    "color.data.2",
+    "color.text.tertiary",
+    "color.text.on-inverse-muted",
+    "radius.pill",
+    "text.title",
+    "text.label"
+  ],
+  "composes": ["Card"],
+  "rules": [
+    "Máximo una gráfica o tarjeta inverse por pantalla.",
+    "series secondary solo en la variante inverse: sobre fondo claro no se distingue.",
+    "El eje se ajusta a los datos: se escriben el máximo y el mínimo, y la primera y la última fecha.",
+    "El título lleva la unidad: «Press de hombro, peso (kg)».",
+    "Solo cifras registradas, nunca objetivos ni líneas de meta."
+  ],
+  "accessibility": [
+    "Es una figura con nombre: el título visible, repetido en aria-label.",
+    "Los datos están además en una tabla oculta: el lector de pantalla los lee sin depender del dibujo."
+  ],
+  "figma": {
+    "props": {
+      "data": { "omit": "Son la línea y los puntos que hay dentro." }
+    }
+  }
+}

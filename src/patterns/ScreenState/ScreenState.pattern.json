@@ -1,0 +1,34 @@
+{
+  "name": "ScreenState",
+  "description": "Lo que se ve mientras una pantalla carga sus datos o cuando no han podido llegar.",
+  "useWhen": [
+    "loading: la pantalla espera los datos y todavía no tiene nada que enseñar.",
+    "error: los datos no han llegado (red, servidor) y la pantalla no puede mostrarse."
+  ],
+  "avoidWhen": [
+    "Para una lista que ha cargado pero está vacía: usa EmptyState.",
+    "Para un error de un campo de formulario: usa el error de Input o de Select.",
+    "Para una acción en curso dentro de la pantalla: usa loading en Button."
+  ],
+  "props": [
+    {
+      "name": "state",
+      "type": "enum",
+      "values": ["loading", "error"],
+      "required": true
+    },
+    { "name": "message", "type": "string" },
+    { "name": "onRetry", "type": "function" }
+  ],
+  "components": ["Button"],
+  "rules": [
+    "Ocupa el sitio del contenido: la cabecera y la navegación siguen visibles.",
+    "La carga es un texto sobrio, «Cargando…», sin animaciones de esqueleto.",
+    "El error no culpa a la persona: dice qué no ha llegado y qué puede hacer.",
+    "Reintentar es secondary: no es la acción principal de la pantalla."
+  ],
+  "accessibility": [
+    "La carga es un role=\"status\": se anuncia sin mover el foco.",
+    "El error es un role=\"alert\": se anuncia en cuanto aparece."
+  ]
+}

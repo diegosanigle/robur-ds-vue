@@ -15,6 +15,8 @@ const checker = createChecker(join(root, 'tsconfig.app.json'), { forceUseTs: tru
 const capitalize = (text) => text[0].toUpperCase() + text.slice(1)
 
 function typeOf(text) {
+  // Un array de objetos trae sus propios ` | undefined` dentro: se reconoce antes de partir la unión.
+  if (text.replace(/ \| undefined$/, '').endsWith('}[]')) return { type: 'array' }
   const parts = text.split(' | ').filter((part) => part !== 'undefined')
   if (parts.every((part) => /^".*"$/.test(part))) return { type: 'enum', values: parts.map((part) => JSON.parse(part)) }
   if (parts.length === 1 && parts[0].endsWith('[]')) return { type: 'array' }
