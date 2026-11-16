@@ -19,7 +19,8 @@
       "task": "Una hoja que pide confirmación antes de borrar una sesión.",
       "uses": ["Sheet", "Button"],
       "contains": ["variant=\"danger\"", "variant=\"secondary\""],
-      "why": "Regla del contrato de Button: danger siempre va con un secondary para cancelar."
+      "alternatives": [{ "uses": ["ConfirmSheet"] }],
+      "why": "Regla del contrato de Button: danger siempre va con un secondary para cancelar. El patrón ConfirmSheet ya la cumple, así que usarlo también vale."
     },
     {
       "id": "resumen-semana",

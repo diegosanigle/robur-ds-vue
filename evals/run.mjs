@@ -38,12 +38,13 @@ const usesPiece = (code, name) => new RegExp(`<(${name}|${kebab(name)})[\\s/>]`)
 /** Puntúa una respuesta. Pasa si no tiene errores del validador ni avisos y cumple lo que el caso espera. */
 export function grade(testCase, code) {
   const issues = validate(code, data)
-  const failures = [
-    ...issues.map((i) => `${i.rule}: ${i.message}`),
-    ...(testCase.uses ?? []).filter((name) => !usesPiece(code, name)).map((name) => `no usa ${name}`),
-    ...(testCase.avoids ?? []).filter((name) => usesPiece(code, name)).map((name) => `usa ${name}, y no debería`),
-    ...(testCase.contains ?? []).filter((text) => !code.includes(text)).map((text) => `falta ${text}`),
-  ]
+  // Un caso puede admitir otras formas de resolverlo (`alternatives`): basta con cumplir una.
+  const options = [testCase, ...(testCase.alternatives ?? [])].map((option) => [
+    ...(option.uses ?? []).filter((name) => !usesPiece(code, name)).map((name) => `no usa ${name}`),
+    ...(option.avoids ?? []).filter((name) => usesPiece(code, name)).map((name) => `usa ${name}, y no debería`),
+    ...(option.contains ?? []).filter((text) => !code.includes(text)).map((text) => `falta ${text}`),
+  ])
+  const failures = [...issues.map((i) => `${i.rule}: ${i.message}`), ...(options.find((o) => o.length === 0) ?? options[0])]
   return { pass: failures.length === 0, failures, rules: [...new Set(issues.map((i) => i.rule))] }
 }
 
