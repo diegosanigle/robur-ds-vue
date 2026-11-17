@@ -16,7 +16,8 @@ cero es un dato, no un error.
 ## Comandos
 
 - `npm run storybook` — Storybook en local (puerto 6007)
-- `npm run check` — genera tokens, catálogo y datos del MCP, y comprueba contraste, contratos, patrones, paridad con Figma, uso, MCP y corrector de evals
+- `npm run check` — genera tokens, catálogo, datos del MCP y ficheros de Code Connect, y comprueba contraste, contratos, patrones, paridad con Figma, Code Connect, uso, MCP y corrector de evals
+- `npm run figma:connect` — publica Code Connect en Figma (necesita un plan de pago y `FIGMA_ACCESS_TOKEN`)
 - `npm test` — `check` + tests de las stories (interacción y accesibilidad)
 - `npm run build` — comprueba tipos y compila
 - `npm run docs` — genera la web de documentación
@@ -29,7 +30,7 @@ cero es un dato, no un error.
 - **Si falta algo, para y propónlo.** Un token, una variante o un componente nuevo se propone con su motivo; no se improvisa.
 - **Ningún valor a mano.** Ni hex, ni primitivos, ni valores entre corchetes de Tailwind. Solo las clases del catálogo.
 - **El código manda.** Un cambio empieza en `tokens/` o en un contrato, y de ahí va a Figma. Nunca al revés.
-- **Lo generado no se edita:** `src/styles/tokens.css`, `docs/catalogo.md`, `mcp/data.json`, `figma/library.json`, `metrics/` y `site/`.
+- **Lo generado no se edita:** `src/styles/tokens.css`, `docs/catalogo.md`, `mcp/data.json`, `figma/library.json`, `figma/code-connect/`, `metrics/` y `site/`.
 - **Terminado es en verde.** Un cambio no está hecho hasta que pasan `npm test` y `npm run build`.
 - Texto de la interfaz en español. Código y nombres de props en inglés.
 

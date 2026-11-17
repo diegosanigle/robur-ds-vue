@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "tokens": "node scripts/build-tokens.mjs",
-    "check": "node scripts/build-tokens.mjs && node scripts/build-catalog.mjs && node scripts/build-mcp-data.mjs && node scripts/check-contrast.mjs && node scripts/check-contracts.mjs && node scripts/check-patterns.mjs && node scripts/check-figma.mjs && node scripts/check-usage.mjs && node scripts/check-mcp.mjs && node scripts/check-evals.mjs",
+    "check": "node scripts/build-tokens.mjs && node scripts/build-catalog.mjs && node scripts/build-mcp-data.mjs && node scripts/build-code-connect.mjs && node scripts/check-contrast.mjs && node scripts/check-contracts.mjs && node scripts/check-patterns.mjs && node scripts/check-figma.mjs && node scripts/check-code-connect.mjs && node scripts/check-usage.mjs && node scripts/check-mcp.mjs && node scripts/check-evals.mjs",
     "build": "npm run tokens && vue-tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
@@ -14,6 +14,7 @@
     "build-storybook": "npm run tokens && storybook build",
     "test": "npm run check && vitest run",
     "figma:tokens": "node scripts/figma-tokens.mjs",
+    "figma:connect": "node scripts/build-code-connect.mjs && figma connect publish",
     "catalog": "node scripts/build-catalog.mjs",
     "docs": "node scripts/build-docs.mjs && vitepress build site",
     "docs:dev": "node scripts/build-docs.mjs && vitepress dev site",
@@ -23,11 +24,12 @@
     "metrics": "node scripts/metrics.mjs"
   },
   "dependencies": {
-    "vue": "^3.5.45",
     "@modelcontextprotocol/sdk": "^1.32.2",
+    "vue": "^3.5.45",
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@figma/code-connect": "^2.1.0",
     "@storybook/addon-a11y": "^10.6.7",
     "@storybook/addon-docs": "^10.6.7",
     "@storybook/addon-vitest": "^10.6.7",
@@ -43,10 +45,10 @@
     "tailwindcss": "^4.3.5",
     "typescript": "~6.0.3",
     "vite": "^8.3.6",
+    "vitepress": "^1.6.4",
     "vitest": "latest",
     "vue-component-meta": "^3.3.14",
-    "vue-tsc": "^3.3.14",
-    "vitepress": "^1.6.4"
+    "vue-tsc": "^3.3.14"
   },
   "bin": {
     "robur-ds-mcp": "mcp/server.mjs"

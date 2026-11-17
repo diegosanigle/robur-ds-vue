@@ -36,6 +36,13 @@ Ejecuta `npm test`. Si no pasa, para: no se sincroniza un sistema roto.
 1. Ejecuta en el archivo `scripts/figma/snapshot.js`.
 2. Guarda el resultado en el campo `components` de `figma/library.json` y actualiza `date`.
 3. Ejecuta `npm run check`. Si la paridad falla, corrige Figma, no el contrato.
+   `check` también regenera y comprueba `figma/code-connect/`.
+
+## 5. Code Connect (solo con plan de pago)
+
+Robur está en el plan gratuito, donde Code Connect no está disponible: salta este paso.
+Con un plan Organization o Enterprise y `FIGMA_ACCESS_TOKEN` en el entorno, ejecuta
+`npm run figma:connect` para publicar los snippets.
 
 ## Al terminar
 
