@@ -63,6 +63,9 @@ if (extract('```text\nFalta un calendario.\n```').kind !== 'text') errors.push('
 // Patrones prohibidos: registrar-sesion no puede añadir recuentos ni progreso.
 const counted = grade(cases.find((c) => c.id === 'registrar-sesion'), fixture('mala', 'registrar-sesion.vue'))
 if (counted.pass || !counted.failures.some((f) => f.startsWith('contiene'))) errors.push('el recuento «3/5 completados» no suspende registrar-sesion')
+// forbids mira el texto que se ve, no el código: un «100%» en un comentario o una medida no es un recuento.
+const notVisible = grade(cases.find((c) => c.id === 'registrar-sesion'), fixture('mala', 'registrar-sesion.vue').replace('<p class="text-body text-secondary">3/5 completados</p>', '<!-- ocupa el 100% del ancho: 1/1 -->'))
+if (notVisible.failures.some((f) => f.startsWith('contiene'))) errors.push(`forbids salta con texto que no se ve: ${notVisible.failures.join('; ')}`)
 
 if (errors.length) {
   console.error(`Evals: ${errors.length} problema(s) en el corrector\n- ${errors.join('\n- ')}`)
