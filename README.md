@@ -33,3 +33,25 @@ Añade el MCP a la configuración de tu agente (en Claude Code, un fichero `.mcp
 ```
 
 El agente tendrá cinco herramientas: `get_catalog`, `get_component`, `get_tokens`, `get_text_on` y `validate_code`.
+
+## Usar el sistema por URL
+
+El mismo MCP está publicado en Vercel, sin instalar nada: `URL_PENDIENTE`.
+
+En Claude Code:
+
+```bash
+claude mcp add --transport http robur-ds URL_PENDIENTE
+```
+
+O en `.mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "robur-ds": { "type": "http", "url": "URL_PENDIENTE" }
+  }
+}
+```
+
+Es público y tiene un límite de peticiones por IP. La función está en `api/mcp.mjs`: si el proyecto de Vercel tiene la variable `MCP_TOKEN`, exige la cabecera `Authorization: Bearer <token>`. `npm run mcp:remote` comprueba las dos formas sin desplegar.

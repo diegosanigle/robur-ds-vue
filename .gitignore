@@ -37,3 +37,7 @@ site/.vitepress/cache
 
 # Respuestas de los evals: se regeneran en cada ejecución
 evals/outputs
+
+# Vercel: solo sirve el MCP por URL (api/mcp.mjs)
+.vercel
+vercel-static
