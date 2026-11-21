@@ -51,6 +51,10 @@ const notJson = await post('no es json')
 expect(`un cuerpo que no es JSON da un 4xx (da ${notJson.status})`, notJson.status >= 400 && notJson.status < 500)
 const get = await Promise.race([handle(new Request(URL_MCP, { method: 'GET', headers: { accept: 'text/event-stream' } })), new Promise((r) => setTimeout(() => r({ status: 'colgado' }), 2000))])
 expect(`un GET sin sesión da un 4xx (da ${get.status})`, get.status >= 400 && get.status < 500)
+// Un cuerpo enorme haría trabajar al validador durante minutos: se rechaza antes de leerlo.
+const huge = JSON.stringify({ jsonrpc: '2.0', id: 9, method: 'tools/call', params: { name: 'validate_code', arguments: { code: 'import { '.repeat(20_000) } } })
+const tooBig = await post(huge)
+expect(`un cuerpo de más de 100 KB da 413 (da ${tooBig.status})`, tooBig.status === 413)
 const del = await handle(new Request(URL_MCP, { method: 'DELETE' }))
 expect(`un DELETE da un 4xx (da ${del.status})`, del.status >= 400 && del.status < 500)
 

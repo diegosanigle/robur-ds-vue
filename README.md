@@ -36,12 +36,12 @@ El agente tendrá cinco herramientas: `get_catalog`, `get_component`, `get_token
 
 ## Usar el sistema por URL
 
-El mismo MCP está publicado en Vercel, sin instalar nada: `URL_PENDIENTE`.
+El mismo MCP está publicado en Vercel, sin instalar nada: `https://robur-ds-vue.vercel.app/mcp`.
 
 En Claude Code:
 
 ```bash
-claude mcp add --transport http robur-ds URL_PENDIENTE
+claude mcp add --transport http robur-ds https://robur-ds-vue.vercel.app/mcp
 ```
 
 O en `.mcp.json`:
@@ -49,7 +49,7 @@ O en `.mcp.json`:
 ```json
 {
   "mcpServers": {
-    "robur-ds": { "type": "http", "url": "URL_PENDIENTE" }
+    "robur-ds": { "type": "http", "url": "https://robur-ds-vue.vercel.app/mcp" }
   }
 }
 ```

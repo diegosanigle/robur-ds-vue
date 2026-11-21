@@ -5,7 +5,8 @@
   "outputDirectory": "vercel-static",
   "functions": {
     "api/mcp.mjs": {
-      "includeFiles": "mcp/data.json"
+      "includeFiles": "mcp/data.json",
+      "maxDuration": 10
     }
   },
   "rewrites": [
