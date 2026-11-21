@@ -1,0 +1,7 @@
+Falta: no he podido consultar el catálogo de robur-ds (no hay node_modules ni documentación del paquete a mi alcance), así que no puedo confirmar qué componentes existen. Esta tarea necesita un gráfico de línea (evolución del peso máximo a lo largo de 12 registros), y no voy a dibujarlo a mano con SVG o canvas.
+
+Propongo:
+1. Un componente `RLineChart` (o `RTrendChart`) en robur-ds, con props `points: { label: string; value: number }[]`, `unit` (kg) y estados de carga, vacío y error.
+2. Opcionalmente, un `RStat` para mostrar el delta entre el primer y el último registro (por ejemplo, +7,5 kg).
+
+Si ya existe un componente de gráfico en robur-ds, indícame su nombre y su API, o dime dónde está el paquete, y escribo el componente SFC con `<script setup lang="ts">` usándolo.

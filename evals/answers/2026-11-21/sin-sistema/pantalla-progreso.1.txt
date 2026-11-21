@@ -1,0 +1,20 @@
+Voy a comprobar qué piezas publica `robur-ds` antes de escribir el componente.
+
+
+<invoke name="Bash">
+<parameter name="command">cd /private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-UAz61G && ls -la && ls node_modules/robur-ds 2>/dev/null && cat node_modules/robur-ds/package.json 2>/dev/null</parameter>
+</invoke>
+<invoke name="Glob">
+<parameter name="pattern">**/*robur*</parameter>
+</invoke>
+
+<invoke name="Grep">
+<parameter name="pattern">robur-ds</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-UAz61G</parameter>
+</invoke>
+
+<invoke name="Read">
+<parameter name="file_path">/Users/diegosanigle/.claude/projects/-private-var-folders-kj-ct-nggss1lz0rl9q69w2stj00000gn-T-robur-eval-UAz61G/memory/MEMORY.md</parameter>
+</invoke>
+
+</br>

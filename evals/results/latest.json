@@ -1,253 +1,605 @@
 {
-  "date": "2026-11-16",
+  "date": "2026-11-21",
   "model": "sonnet",
+  "passes": 1,
+  "cases": 12,
   "conditions": {
     "sin-sistema": {
       "passed": 0,
-      "total": 6,
+      "total": 12,
       "rate": 0,
       "cases": [
         {
           "id": "estado-vacio",
-          "pass": false,
-          "failures": [
-            "unknown-class: La clase \"rounded-2xl\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"border-gray-300\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-white\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"rounded-full\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-gray-100\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-gray-500\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-base\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-gray-900\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-gray-600\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"rounded-full\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-gray-900\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-white\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-gray-700\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"outline-gray-900\" no existe en el sistema. Consulta get_tokens.",
-            "no-raw-control: <button> dibujado a mano: usa Button.",
-            "no usa EmptyState"
-          ],
-          "rules": [
-            "unknown-class",
-            "no-raw-control"
-          ],
-          "turns": 1,
-          "cost": 0.0279049
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "estado-vacio.1.txt",
+              "pass": false,
+              "failures": [
+                "responde en texto"
+              ],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0248429
+            }
+          ]
         },
         {
           "id": "formulario-ejercicio",
-          "pass": false,
-          "failures": [
-            "unknown-class: La clase \"bg-white\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-xl\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-gray-900\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-gray-700\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-gray-900\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"ring-indigo-500\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-red-600\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-gray-700\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-gray-900\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"ring-indigo-500\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-red-600\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-gray-700\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-gray-900\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"ring-indigo-500\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-red-600\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"border-gray-300\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-gray-700\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-gray-50\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"ring-indigo-500\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-indigo-600\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-white\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-indigo-700\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"ring-indigo-500\" no existe en el sistema. Consulta get_tokens.",
-            "no-raw-control: <input> dibujado a mano: usa Input o Checkbox.",
-            "no-raw-control: <input> dibujado a mano: usa Input o Checkbox.",
-            "no-raw-control: <input> dibujado a mano: usa Input o Checkbox.",
-            "no-raw-control: <button> dibujado a mano: usa Button.",
-            "no-raw-control: <button> dibujado a mano: usa Button.",
-            "no usa FormLayout"
-          ],
-          "rules": [
-            "unknown-class",
-            "no-raw-control"
-          ],
-          "turns": 1,
-          "cost": 0.0397209
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "formulario-ejercicio.1.txt",
+              "pass": false,
+              "failures": [
+                "escribe una llamada a herramienta, no una respuesta"
+              ],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0198789
+            }
+          ]
         },
         {
           "id": "borrar-sesion",
-          "pass": false,
-          "failures": [
-            "unknown-class: La clase \"bg-black\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"rounded-t-3xl\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-white\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"shadow-2xl\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-neutral-900\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"rounded-full\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-neutral-300\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-neutral-700\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"rounded-full\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-red-100\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-red-600\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-red-950\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-red-400\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-lg\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-900\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-white\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-600\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-400\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-900\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-white\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-red-600\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-white\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-red-700\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"ring-red-500\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"ring-offset-neutral-900\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"border-neutral-300\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-800\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-neutral-100\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"ring-neutral-400\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"border-neutral-700\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-100\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-neutral-800\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"ring-offset-neutral-900\" no existe en el sistema. Consulta get_tokens.",
-            "no-raw-control: <button> dibujado a mano: usa Button.",
-            "no-raw-control: <button> dibujado a mano: usa Button.",
-            "no usa Sheet",
-            "falta variant=\"danger\"",
-            "falta variant=\"secondary\""
-          ],
-          "rules": [
-            "unknown-class",
-            "no-raw-control"
-          ],
-          "turns": 1,
-          "cost": 0.0470129
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "borrar-sesion.1.txt",
+              "pass": false,
+              "failures": [
+                "escribe una llamada a herramienta, no una respuesta"
+              ],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.020232899999999998
+            }
+          ]
         },
         {
           "id": "resumen-semana",
-          "pass": false,
-          "failures": [
-            "unknown-class: La clase \"rounded-2xl\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"border-neutral-200\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-white\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-500\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-600\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-6xl\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-900\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-base\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-500\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"border-neutral-100\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-xs\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-500\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-xl\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-800\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-500\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-xs\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-500\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-xl\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-800\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-500\" no existe en el sistema. Consulta get_tokens.",
-            "no usa StatCard"
-          ],
-          "rules": [
-            "unknown-class"
-          ],
-          "turns": 1,
-          "cost": 0.0278269
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "resumen-semana.1.txt",
+              "pass": false,
+              "failures": [
+                "escribe una llamada a herramienta, no una respuesta"
+              ],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0250629
+            }
+          ]
         },
         {
           "id": "tipo-de-dia",
-          "pass": false,
-          "failures": [
-            "unknown-class: La clase \"bg-neutral-100\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-neutral-800\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-white\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-900\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"bg-neutral-600\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-white\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-500\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-900\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-neutral-400\" no existe en el sistema. Consulta get_tokens.",
-            "unknown-class: La clase \"text-white\" no existe en el sistema. Consulta get_tokens.",
-            "no-raw-control: <button> dibujado a mano: usa Button.",
-            "no usa Chip"
-          ],
-          "rules": [
-            "unknown-class",
-            "no-raw-control"
-          ],
-          "turns": 1,
-          "cost": 0.027992899999999998
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "tipo-de-dia.1.txt",
+              "pass": false,
+              "failures": [
+                "escribe una llamada a herramienta, no una respuesta"
+              ],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0245049
+            }
+          ]
         },
         {
           "id": "registrar-sesion",
-          "pass": false,
-          "failures": [
-            "no usa SessionLog"
-          ],
-          "rules": [],
-          "turns": 1,
-          "cost": 0.0202449
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "registrar-sesion.1.txt",
+              "pass": false,
+              "failures": [
+                "escribe una llamada a herramienta, no una respuesta"
+              ],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.019758900000000003
+            }
+          ]
+        },
+        {
+          "id": "aviso-guardado",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "aviso-guardado.1.txt",
+              "pass": false,
+              "failures": [
+                "escribe una llamada a herramienta, no una respuesta"
+              ],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0202069
+            }
+          ]
+        },
+        {
+          "id": "calendario-sesion",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "calendario-sesion.1.txt",
+              "pass": false,
+              "failures": [
+                "escribe una llamada a herramienta, no una respuesta"
+              ],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.019740900000000002
+            }
+          ]
+        },
+        {
+          "id": "elegir-ejercicio",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "elegir-ejercicio.1.txt",
+              "pass": false,
+              "failures": [
+                "escribe una llamada a herramienta, no una respuesta"
+              ],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0209269
+            }
+          ]
+        },
+        {
+          "id": "progreso-peso",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "progreso-peso.1.txt",
+              "pass": false,
+              "failures": [
+                "responde en texto"
+              ],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0240029
+            }
+          ]
+        },
+        {
+          "id": "pantalla-progreso",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "pantalla-progreso.1.txt",
+              "pass": false,
+              "failures": [
+                "escribe una llamada a herramienta, no una respuesta"
+              ],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0236029
+            }
+          ]
+        },
+        {
+          "id": "migrar-lista",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "migrar-lista.1.txt",
+              "pass": false,
+              "failures": [
+                "escribe una llamada a herramienta, no una respuesta"
+              ],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0230609
+            }
+          ]
+        }
+      ]
+    },
+    "con-reglas": {
+      "passed": 9,
+      "total": 12,
+      "rate": 75,
+      "cases": [
+        {
+          "id": "estado-vacio",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "estado-vacio.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0405738
+            }
+          ]
+        },
+        {
+          "id": "formulario-ejercicio",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "formulario-ejercicio.1.txt",
+              "pass": false,
+              "failures": [
+                "escribe una llamada a herramienta, no una respuesta"
+              ],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0442178
+            }
+          ]
+        },
+        {
+          "id": "borrar-sesion",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "borrar-sesion.1.txt",
+              "pass": false,
+              "failures": [
+                "escribe una llamada a herramienta, no una respuesta"
+              ],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0587458
+            }
+          ]
+        },
+        {
+          "id": "resumen-semana",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "resumen-semana.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0442278
+            }
+          ]
+        },
+        {
+          "id": "tipo-de-dia",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "tipo-de-dia.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0435878
+            }
+          ]
+        },
+        {
+          "id": "registrar-sesion",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "registrar-sesion.1.vue",
+              "pass": false,
+              "failures": [
+                "unknown-prop: ExerciseRow no emite el evento \"change\". Eventos: completedChange.",
+                "missing-prop: A ExerciseRow le falta el evento obligatorio \"completedChange\".",
+                "no usa SessionLog"
+              ],
+              "rules": [
+                "unknown-prop",
+                "missing-prop"
+              ],
+              "turns": 1,
+              "cost": 0.059395800000000006
+            }
+          ]
+        },
+        {
+          "id": "aviso-guardado",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "aviso-guardado.1.txt",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0455118
+            }
+          ]
+        },
+        {
+          "id": "calendario-sesion",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "calendario-sesion.1.txt",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0437578
+            }
+          ]
+        },
+        {
+          "id": "elegir-ejercicio",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "elegir-ejercicio.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0418418
+            }
+          ]
+        },
+        {
+          "id": "progreso-peso",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "progreso-peso.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.041977799999999996
+            }
+          ]
+        },
+        {
+          "id": "pantalla-progreso",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "pantalla-progreso.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0540438
+            }
+          ]
+        },
+        {
+          "id": "migrar-lista",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "migrar-lista.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 1,
+              "cost": 0.0492578
+            }
+          ]
         }
       ]
     },
     "con-mcp": {
-      "passed": 6,
-      "total": 6,
+      "passed": 12,
+      "total": 12,
       "rate": 100,
       "cases": [
         {
           "id": "estado-vacio",
-          "pass": true,
-          "failures": [],
-          "rules": [],
-          "turns": 4,
-          "cost": 0.0427297
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "estado-vacio.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 4,
+              "cost": 0.0430106
+            }
+          ]
         },
         {
           "id": "formulario-ejercicio",
-          "pass": true,
-          "failures": [],
-          "rules": [],
-          "turns": 6,
-          "cost": 0.060022
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "formulario-ejercicio.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 6,
+              "cost": 0.0596001
+            }
+          ]
         },
         {
           "id": "borrar-sesion",
-          "pass": true,
-          "failures": [],
-          "rules": [],
-          "turns": 4,
-          "cost": 0.0408122
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "borrar-sesion.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 4,
+              "cost": 0.0398454
+            }
+          ]
         },
         {
           "id": "resumen-semana",
-          "pass": true,
-          "failures": [],
-          "rules": [],
-          "turns": 5,
-          "cost": 0.0479017
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "resumen-semana.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 6,
+              "cost": 0.0476346
+            }
+          ]
         },
         {
           "id": "tipo-de-dia",
-          "pass": true,
-          "failures": [],
-          "rules": [],
-          "turns": 7,
-          "cost": 0.054218999999999996
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "tipo-de-dia.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 5,
+              "cost": 0.0432907
+            }
+          ]
         },
         {
           "id": "registrar-sesion",
-          "pass": true,
-          "failures": [],
-          "rules": [],
-          "turns": 5,
-          "cost": 0.057836900000000004
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "registrar-sesion.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 7,
+              "cost": 0.0702115
+            }
+          ]
+        },
+        {
+          "id": "aviso-guardado",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "aviso-guardado.1.txt",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 2,
+              "cost": 0.030594499999999997
+            }
+          ]
+        },
+        {
+          "id": "calendario-sesion",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "calendario-sesion.1.txt",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 4,
+              "cost": 0.0428497
+            }
+          ]
+        },
+        {
+          "id": "elegir-ejercicio",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "elegir-ejercicio.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 4,
+              "cost": 0.038972200000000005
+            }
+          ]
+        },
+        {
+          "id": "progreso-peso",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "progreso-peso.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 5,
+              "cost": 0.045343999999999995
+            }
+          ]
+        },
+        {
+          "id": "pantalla-progreso",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "pantalla-progreso.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 13,
+              "cost": 0.10801569999999999
+            }
+          ]
+        },
+        {
+          "id": "migrar-lista",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "migrar-lista.1.vue",
+              "pass": true,
+              "failures": [],
+              "rules": [],
+              "turns": 6,
+              "cost": 0.060202399999999996
+            }
+          ]
         }
       ]
     }
-  }
+  },
+  "graded": "evals/answers/2026-11-21"
 }

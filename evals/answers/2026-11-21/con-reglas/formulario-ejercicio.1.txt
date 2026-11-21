@@ -1,0 +1,29 @@
+
+<invoke name="Read">
+<parameter name="file_path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-9rbAfG/src/patterns/FormLayout/FormLayout.pattern.json</parameter>
+</invoke>
+<invoke name="Read">
+<parameter name="file_path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-9rbAfG/src/components/Input/Input.contract.json</parameter>
+</invoke>
+<invoke name="Read">
+<parameter name="file_path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-9rbAfG/src/components/Button/Button.contract.json</parameter>
+</invoke>
+
+<invoke name="Glob">
+<parameter name="pattern">src/patterns/FormLayout/*</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-9rbAfG</parameter>
+</invoke>
+
+
+
+<invoke name="Glob">
+<parameter name="pattern">**/*</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-9rbAfG</parameter>
+</invoke>
+
+
+
+<invoke name="Bash">
+<parameter name="command">ls -la /private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-9rbAfG</parameter>
+<parameter name="description">List working directory contents</parameter>
+</invoke>

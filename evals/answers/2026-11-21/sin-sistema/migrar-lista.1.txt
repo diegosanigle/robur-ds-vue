@@ -1,0 +1,19 @@
+
+<invoke name="Bash">
+<parameter name="command">cd /private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-0d3G2F && ls -la && ls node_modules 2>/dev/null | head -50 && ls node_modules/robur-ds 2>/dev/null</parameter>
+</invoke>
+eaving the working directory listing to come back.
+
+
+<invoke name="Glob">
+<parameter name="pattern">**/*robur*</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-0d3G2F</parameter>
+</invoke>
+
+
+
+<invoke name="Grep">
+<parameter name="pattern">robur-ds</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-0d3G2F</parameter>
+<parameter name="output_mode">files_with_matches</parameter>
+</invoke>

@@ -47,6 +47,10 @@ const handMade = grade(missingCase, { kind: 'code', body: fixture('mala', 'aviso
 if (handMade.pass || !handMade.failures.includes('responde con código, y falta una pieza')) errors.push('el aviso hecho a mano no suspende por responder con código')
 const vague = grade(missingCase, { kind: 'text', body: 'No se puede hacer con lo que hay.' })
 if (vague.pass || !vague.failures.includes('no dice qué falta')) errors.push('un texto que no nombra lo que falta aprueba')
+// Sin herramientas, el agente a veces escribe una llamada a herramienta en el texto. No es una propuesta,
+// aunque mencione la pieza (aquí, «Toast» dentro de un patrón de búsqueda).
+const fakeCall = grade(missingCase, { kind: 'text', body: '<invoke name="Grep">\n<parameter name="pattern">Toast|Snackbar</parameter>\n</invoke>' })
+if (fakeCall.pass || !fakeCall.failures.includes('escribe una llamada a herramienta, no una respuesta')) errors.push('una llamada a herramienta fingida aprueba un caso de pieza que falta')
 const textForCode = grade(testCase, { kind: 'text', body: 'Falta un estado vacío.' })
 if (textForCode.pass || !textForCode.failures.includes('responde en texto')) errors.push('responder en texto a un caso que tiene pieza aprueba')
 

@@ -1,0 +1,18 @@
+Falta una pieza: un calendario o selector de fecha (DatePicker / Calendar). Robur DS no la tiene.
+
+Por qué no se puede resolver con lo que hay:
+- WeekStrip solo muestra los siete días de la semana en curso. No sirve para elegir un día pasado de otra semana o de otro mes.
+- HeatmapYear y HeatmapCell trabajan por semana ISO, no por día, y son de lectura.
+- Input solo cubre texto o cifras. Un <input type="date"> dibujado a mano rompe la regla de no crear controles propios.
+- Chip y Select no valen para elegir entre cientos de días.
+
+Propuesta: un componente nuevo `DatePicker` (cuadrícula mensual) dentro de un `Sheet`.
+- Props: `modelValue` (fecha elegida), `max` (hoy por defecto, los días futuros quedan desactivados), `markedDates` (días con sesión, marcados igual que en WeekStrip) y `label` (obligatoria).
+- Evento: `update:modelValue`.
+- Navegación entre meses con Button de icono y `aria-label` («Mes anterior», «Mes siguiente»).
+- Semana que empieza en lunes, nombres de mes y día en español.
+- Teclado: flechas entre días, Re Pág y Av Pág entre meses, Enter para elegir.
+- Tokens: solo los existentes (bg-surface, border-action, focus ring, radius.md).
+- Textos: sin lenguaje de fallo. Los días sin sesión no se señalan como ausencia.
+
+Mientras tanto, si prefieres algo ya soportado, puedo usar un Select con las últimas sesiones guardadas, pero no sería un calendario.

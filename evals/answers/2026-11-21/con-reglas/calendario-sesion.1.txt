@@ -1,0 +1,17 @@
+Falta una pieza: el sistema no tiene un calendario ni un selector de fecha.
+
+Lo más cercano no sirve para esto:
+- `Input` es un campo de una línea para texto o una cifra. No está pensado para fechas ni abre un calendario.
+- `Select` elige una opción de una lista. Para un día pasado sería una lista larguísima y sin contexto de semana ni mes.
+- `HeatmapYear` y `WeekStrip` muestran sesiones ya registradas, no sirven para elegir un día.
+- `Chip` serviría como celda seleccionable, pero montar una rejilla de meses a mano con ellos sería inventar un componente dentro de una pantalla.
+
+Propongo:
+1. Componente nuevo `DatePicker` (sigue la skill /nuevo-componente: primero el contrato).
+   - Props: `label`, `hint`, `error`, `min`, `max` (para limitar a días pasados) y `modelValue` en formato ISO (`2026-11-21`).
+   - Primera opción: envolver el `<input type="date">` nativo con el estilo de `Input` (declarando `Input` en `composes`), porque da el calendario del navegador y es accesible sin programar comportamiento.
+   - Segunda opción, solo si hace falta un calendario propio: un calendario mensual en un `Sheet`, con navegación de mes y celdas de 44 px.
+   - Texto de error de ejemplo: «Elige un día que no sea futuro».
+2. Si se aprueba, después un patrón o un paso en `SessionLog` para «Fecha de la sesión», con la fecha de hoy por defecto.
+
+Cuando exista `DatePicker`, escribo la pantalla con él.

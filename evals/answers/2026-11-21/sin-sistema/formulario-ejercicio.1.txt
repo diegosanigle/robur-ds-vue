@@ -1,0 +1,7 @@
+
+<invoke name="Glob">
+<parameter name="pattern">**/*</parameter>
+</invoke>
+<invoke name="Glob">
+<parameter name="pattern">node_modules/robur-ds/**/*</parameter>
+</invoke>

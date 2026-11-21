@@ -1,0 +1,36 @@
+Voy a comprobar qué piezas ofrece robur-ds antes de escribir el componente.
+
+
+<invoke name="Glob">
+<parameter name="pattern">**/*</parameter>
+</invoke>
+<invoke name="Bash">
+<parameter name="command">ls node_modules/robur-ds 2>/dev/null; cat package.json 2>/dev/null</parameter>
+<parameter name="description">Look for robur-ds package and package.json</parameter>
+</invoke>
+
+<invoke name="Grep">
+<parameter name="pattern">robur-ds</parameter>
+<parameter name="output_mode">files_with_matches</parameter>
+</invoke>
+
+
+
+<invoke name="Glob">
+<parameter name="pattern">**/*</parameter>
+</invoke>
+<invoke name="Bash">
+<parameter name="command">ls -la; ls node_modules/robur-ds 2>/dev/null; cat package.json 2>/dev/null</parameter>
+<parameter name="description">List working directory and look for robur-ds</parameter>
+</invoke>
+<invoke name="Grep">
+<parameter name="pattern">robur-ds</parameter>
+<parameter name="output_mode">files_with_matches</parameter>
+</invoke>
+
+
+
+<invoke name="Bash">
+<parameter name="command">ls -la</parameter>
+<parameter name="description">List working directory contents</parameter>
+</invoke>

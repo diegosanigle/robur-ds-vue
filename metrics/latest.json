@@ -1,19 +1,19 @@
 {
-  "date": "2026-11-13",
+  "date": "2026-11-21",
   "system": {
-    "components": 11,
-    "patterns": 3,
+    "components": 18,
+    "patterns": 5,
     "semanticTokens": 36,
     "primitiveColors": 31,
     "textStyles": 9,
     "themes": 2,
-    "stories": 58
+    "stories": 97
   },
   "coverage": {
     "contracts": 100,
     "documentedProps": 100,
     "figmaParity": 100,
-    "figmaSnapshotAgeDays": 2
+    "figmaSnapshotAgeDays": 5
   },
   "accessibility": {
     "contrastPairs": 64,
@@ -24,16 +24,21 @@
     }
   },
   "evals": {
-    "date": "2026-11-13",
+    "date": "2026-11-21",
     "model": "sonnet",
     "sin-sistema": {
       "passed": 0,
-      "total": 6,
+      "total": 12,
       "rate": 0
     },
+    "con-reglas": {
+      "passed": 9,
+      "total": 12,
+      "rate": 75
+    },
     "con-mcp": {
-      "passed": 6,
-      "total": 6,
+      "passed": 12,
+      "total": 12,
       "rate": 100
     }
   },

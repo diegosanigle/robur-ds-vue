@@ -1,0 +1,16 @@
+Falta información para escribir el componente sin inventar piezas: no tengo acceso al contenido del paquete "robur-ds" (ni su catálogo de componentes, ni sus tokens, ni sus iconos), y el directorio de trabajo está vacío, sin node_modules ni código del proyecto.
+
+Para este estado vacío haría falta que el Design System tuviera:
+- Un componente de estado vacío (EmptyState o similar), con ilustración o icono, título, descripción y slot de acción.
+- Un botón primario (Button) con variante principal.
+- Un icono o ilustración apropiados (por ejemplo, calendario o mancuerna).
+
+Si alguna de estas piezas no existe en robur-ds, no la montaré a mano con Tailwind.
+
+Propongo una de estas opciones:
+1. Pásame la lista de exports de robur-ds (o su documentación) y escribo el componente con las piezas reales.
+2. Si EmptyState no existe, añadirlo al DS con la API: props `title`, `description`, slots `icon` y `action`. Después el componente del historial solo lo compone con Button.
+
+Datos que también necesito:
+- El evento o ruta de "registrar sesión" (emit, router push, abrir modal).
+- Los textos finales en español (propuesta: "Esta semana aún no has entrenado" / "Registrar sesión").

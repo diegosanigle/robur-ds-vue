@@ -1,0 +1,16 @@
+Falta una pieza: no hay ningún componente para un aviso breve que desaparece solo (toast).
+
+Por qué no lo resuelvo con lo que hay:
+- `Sheet` es modal y bloquea la pantalla, y aquí el aviso no debe interrumpir.
+- `Card` es solo una superficie. No anuncia el mensaje a los lectores de pantalla ni gestiona el tiempo.
+- Un temporizador, un `role="status"` y un posicionamiento escritos a mano en la pantalla serían piezas nuevas fuera del sistema.
+
+Propuesta: un componente nuevo `Toast`, creado con la skill /nuevo-componente (primero el contrato, después el código).
+- Props: `open`, `duration` (milisegundos, con un valor por defecto de unos 4000), `variant` (success · info) y `children` para el texto.
+- Evento: `onClose`, que se emite al cumplirse `duration` o al cerrarlo la persona.
+- Accesibilidad: `role="status"` con `aria-live="polite"`, para que se anuncie sin quitar el foco. El temporizador se pausa con el foco o el cursor encima.
+- Estilo: solo tokens existentes. Por ejemplo `bg-success-soft` con `text-success`, o `bg-inverse` con `text-on-inverse`, más `rounded-md` y `shadow-md`. Hay que añadir el par elegido a `tokens/contrast.json` con su mínimo de 4.5.
+- Stories: una por variante y una `Interaccion` que comprueba que aparece y se cierra solo.
+- Texto de uso: «Sesión guardada», sin exclamaciones ni lenguaje de meta.
+
+Cuando exista `Toast`, la pantalla de registro solo tendrá que abrirlo tras guardar la sesión.

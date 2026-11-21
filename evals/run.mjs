@@ -11,6 +11,8 @@
 //   node evals/run.mjs --only estado-vacio  un solo caso
 //   node evals/run.mjs --model haiku        otro modelo
 //   node evals/run.mjs --grade <carpeta>    solo puntúa respuestas ya guardadas (<carpeta>/<condición>/<id>[.<n>].vue|txt)
+//     --save <nombre>                       guarda esa puntuación en evals/results/<nombre>.json
+//     --meta <resultados.json>              conserva fecha, modelo, pasadas, turnos y coste de la ejecución original
 // Las respuestas se guardan en evals/answers/<fecha>/: así se puede volver a puntuar lo que se publica.
 import { execFile } from 'node:child_process'
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
@@ -85,6 +87,8 @@ const usesPiece = (code, name) => new RegExp(`<(${name}|${kebab(name)})[\\s/>]`)
  */
 export function grade(testCase, answer) {
   const { kind, body: code } = typeof answer === 'string' ? { kind: 'code', body: answer } : answer
+  // Sin herramientas, a veces escribe la llamada en el texto: no es una propuesta, aunque nombre la pieza.
+  if (kind === 'text' && /<invoke\b|<parameter name=/.test(code)) return { pass: false, failures: ['escribe una llamada a herramienta, no una respuesta'], rules: [] }
   if (testCase.missing) {
     if (kind === 'code') return { pass: false, failures: ['responde con código, y falta una pieza'], rules: [] }
     const named = testCase.missing.some((word) => code.toLowerCase().includes(word))
@@ -139,6 +143,15 @@ if (process.argv[1] === import.meta.filename) {
   const selected = cases.filter((c) => !only || c.id === only)
   const results = { date: today, model: gradeDir ? 'respuestas guardadas' : model, passes: gradeDir ? undefined : passes, cases: selected.length, conditions: {} }
   const meta = {}
+
+  // Al re-puntuar una ejecución, --meta <resultados> conserva su fecha, modelo, pasadas, turnos y coste.
+  const metaFile = arg('meta')
+  if (gradeDir && metaFile) {
+    const previous = JSON.parse(readFileSync(metaFile, 'utf8'))
+    Object.assign(results, { date: previous.date, model: previous.model, passes: previous.passes })
+    for (const [condition, r] of Object.entries(previous.conditions))
+      for (const c of r.cases) for (const run of c.runs ?? []) meta[`${condition}/${run.answer}`] = { turns: run.turns, cost: run.cost }
+  }
 
   if (!gradeDir) {
     const tasks = Object.keys(CONDITIONS).flatMap((condition) =>

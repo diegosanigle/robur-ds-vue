@@ -1,0 +1,88 @@
+Voy a leer el contrato del patrón antes de usarlo.
+
+
+<invoke name="Read">
+<parameter name="file_path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd/src/patterns/ConfirmSheet/ConfirmSheet.pattern.json</parameter>
+</invoke>
+
+<invoke name="Glob">
+<parameter name="pattern">src/patterns/ConfirmSheet/*</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+</invoke>
+
+<invoke name="Glob">
+<parameter name="pattern">**/robur-ds/**/ConfirmSheet*</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+</invoke>
+
+<invoke name="Glob">
+<parameter name="pattern">node_modules/robur-ds/**/ConfirmSheet*</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+</invoke>
+
+<invoke name="Glob">
+<parameter name="pattern">**/*.pattern.json</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+</invoke>
+
+<invoke name="Glob">
+<parameter name="pattern">**/ConfirmSheet*</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+</invoke>
+
+<invoke name="Bash">
+<parameter name="command">ls -la /private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+<parameter name="description">List working directory contents</parameter>
+</invoke>
+
+<invoke name="Grep">
+<parameter name="pattern">ConfirmSheet</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+<parameter name="output_mode">files_with_matches</parameter>
+</invoke>
+
+<invoke name="Glob">
+<parameter name="pattern">*</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+</invoke>
+
+<invoke name="Glob">
+<parameter name="pattern">src/**/*</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+</invoke>
+
+<invoke name="Glob">
+<parameter name="pattern">node_modules/robur-ds/*</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+</invoke>
+
+<invoke name="Glob">
+<parameter name="pattern">**/*.vue</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+</invoke>
+
+<invoke name="Glob">
+<parameter name="pattern">**/*.json</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+</invoke>
+
+<invoke name="Glob">
+<parameter name="pattern">**/*.ts</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+</invoke>
+
+<invoke name="Glob">
+<parameter name="pattern">**/*.md</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+</invoke>
+
+<invoke name="Glob">
+<parameter name="pattern">**/*</parameter>
+<parameter name="path">/private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd</parameter>
+</invoke>
+
+
+<invoke name="Bash">
+<parameter name="command">find /private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-R7GAwd -maxdepth 4 -not -path '*/node_modules/*' | head -100</parameter>
+<parameter name="description">Find files in the working directory</parameter>
+</invoke>

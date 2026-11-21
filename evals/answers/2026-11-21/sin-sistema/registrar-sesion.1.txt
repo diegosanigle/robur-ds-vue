@@ -1,0 +1,7 @@
+
+<invoke name="Bash">
+<parameter name="command">cd /private/var/folders/kj/ct_nggss1lz0rl9q69w2stj00000gn/T/robur-eval-o6dmrN && ls -la && ls node_modules/robur-ds 2>/dev/null; cat package.json 2>/dev/null</parameter>
+</invoke>
+<invoke name="Glob">
+<parameter name="pattern">**/*robur*</parameter>
+</invoke>

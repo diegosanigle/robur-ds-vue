@@ -1,0 +1,10 @@
+Falta una pieza: el catálogo de Robur DS no tiene un aviso temporal (toast o snackbar). Ni los patrones (ConfirmSheet, EmptyState, FormLayout, ScreenState, SessionLog) ni los componentes (Card, Sheet, etc.) cubren un mensaje que aparece y se cierra solo. Sheet es modal y bloquea la pantalla, así que no sirve. Hacer el aviso a mano con una Card, un temporizador y clases de posición sería improvisar una pieza que el sistema no tiene.
+
+Propongo añadir un componente Toast:
+- Props: `message` (string), `variant` ("success" | "info"), `duration` (número en ms, 4000 por defecto) y `open` (v-model).
+- Evento: `close`, que se emite al cumplirse la duración o al cerrarlo el usuario.
+- Accesibilidad: `role="status"` con `aria-live="polite"`. Que no robe el foco y que se pause con hover o foco, para que dé tiempo a leerlo.
+- Tokens: fondo y texto de superficie con contraste garantizado, un radio y una sombra del catálogo, y un icono de confirmación del juego de Icon.
+- Texto: frase corta en español, sin exclamaciones, por ejemplo «Sesión guardada».
+
+Cuando exista Toast, el componente consistirá en lanzarlo tras guardar la sesión.
