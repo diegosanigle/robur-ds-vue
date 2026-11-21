@@ -1,0 +1,316 @@
+{
+  "date": "2026-11-21",
+  "model": "respuestas guardadas",
+  "cases": 12,
+  "conditions": {
+    "sin-sistema": {
+      "passed": 0,
+      "total": 6,
+      "rate": 0,
+      "cases": [
+        {
+          "id": "estado-vacio",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "estado-vacio.vue",
+              "pass": false,
+              "failures": [
+                "unknown-class: La clase \"rounded-2xl\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"border-gray-300\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-white\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"rounded-full\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-gray-100\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-gray-500\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-base\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-gray-900\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-gray-600\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"rounded-full\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-gray-900\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-white\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-gray-700\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"outline-gray-900\" no existe en el sistema. Consulta get_tokens.",
+                "no-raw-control: <button> dibujado a mano: usa Button.",
+                "no usa EmptyState"
+              ],
+              "rules": [
+                "unknown-class",
+                "no-raw-control"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "formulario-ejercicio",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "formulario-ejercicio.vue",
+              "pass": false,
+              "failures": [
+                "unknown-class: La clase \"bg-white\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-xl\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-gray-900\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-gray-700\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-gray-900\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"ring-indigo-500\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-red-600\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-gray-700\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-gray-900\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"ring-indigo-500\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-red-600\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-gray-700\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-gray-900\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"ring-indigo-500\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-red-600\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"border-gray-300\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-gray-700\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-gray-50\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"ring-indigo-500\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-indigo-600\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-white\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-indigo-700\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"ring-indigo-500\" no existe en el sistema. Consulta get_tokens.",
+                "no-raw-control: <input> dibujado a mano: usa Input o Checkbox.",
+                "no-raw-control: <input> dibujado a mano: usa Input o Checkbox.",
+                "no-raw-control: <input> dibujado a mano: usa Input o Checkbox.",
+                "no-raw-control: <button> dibujado a mano: usa Button.",
+                "no-raw-control: <button> dibujado a mano: usa Button.",
+                "no usa FormLayout"
+              ],
+              "rules": [
+                "unknown-class",
+                "no-raw-control"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "borrar-sesion",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "borrar-sesion.vue",
+              "pass": false,
+              "failures": [
+                "unknown-class: La clase \"bg-black\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"rounded-t-3xl\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-white\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"shadow-2xl\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-neutral-900\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"rounded-full\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-neutral-300\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-neutral-700\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"rounded-full\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-red-100\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-red-600\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-red-950\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-red-400\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-lg\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-900\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-white\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-600\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-400\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-900\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-white\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-red-600\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-white\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-red-700\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"ring-red-500\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"ring-offset-neutral-900\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"border-neutral-300\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-800\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-neutral-100\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"ring-neutral-400\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"border-neutral-700\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-100\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-neutral-800\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"ring-offset-neutral-900\" no existe en el sistema. Consulta get_tokens.",
+                "no-raw-control: <button> dibujado a mano: usa Button.",
+                "no-raw-control: <button> dibujado a mano: usa Button.",
+                "no usa Sheet",
+                "falta variant=\"danger\"",
+                "falta variant=\"secondary\""
+              ],
+              "rules": [
+                "unknown-class",
+                "no-raw-control"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "resumen-semana",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "resumen-semana.vue",
+              "pass": false,
+              "failures": [
+                "unknown-class: La clase \"rounded-2xl\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"border-neutral-200\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-white\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-500\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-600\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-6xl\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-900\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-base\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-500\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"border-neutral-100\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-xs\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-500\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-xl\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-800\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-500\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-xs\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-500\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-xl\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-800\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-500\" no existe en el sistema. Consulta get_tokens.",
+                "no usa StatCard",
+                "cifra sin formato español: Intl.NumberFormat('es-ES', { maximumFractionDigits: 1 }) sin useGrouping escribe «2480», no «2.480»"
+              ],
+              "rules": [
+                "unknown-class"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tipo-de-dia",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "tipo-de-dia.vue",
+              "pass": false,
+              "failures": [
+                "unknown-class: La clase \"bg-neutral-100\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-neutral-800\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-white\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-900\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"bg-neutral-600\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-white\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-500\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-900\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-neutral-400\" no existe en el sistema. Consulta get_tokens.",
+                "unknown-class: La clase \"text-white\" no existe en el sistema. Consulta get_tokens.",
+                "no-raw-control: <button> dibujado a mano: usa Button.",
+                "no usa Chip"
+              ],
+              "rules": [
+                "unknown-class",
+                "no-raw-control"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "registrar-sesion",
+          "passed": 0,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "registrar-sesion.vue",
+              "pass": false,
+              "failures": [
+                "no usa SessionLog"
+              ],
+              "rules": []
+            }
+          ]
+        }
+      ]
+    },
+    "con-mcp": {
+      "passed": 6,
+      "total": 6,
+      "rate": 100,
+      "cases": [
+        {
+          "id": "estado-vacio",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "estado-vacio.vue",
+              "pass": true,
+              "failures": [],
+              "rules": []
+            }
+          ]
+        },
+        {
+          "id": "formulario-ejercicio",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "formulario-ejercicio.vue",
+              "pass": true,
+              "failures": [],
+              "rules": []
+            }
+          ]
+        },
+        {
+          "id": "borrar-sesion",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "borrar-sesion.vue",
+              "pass": true,
+              "failures": [],
+              "rules": []
+            }
+          ]
+        },
+        {
+          "id": "resumen-semana",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "resumen-semana.vue",
+              "pass": true,
+              "failures": [],
+              "rules": []
+            }
+          ]
+        },
+        {
+          "id": "tipo-de-dia",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "tipo-de-dia.vue",
+              "pass": true,
+              "failures": [],
+              "rules": []
+            }
+          ]
+        },
+        {
+          "id": "registrar-sesion",
+          "passed": 1,
+          "total": 1,
+          "runs": [
+            {
+              "answer": "registrar-sesion.vue",
+              "pass": true,
+              "failures": [],
+              "rules": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "graded": "evals/answers/2026-11-16"
+}

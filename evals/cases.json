@@ -40,7 +40,46 @@
       "task": "La pantalla para registrar la sesión de hoy: elegir el tipo de día, marcar los ejercicios hechos y guardar.",
       "uses": ["SessionLog"],
       "avoids": ["FormLayout"],
+      "forbids": ["\\d+\\s*/\\s*\\d+", "%", "completad[oa]s?"],
       "why": "Existe un patrón completo. No debe añadir progreso ni recuentos."
+    },
+    {
+      "id": "aviso-guardado",
+      "task": "Un aviso breve que confirma que la sesión se ha guardado y desaparece solo a los pocos segundos.",
+      "missing": ["aviso", "toast", "notificación"],
+      "why": "No hay ninguna pieza para un aviso que se cierra solo: Sheet es modal y ScreenState es para carga y error. Debe decir que falta y proponerlo, no dibujarlo."
+    },
+    {
+      "id": "calendario-sesion",
+      "task": "Elegir en un calendario el día de una sesión pasada.",
+      "missing": ["calendario"],
+      "why": "No hay calendario en el sistema. Montarlo con Chip o Button es improvisar: debe decir que falta y proponerlo."
+    },
+    {
+      "id": "elegir-ejercicio",
+      "task": "Un campo para elegir el ejercicio de la sesión entre los 40 que la persona tiene guardados.",
+      "uses": ["Select"],
+      "avoids": ["Chip"],
+      "why": "Con una lista larga, Select. Chip es para pocas opciones a la vista."
+    },
+    {
+      "id": "progreso-peso",
+      "task": "Cómo ha cambiado el peso máximo en press banca en los últimos 12 registros.",
+      "uses": ["LineChart"],
+      "avoids": ["BarChart"],
+      "why": "Una cifra que cambia registro a registro es LineChart. BarChart es una cifra por periodo."
+    },
+    {
+      "id": "pantalla-progreso",
+      "task": "La pantalla de progreso: un selector para ver la semana, el mes o el año; tres cifras de resumen (sesiones, minutos y volumen total en kg); las sesiones por semana en una gráfica; el heatmap del año, y un botón para registrar una sesión. Mientras cargan los datos, o si no llegan, la pantalla lo dice.",
+      "uses": ["Tabs", "StatCard", "BarChart", "HeatmapYear", "ScreenState", "Button"],
+      "why": "Una pantalla con seis piezas y reglas que se cruzan: un solo botón primary, como mucho una tarjeta inverse, carga y error con su patrón y las cifras en formato español."
+    },
+    {
+      "id": "migrar-lista",
+      "task": "Migra al sistema esta lista de ejercicios hecha a mano en HTML. Conviértela en un componente que reciba los ejercicios y avise al pulsar Editar, con los mismos datos:\n\n<ul>\n  <li style=\"border-bottom: 1px solid #E5E0DC\" class=\"flex justify-between p-3\">\n    <div>\n      <p class=\"font-bold\">Sentadillas</p>\n      <p class=\"text-gray-500\">4 series</p>\n    </div>\n    <button style=\"color: #C43004\">Editar</button>\n  </li>\n  <li style=\"border-bottom: 1px solid #E5E0DC\" class=\"flex justify-between p-3\">\n    <div>\n      <p class=\"font-bold\">Flexiones</p>\n      <p class=\"text-gray-500\">3 series</p>\n    </div>\n    <button style=\"color: #C43004\">Editar</button>\n  </li>\n</ul>\n<p class=\"text-sm text-gray-500\">Volumen total: 2480kg</p>",
+      "uses": ["ListRow", "Button"],
+      "why": "Cada fila es un ListRow con su acción en Button, sin hex ni estilos en línea, y «2480kg» pasa a «2.480 kg»."
     }
   ]
 }

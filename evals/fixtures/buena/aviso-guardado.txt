@@ -1,0 +1,3 @@
+Falta un aviso breve que se cierre solo (un toast). Robur DS no tiene ninguna pieza para eso:
+Sheet es modal y ScreenState es para carga y error. Propongo un componente Toast nuevo, con
+role="status", sin botones y con fondo inverse, empezando por su contrato.
