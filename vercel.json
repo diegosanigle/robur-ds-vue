@@ -1,10 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "buildCommand": "mkdir -p vercel-static",
+  "buildCommand": "echo \"Sin build: solo se sirve api/mcp.mjs\"",
   "outputDirectory": "vercel-static",
   "functions": {
-    "api/mcp.mjs": { "includeFiles": "mcp/data.json" }
+    "api/mcp.mjs": {
+      "includeFiles": "mcp/data.json"
+    }
   },
-  "rewrites": [{ "source": "/mcp", "destination": "/api/mcp" }]
+  "rewrites": [
+    {
+      "source": "/mcp",
+      "destination": "/api/mcp"
+    }
+  ]
 }

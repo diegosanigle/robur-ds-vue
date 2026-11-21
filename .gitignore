@@ -40,4 +40,4 @@ evals/outputs
 
 # Vercel: solo sirve el MCP por URL (api/mcp.mjs)
 .vercel
-vercel-static
+.env*
