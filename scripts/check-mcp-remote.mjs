@@ -29,6 +29,17 @@ const connect = async (transport) => {
 }
 const remote = (headers = {}) =>
   connect(new StreamableHTTPClientTransport(new URL(URL_MCP), { fetch: (url, init) => handle(new Request(url, init)), requestInit: { headers } }))
+// Cuántas herramientas ve un cliente; si no llega a conectar, el motivo, para listarlo como fallo.
+const toolCount = async (headers) => {
+  try {
+    const client = await remote(headers)
+    const count = (await client.listTools()).tools.length
+    await client.close()
+    return count
+  } catch (error) {
+    return `no conecta: ${error.message.split('\n')[0]}`
+  }
+}
 const answers = async (client) => Promise.all(calls.map(async ([name, args]) => (await client.callTool({ name, arguments: args })).content[0].text))
 
 const post = (body, headers = {}) =>
@@ -55,14 +66,16 @@ expect(`un GET sin sesión da un 4xx (da ${get.status})`, get.status >= 400 && g
 const huge = JSON.stringify({ jsonrpc: '2.0', id: 9, method: 'tools/call', params: { name: 'validate_code', arguments: { code: 'import { '.repeat(20_000) } } })
 const tooBig = await post(huge)
 expect(`un cuerpo de más de 100 KB da 413 (da ${tooBig.status})`, tooBig.status === 413)
+// Un lote vacío no es una petición JSON-RPC válida.
+const emptyBatch = await post('[]')
+expect(`un lote vacío da 400 (da ${emptyBatch.status})`, emptyBatch.status === 400)
 const del = await handle(new Request(URL_MCP, { method: 'DELETE' }))
 expect(`un DELETE da un 4xx (da ${del.status})`, del.status >= 400 && del.status < 500)
 
 // Una variable vacía o con espacios no cierra el MCP.
 process.env.MCP_TOKEN = '   '
-const blank = await remote()
-expect('con MCP_TOKEN en blanco sigue siendo público', (await blank.listTools()).tools.length === 5)
-await blank.close()
+const blank = await toolCount()
+expect(`con MCP_TOKEN en blanco sigue siendo público (${blank})`, blank === 5)
 
 // Forma privada: con MCP_TOKEN.
 process.env.MCP_TOKEN = TOKEN
@@ -72,9 +85,12 @@ expect('el 401 lleva WWW-Authenticate: Bearer', denied.headers.get('www-authenti
 for (const value of ['Bearer otro', `Basic ${TOKEN}`, 'Bearer ', `Bearer ${TOKEN}x`]) {
   expect(`«Authorization: ${value}» da 401`, (await post(initialize, { authorization: value })).status === 401)
 }
-const allowed = await remote({ authorization: `Bearer ${TOKEN}` })
-expect('con el token bueno hay cinco herramientas', (await allowed.listTools()).tools.length === 5)
-await allowed.close()
+const allowed = await toolCount({ authorization: `Bearer ${TOKEN}` })
+expect(`con el token bueno hay cinco herramientas (${allowed})`, allowed === 5)
+// El nombre del esquema no distingue mayúsculas, y entre él y el token puede haber más de un espacio (RFC 7235).
+for (const value of [`bearer ${TOKEN}`, `BEARER ${TOKEN}`, `Bearer  ${TOKEN}`]) {
+  expect(`«Authorization: ${value.replace(TOKEN, '<token>')}» entra`, (await post(initialize, { authorization: value })).status === 200)
+}
 delete process.env.MCP_TOKEN
 
 if (errors.length) {
